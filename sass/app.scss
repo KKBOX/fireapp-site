@@ -1,4 +1,4 @@
-/* Artfully masterminded by ZURB  */
+@import "compass";
 
 // Table of Content
 //-----------------------------------------
@@ -11,3 +11,33 @@
 // Page Name 1
 
 // Page Name 2
+
+body {
+    background: hsl(0,0%,93%) image-url("bg.png"); // from http://subtlepatterns.com/?p=664
+}
+
+.logo {
+    -webkit-transition: all 1s ease;
+    -webkit-transform: rotate(-10deg) translate(0);
+    &:hover {
+        -webkit-transform: rotate(10deg) translate(0);
+    }
+}
+.brand {
+    font-family: 'Exo', sans-serif;
+    font-weight: 900;
+    font-size: 64px;
+    line-height: 64px;
+    padding: 100px 0 0;
+}
+
+.slogan {
+    font-family: 'Exo', sans-serif;
+    font-size: 24px;
+    line-height: 36px;
+}
+
+.intro {
+    background: transparent image-url("logo/512.png") no-repeat -40px -20px;
+    padding-left: 460px;
+}
