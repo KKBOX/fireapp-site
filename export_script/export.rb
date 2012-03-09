@@ -13,7 +13,7 @@ require "./lib/dynamic_handler"
   WEBrick::HTTPServlet::FileHandler.add_handler(ext, WEBrick::HTTPServlet::DynamicHandler)
 end
 
-project_path = File.absolute_path( ARGV[0] )
+project_path = File.expand_path( ARGV[0] )
 file_name = Compass.detect_configuration_file( project_path )
 Compass.add_project_configuration(file_name)
 Compass.configuration.project_path = project_path
