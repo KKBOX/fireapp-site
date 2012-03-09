@@ -23,6 +23,7 @@
     <![endif]-->
 </head>
 <body>
+    <div id="fb-root"></div>
     <div class="navbar">
         <div class="navbar-inner">
             <div class="container">
@@ -31,18 +32,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <a class="brand" href="/">Fire.app</a>
                 <div class="nav-collapse">
-                    <ul class="nav">
-                        <li class="">
-                        <a href="/docs/">Docs</a>
-                        </li>
-                        <li class="">
-                        <a href="">Support</a>
-                        </li>
-                        <li class="">
-                        <a href="">Changes</a>
-                        </li>
+                    <ul class="nav"> 
+                        <li><a href="/faq/">FAQ</a></li>
+                        <li><a href="/docs/">Docs</a></li>
+                        <li><a href="https://github.com/handlino/fireapp/issues">Issues on GitHub</a></li>
                     </ul>
                 </div>
             </div>
@@ -51,9 +45,10 @@
     <div class="container">
         <%= yield %>
 
-        <hr>
+        <hr class="soften">
         <footer>
-            <p>&copy; Handlino Inc. 2012</p>
+            <p><a href="https://twitter.com/handlino" class="twitter-follow-button" data-width="225px" data-link-color="#0069D6" data-show-count="true">Follow @handlino</a></p>
+            <p>Fire is bought to you by <a href="http://handlino.com/">Handlino Inc.</a></p>
         </footer>
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -69,8 +64,14 @@
     <script src="/javascripts/bootstrap-collapse.js"></script>
     <script src="/javascripts/bootstrap-carousel.js"></script>
     <script src="/javascripts/bootstrap-typeahead.js"></script>
-
-
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=281531855250082";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 </body>
 </html>

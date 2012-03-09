@@ -13,33 +13,150 @@
 // Page Name 2
 
 body {
-    background: hsl(0,0%,93%) image-url("bg.png"); // from http://subtlepatterns.com/?p=664
+    background: hsl(0,0%,98%) image-url("bg.png"); // from http://subtlepatterns.com/?p=664
 }
 
-.logo {
-    -webkit-transition: all 1s ease;
-    -webkit-transform: rotate(-10deg) translate(0);
-    &:hover {
-        -webkit-transform: rotate(10deg) translate(0);
+.btn-buy {
+    margin-top: 32px;
+    display: block; // make it full width
+}
+
+/* Quick links
+-------------------------------------------------- */
+.quick-links {
+  min-height: 30px;
+  padding: 5px 20px;
+  margin: 36px 0;
+  list-style: none;
+  text-align: center;
+  overflow: hidden;
+}
+.quick-links li {
+  display: inline;
+  margin: 0 5px;
+  color: #999;
+}
+.quick-links .github-btn,
+.quick-links .tweet-btn {
+  position: relative;
+  top: 5px;
+}
+.quick-links .like-btn {
+  position: relative;
+  top: 6px;
+}
+
+/* Faded out hr */
+hr.soften {
+  height: 1px;
+  margin: 54px 0;
+  background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  border: 0;
+}
+
+@-webkit-keyframes logo {
+    from{
+        -webkit-transform:scale(3);
+        opacity:0;
+    }
+    25% {
+        -webkit-transform:scale(3);
+        opacity:0
+    }
+    55% { 
+        -webkit-transform:scale(1);
+        opacity:1
+    }
+    to{
+        -webkit-transform:scale(1);
+        opacity:1
     }
 }
-.branding {
-    font-family: 'Exo', sans-serif;
-    font-weight: 900;
-    font-size: 96px;
-    line-height: 96px;
-    color: hsl(28,93%,46%);
+
+.jumbotron {
+    h1 {
+        font-family: 'Exo', sans-serif;
+        font-weight: 900;
+        font-size: 128px;
+        line-height: 128px;
+        margin: 0;
+        padding: 10px 0 0;
+        color: hsl(25,100%,41%);
+        
+    }
+    .logo {
+        margin-bottom: 18px;
+    }
+
+    .slogan {
+        font-family: 'Exo', sans-serif;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 18px;
+        margin: 0;
+        padding: 0;
+        color: hsl(0,0%,38%);
+        text-align: left;
+    }
+
+    .platforms {
+        color: hsl(0,0%,38%);
+        margin: 16px 0 0;
+        text-align: center;
+    }
+
+    .btn-large {
+        font-size: 20px;
+        font-weight: normal;
+        padding: 14px 24px;
+        margin-right: 10px;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        border-radius: 6px;
+    }
 }
 
-.slogan {
-    font-family: 'Exo', sans-serif;
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 24px;
-    color: hsl(39,16%,17%);
+.btn-github {
+    strong {
+        display: block;
+    }
+}
+.btn-large small {
+    font-size: 14px;
 }
 
-.intro {
-    background: transparent image-url("logo/512.png") no-repeat -40px -20px;
-    padding-left: 460px;
+
+/* Marketing section of Overview
+-------------------------------------------------- */
+.marketing .row {
+  margin-bottom: 9px;
 }
+.marketing h1 {
+  margin: 36px 0 27px;
+  font-size: 40px;
+  font-weight: 300;
+  text-align: center;
+}
+.marketing h2,
+.marketing h3 {
+  font-weight: 300;
+}
+.marketing h2 {
+  font-size: 22px;
+}
+.marketing p {
+  margin-right: 10px;
+}
+.marketing .bs-icon {
+  float: left;
+  margin: 7px 10px 0 0;
+  opacity: .8;
+}
+.marketing .small-bs-icon {
+  float: left;
+  margin: 4px 5px 0 0;
+}
+
