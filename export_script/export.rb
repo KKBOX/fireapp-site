@@ -22,7 +22,7 @@ release_dir = File.join(project_path, "document_root")
 FileUtils.mkdir_p( release_dir)
 file_extensions = WEBrick::HTTPServlet::FileHandler::HandlerTable.keys.join(',')
 Dir.glob( File.join(project_path, '**', "[^_]*.html.{#{file_extensions}}") ) do |file|
-  if file =~ /document_root/
+  if file =~ /document_root/ || file =~ /export_script/
     next
   end
 
@@ -40,7 +40,7 @@ Dir.glob( File.join(project_path, '**', "[^_]*.html.{#{file_extensions}}") ) do 
 end
 
 Dir.glob( File.join(project_path, '**', '[^_]*.{html,swf,txt,ico,png,json,xml}') ) do |file|
-  if file =~ /document_root/
+  if file =~ /document_root/ || file =~ /export_script/
     next 
   end
     new_file = File.join(release_dir, file[project_path.size..-1])
