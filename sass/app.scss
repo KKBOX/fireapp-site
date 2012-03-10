@@ -77,6 +77,10 @@ hr.soften {
 }
 
 .jumbotron {
+    .logo {
+        margin-bottom: 18px;
+    }
+
     h1 {
         font-family: 'Exo', sans-serif;
         font-weight: 900;
@@ -86,9 +90,6 @@ hr.soften {
         padding: 10px 0 0;
         color: hsl(25,100%,41%);
         
-    }
-    .logo {
-        margin-bottom: 18px;
     }
 
     .slogan {
@@ -116,6 +117,22 @@ hr.soften {
         -webkit-border-radius: 6px;
         -moz-border-radius: 6px;
         border-radius: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .jumbotron {
+        .logo img {
+            width: 96px;
+        }
+        h1 {
+            font-size: 72px;
+            line-height: 72px;
+        }
+        .slogan {
+            font-size: 12px;
+            line-height: 12px;
+        }
     }
 }
 
