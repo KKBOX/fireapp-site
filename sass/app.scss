@@ -177,3 +177,10 @@ hr.soften {
   margin: 4px 5px 0 0;
 }
 
+.marketing {
+    @for $i from 1 through 6 {
+        .feature#{$i} {
+            border-top: 5px solid adjust-hue(#A9014B, 60deg * $i);
+        }
+    }
+}
