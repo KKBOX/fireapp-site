@@ -205,10 +205,10 @@ hr.soften {
 }
 
 .marketing {
-    @for $i from 1 through 6 {
+    @for $i from 1 through 12 {
         .feature#{$i} {
             margin-bottom: 48px;
-            border-top: 10px solid adjust-hue(hsl(25,100%,41%), 60deg * $i);
+            border-top: 10px solid adjust-hue(hsl(25,100%,41%), 60deg * $i - 60deg);
         }
     }
 }
