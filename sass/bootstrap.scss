@@ -1,5 +1,5 @@
 /*!
- * Bootstrap v2.0.1
+ * Bootstrap v2.0.2
  *
  * Copyright 2012 Twitter, Inc
  * Licensed under the Apache License v2.0
@@ -11,11 +11,6 @@
  *
  * Date: @DATE
  */
-
-@import "compass";
-
-$baseFontSize: 16px;
-$baseLineHeight: 24px;
 
 // Core variables and mixins
 @import "variables"; // Modify this for custom colors, font-sizes, etc
@@ -62,6 +57,7 @@ $baseLineHeight: 24px;
 // Components: Misc
 @import "thumbnails";
 @import "labels";
+@import "badges";
 @import "progress-bars";
 @import "accordion";
 @import "carousel";
