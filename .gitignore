@@ -5,3 +5,5 @@ Thumbs.db
 Gemfile.lock
 compass_app_log.txt
 document_root
+tmp
+.bundle
