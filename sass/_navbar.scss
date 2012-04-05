@@ -180,8 +180,7 @@
   @include border-radius(0);
 }
 
-.navbar-fixed-top .container,
-.navbar-fixed-bottom .container {
+.navbar-inner .container {
   @include grid-core-span($gridColumns);
 }
 
