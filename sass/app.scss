@@ -6,18 +6,6 @@ $baseLineHeight: 24px;
 @import "bootstrap";
 @import "responsive";
 
-// Table of Content
-//-----------------------------------------
-// - Shared Styles
-// - Page Name 1
-// - Page Name 2
-
-// Shared Styles
-
-// Page Name 1
-
-// Page Name 2
-
 body {
     background: hsl(0,0%,98%) image-url("bg.png"); // from http://subtlepatterns.com/?p=664
 }
@@ -32,6 +20,17 @@ footer {
         font-size: 12px;
         text-align: left;
     }
+}
+
+h1 {
+    font-family: 'Exo', sans-serif;
+    font-weight: 900;
+    font-size: 128px;
+}
+
+h2 {
+    font-family: 'Exo', sans-serif;
+    font-weight: 900;
 }
 
 .btn-buy {
@@ -169,47 +168,23 @@ hr.soften {
     }
 }
 
-.btn-github {
-    strong {
-        display: block;
-    }
+section .row {
+    margin-bottom: 9px;
 }
-.btn-large small {
-    font-size: 14px;
+section h1 {
+    margin: 36px 0 27px;
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
 }
 
-
-/* Marketing section of Overview
--------------------------------------------------- */
-.marketing .row {
-  margin-bottom: 9px;
-}
-.marketing h1 {
-  margin: 36px 0 27px;
-  font-size: 40px;
-  font-weight: 300;
-  text-align: center;
-}
-.marketing h2,
-.marketing h3 {
-  font-weight: 300;
-}
 .marketing h2 {
-  font-size: 22px;
+    font-size: 22px;
+    font-weight: 300;
 }
 .marketing p {
-  margin-right: 10px;
+    margin-right: 10px;
 }
-.marketing .bs-icon {
-  float: left;
-  margin: 7px 10px 0 0;
-  opacity: .8;
-}
-.marketing .small-bs-icon {
-  float: left;
-  margin: 4px 5px 0 0;
-}
-
 .marketing {
     @for $i from 1 through 12 {
         .feature#{$i} {
@@ -218,13 +193,7 @@ hr.soften {
         }
     }
 }
-h1 {
-    font-family: 'Exo', sans-serif;
-    font-weight: 900;
-    font-size: 128px;
-    color: hsl(25,100%,41%);
-}
-h2 {
-    font-family: 'Exo', sans-serif;
-    font-weight: 900;
+
+.carousel img {
+    max-width: 100%;
 }
