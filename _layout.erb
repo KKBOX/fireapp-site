@@ -6,63 +6,74 @@
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Handlino Inc." />
-
+    <link rel="shortcut icon" href="favicon.ico">
     <title>Fire.app: Dead Easy HTML Prototyping</title>
-
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Exo:300,600,900">
-    <link rel="stylesheet" href="/stylesheets/app.css">
-
-    <!-- IE Fix for HTML5 Tags -->
-    <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link href="stylesheets/application.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Anton|Bree+Serif|Vollkorn|Exo:300,600,900' rel='stylesheet' type='text/css'>
+    <!-- html5shiv http://code.google.com/p/html5shiv/ -->
+    <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <%#= livereload_js %>
 </head>
 <body>
-    <div class="header">
-        <div class="navbar">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <div class="nav-collapse">
-                        <ul class="nav pull-right"> 
-                            <li><a href="http://github.com/handlino/FireApp/wiki/">Documentation</a></li>
-                            <li><a href="https://github.com/handlino/fireapp/issues">Issues</a></li>
-                        </ul>
-                    </div>
+    <div class="container">
+        <header class="jumbotron">
+            <div class="navbar">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li><a href="http://github.com/handlino/FireApp/wiki/" class="documentation"><span>Documentation</span></a></li>
+                        <li><a href="https://github.com/handlino/fireapp/issues" class="issues"><span>Issues</span></a></li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="container">
-        <%= yield %>
-
-        <hr class="soften">
+            <div class="logo">
+                <h1>Fire<small>.app</small></h1>   
+                <p class="slogan">Dead Easy HTML Prototyping</p> 
+            </div>
+            <div class="buy">
+                <a href="http://transactions.digitaldeliveryapp.com/packages/393/purchase" class="button"><span>$14</span> Buy Now</a>
+                <p class="donated">10% of sales donated to <a href="http://www.umdf.org/">UMDF</a> because we love Compass.</p>
+            </div>
+            <ul class="quick-links">
+                <li>
+                    <iframe class="github-btn" src="http://markdotto.github.com/github-buttons/github-btn.html?user=handlino&amp;repo=fireapp&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95px" height="20px"></iframe>
+                </li>
+                <li>
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://fireapp.handlino.com/" data-via="handlino" data-related="handlino" data-hashtags="fireapp">Tweet</a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/handlino" class="twitter-follow-button" data-width="240px" data-link-color="#0069D6" data-show-count="true">Follow @handlino</a>
+                </li>
+            </ul>
+        </header>
+        <%= yield%>
         <footer>
             <div class="row">
-                <div class="span9">
-                    <p>Fire.app is brought to you by <a href="http://handlino.com/">Handlino</a>, a web app design/development company in Taiwan. Fire.app is <strong>GPL licensed</strong> because we believe the power of open source.</p>
-                </div>
-                <div class="span3">
-                    <a href="/assets/mediakit.zip" class="btn btn-small pull-right">Download Media Kit</a>
-                </div>
+                <div class="span9"><p>Fire.app is brought to you by <a href="http://handlino.com/">Handlino</a>, a web app design/development company in Taiwan. Fire.app is <strong>GPL licensed</strong> because we believe the power of open source.</p></div>
+                <div class="span3"><a class="btn" href="http://fireapp.handlino.com/assets/mediakit.zip"><i class="icon-download-alt"> </i>Download Media Kit</a></div>
             </div>
         </footer>
     </div>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="/javascripts/bootstrap-collapse.js"></script>
-    <script src="/javascripts/bootstrap-carousel.js"></script>
-    <script src="/javascripts/bootstrap-transition.js"></script>
-    <script>
-        $(function() {
-            $('.carousel').carousel();
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="javascripts/bootstrap.min.js"></script>
+    <script src="javascripts/jquery.fancybox-1.3.4.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("a[rel=group]").fancybox({
+                'transitionIn'      : 'none',
+                'transitionOut'     : 'none',
+                'titlePosition'     : 'over',
+                'titleFormat'       : function(title, currentArray, currentIndex, currentOpts) {
+                    return '<span id="fancybox-title-over">Image ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') + '</span>';
+                }
+            });
         });
     </script>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
