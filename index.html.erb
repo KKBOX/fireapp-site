@@ -40,3 +40,23 @@
         <li><a rel="group" href="images/screenshots/growl-notify.jpg" title="OSX Growl notify"><img src="images/screenshots/growl-notify-thumb.jpg">OSX Growl notify</a></li>
     </ul>
 </section>
+<section>
+    <h1>Goodies</h1>
+    <h2 class="title">Wallpaper (designed by <a href="http://twitter.com/michellpash">Mitchell Pash</a>)</h2>
+    <div class="row">
+        <div class="span4">
+            <img src="images/wallpaper.jpg" width="400">
+        </div>
+        <div class="span8">
+            <h3>Download:</h3>
+            <p><a href="/assets/wallpaper-by-mitchellpash.zip">Download all as zip</a></p>
+            <h3>Download specific resolutions:</h3>
+            <p>
+            <% ["800x600", "1024x768", "1280x1024", "1600x900", "1600x1200", "1920x1080", "1920x1200", "2560x1600", "3200x2000"].each do |res| %>
+            &middot; <a href="/assets/wallpaper-by-mitchellpash/<%= res %>"><%= res %></a>
+            <% end %>
+
+            </p>
+        </div>
+    </div>
+</section>

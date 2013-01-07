@@ -60,6 +60,11 @@ h2.title {
     line-height:30px;
 }
 
+h3 {
+    font-family: 'Bree Serif', serif;
+    font-weight:400;
+}
+
 .span1, .span2, .span3, .span4, .span5, .span6, .span7, .span8, .span9, .span10, .span11, .span12 { @include transition(all .3s ease-in-out); }
 
 /* `Header
