@@ -1,0 +1,10 @@
+Thumbs.db
+.DS_Store
+*~
+.sass-cache
+Gemfile.lock
+fire_app_log.txt
+compass_app_log.txt
+document_root
+tmp
+.bundle
