@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Handlino Inc." />
+    <meta property="og:title" content="Fire.app" />
+    <meta property="og:url" content="http://fireapp.handlino.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Dead Easy HTML Prototyping" />
+    <meta property="og:image" content="http://fireapp.handlino.com/images/link-thumbnail.png" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Fire.app documents</title>
+    <link href="../../stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Anton|Bree+Serif|Vollkorn|Exo:300,600,900" rel="stylesheet" type="text/css">
+    <!-- html5shiv http://code.google.com/p/html5shiv/ -->
+    <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+<div class="nav">
+    <div class="logo">
+        <a href="index.html">
+            <img src="../../images/logo-big.png" alt="Fire.app logo" width="220" height="220" />
+        </a>
+        <h1>
+            <a href="index.html">
+                <span class="title">Fire<span class="small">.app</span></span>
+                <span class="documents">Documents</span>
+            </a>
+        </h1>
+    </div>
+    <ul class="lang">
+        <li><a href="../index.html">English</a></li>
+        <li><a href="index.html" class="active">正體中文</a></li>
+    </ul>
+    <a href="#" class="collapse-menu">Menu <i class="lsf-icon down"></i></a>
+    <ul class="menu">
+        <li><a href="index.html">為什麼要使用 Fire.app？</a></li>
+        <li><a href="getting_started.html">快速入門指南</a></li>
+        <li>
+            Fire.app 機能應用教學
+            <ul>
+              <li><a href="tutorial_1.html">觀看範例及準備實作</a></li>
+              <li><a href="tutorial_2.html">樣板語言 ERB 簡介</a></li>
+              <li><a href="tutorial_3.html">使用 Template Helper</a></li>
+              <li><a href="tutorial_4.html">Layout 的基本用法</a></li>
+              <li><a href="tutorial_5.html">Partial 的應用與指定 Layout</a></li>
+              <li><a href="tutorial_6.html">在特定頁面變更已套用 Layout 部分的內容（進階）</a></li>
+              <li><a href="tutorial_7.html">基於現有 Layout 製作變更部分內容的延伸 Layout（進階）</a></li>
+              <li><a href="tutorial_8.html">取得目前的頁面路徑及其應用（進階）</a></li>
+              <li><a href="tutorial_9.html">Build Project</a></li>
+            </ul>
+        </li>
+        <li>
+            相關文件
+            <ul>
+                <li><a href="preference.html">Preference 設定</a></li>
+                <li><a href="options.html">Options 設定</a></li>
+                <li><a href="coffeescript.html">使用 CoffeeScript</a></li>
+                <li><a href="extension.html">使用 Extension</a></li>
+                <li><a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a></li>
+                <li><a href="template_helper.html">Template Helper</a></li>
+                
+            </ul>
+        </li> 
+        <li><a href="http://fireapp.handlino.com/">Fire.app 官網</a></li>
+        <li><a href="https://github.com/handlino/FireApp">GitHub 頁面</a></li>
+    </ul>
+</div>
+
+<div class="main-wrapper">
+    <div class="main">
+        <h1>Fire.app 機能應用教學</h1>
+<p>此份教學應用許多 Fire.app 機能來建立一個網站原型，建議初學者可以參考說明並實際操作，藉此了解各機能的使用時機和應用方式。</p>
+
+<h2>觀看範例及準備實作</h2>
+
+<p>請先下載 <a href="../../files/fireapp-documents-example.zip">參考範例檔案包</a>，<br />
+此資料夾內容為依照教學步驟操作後使用 Build project 輸出的檔案，請將檔案解壓縮後用 Fire.app Watch 此檔案資料夾並在瀏覽器中開啟 <code>http://127.0.0.1:24681/index.html</code> 瀏覽頁面以了解網站結構。</p>
+
+<p class="sp-point">註：雖然此資料夾中的 HTML 檔案皆為靜態檔案，但由於檔案中所使用的連結為絕對連結，需要在 server 環境下才能正確取得檔案位置故使用 Fire.app 的 Web Server 功能。若要輸出相對連結的檔案可參考 <a href="tutorial_9.html">Build Project</a> 部分的說明。</p>
+
+<p>此網站的頁面結構如下，分別是 Home（<code>/index.html</code>）、 Features 列表頁（<code>/features/index.html</code>）、 Features 內容頁（<code>/features/detail.html</code>）、 Documents（<code>/documents.html</code>）、 Screenshots（<code>/screenshots.html</code>）。</p>
+
+<img src="../../images/structure_01.png" />
+
+<p>在此範例網站中可以看見各個頁面中有許多共通或重複的元件，包含內容、區塊或程式碼，這些共通的部份便是此教學中要使用 Fire.app 處理的主要目標。</p>
+
+<p>熟悉網站結構後便可準備實作要使用的檔案，請下載 <a href="../../files/fireapp-documents-teaching-material.zip">教材檔案包</a> 。</p>
+
+<p class="sp-point">註：此教材檔案包和前面下載的參考範例檔案包並不相同，為此份教學中要用來操作的專案基礎，請特別注意。</p>
+
+<p>解壓縮教材檔案包後將 Fire.app Watch 的目標變更為此資料夾。此份教學接下來的步驟如下：</p>
+
+<ul class="qa">
+    <li>
+        <a href="tutorial_2.html">樣板語言 ERB 簡介</a>：<br />
+        由於 Fire.app 有許多機能都需要透過使用樣板語言來達成，因此先簡單介紹樣板語言 ERB 的語法。
+    </li>
+    <li>
+        <a href="tutorial_3.html">使用 Template Helper</a>：<br />
+        加入存檔時瀏覽器自動重新整理的效果使開發過程更便利，並使用內建的假文產生 Helper 產出頁面內容。
+    </li>
+    <li>
+        <a href="tutorial_4.html">Layout 的基本用法</a>：<br />
+        將網站各頁面中共同的部份抽出為 Layout ，藉此避免在多個檔案中複製貼上相同的程式碼。
+    </li>
+    <li>
+        <a href="tutorial_5.html">Partial 的應用與指定 Layout</a>：<br />
+        當需要用到多個 Layout 時，可以將不同 Layout 中相同的部份再次抽出為 Partial 檔案以利後續修改維護。
+    </li>
+    <li>
+        <a href="tutorial_6.html">在特定頁面變更已套用 Layout 部分的內容（進階）</a>：<br />
+        若一個 Layout 已被網站中多數頁面套用，但在特定頁面中又想更改 Layout 部分內容時只要利用 Helper ，無需再套用新的 Layout 檔案也能達成需求。
+    </li>
+    <li>
+        <a href="tutorial_7.html">基於現有 Layout 製作變更部分內容的延伸 Layout（進階）</a>：<br />
+        如果有部分頁面都要變更套用 Layout 範圍的內容，可以基於現有的 Layout 製作延伸 Layout 來減少程式碼重複的狀況。
+    </li>
+    <li>
+        <a href="tutorial_8.html">取得目前的頁面路徑及其應用（進階）</a>：<br />
+        透過樣板語言能夠取得目前頁面的路徑，常用來達成在符合目前頁面的連結中加上特定 class 的需求。
+    </li>
+    <li>
+        <a href="tutorial_9.html">Build Project</a>：<br />
+        將已完成的頁面輸出成靜態檔案。
+    </li>
+</ul>
+
+<p>若暫時不需要了解進階教學的內容，也可略過進階部分至最後的 <a href="tutorial_9.html">Build Project</a>。</p>
+
+<div class="page-footer">
+    Next: <a href="tutorial_2.html">樣板語言 ERB 簡介 <i class="lsf-icon arrow"></i></a>
+</div>
+
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="../../javascripts/prettify.js"></script>
+<script type="text/javascript" src="../../javascripts/lang-css.js"></script>
+<script type="text/javascript" src="../../javascripts/app.js"></script>
+</body>
+</html>

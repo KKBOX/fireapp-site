@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Handlino Inc." />
+    <meta property="og:title" content="Fire.app" />
+    <meta property="og:url" content="http://fireapp.handlino.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Dead Easy HTML Prototyping" />
+    <meta property="og:image" content="http://fireapp.handlino.com/images/link-thumbnail.png" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Fire.app documents</title>
+    <link href="../../stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Anton|Bree+Serif|Vollkorn|Exo:300,600,900" rel="stylesheet" type="text/css">
+    <!-- html5shiv http://code.google.com/p/html5shiv/ -->
+    <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+<div class="nav">
+    <div class="logo">
+        <a href="index.html">
+            <img src="../../images/logo-big.png" alt="Fire.app logo" width="220" height="220" />
+        </a>
+        <h1>
+            <a href="index.html">
+                <span class="title">Fire<span class="small">.app</span></span>
+                <span class="documents">Documents</span>
+            </a>
+        </h1>
+    </div>
+    <ul class="lang">
+        <li><a href="../index.html">English</a></li>
+        <li><a href="index.html" class="active">正體中文</a></li>
+    </ul>
+    <a href="#" class="collapse-menu">Menu <i class="lsf-icon down"></i></a>
+    <ul class="menu">
+        <li><a href="index.html">為什麼要使用 Fire.app？</a></li>
+        <li><a href="getting_started.html">快速入門指南</a></li>
+        <li>
+            Fire.app 機能應用教學
+            <ul>
+              <li><a href="tutorial_1.html">觀看範例及準備實作</a></li>
+              <li><a href="tutorial_2.html">樣板語言 ERB 簡介</a></li>
+              <li><a href="tutorial_3.html">使用 Template Helper</a></li>
+              <li><a href="tutorial_4.html">Layout 的基本用法</a></li>
+              <li><a href="tutorial_5.html">Partial 的應用與指定 Layout</a></li>
+              <li><a href="tutorial_6.html">在特定頁面變更已套用 Layout 部分的內容（進階）</a></li>
+              <li><a href="tutorial_7.html">基於現有 Layout 製作變更部分內容的延伸 Layout（進階）</a></li>
+              <li><a href="tutorial_8.html">取得目前的頁面路徑及其應用（進階）</a></li>
+              <li><a href="tutorial_9.html">Build Project</a></li>
+            </ul>
+        </li>
+        <li>
+            相關文件
+            <ul>
+                <li><a href="preference.html">Preference 設定</a></li>
+                <li><a href="options.html">Options 設定</a></li>
+                <li><a href="coffeescript.html">使用 CoffeeScript</a></li>
+                <li><a href="extension.html">使用 Extension</a></li>
+                <li><a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a></li>
+                <li><a href="template_helper.html">Template Helper</a></li>
+                
+            </ul>
+        </li> 
+        <li><a href="http://fireapp.handlino.com/">Fire.app 官網</a></li>
+        <li><a href="https://github.com/handlino/FireApp">GitHub 頁面</a></li>
+    </ul>
+</div>
+
+<div class="main-wrapper">
+    <div class="main">
+        <h1>Fire.app 機能應用教學</h1>
+<h2>在特定頁面變更已套用 Layout 部分的內容（進階）</h2>
+
+<p>目前的頁面中，除了首頁之外都套用了同樣的側欄。但依據先前的範例網站， Documents 頁面側欄的 AD Words 部分應該要更換成顯示提供教育訓練的聯絡方式，此時便需要使用 <code>content_for</code> 這個 Helper。關於 <code>content_for</code> 的詳細資料請參考文件： <a href="template_helper.html">Template Helpers</a>。</p>
+
+<p>若要達到上述需求，我們必須改變單一頁面的側欄內容，但是側欄的部分已經包含在 Layout 中，所以目前除了套用指定 Layout 的首頁以外所有頁面的側欄都是相同的。為了改變單頁的側欄內容我們需要改寫 Layout 中側欄的 <code>&lt;div class="ad"&gt;</code> 部分，將：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;div class="ad"&gt;
+    Ad Words
+&lt;/div&gt;
+</pre>
+
+<p>改成：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;div class="ad"&gt;
+    &lt;% if content_for? :sp_ad %&gt;
+        &lt;%= yield :sp_ad %&gt;
+    &lt;% else %&gt;
+        Ad Words
+    &lt;% end %&gt;
+&lt;/div&gt;
+</pre>
+
+<p>上面的程式碼可以讓 <code>&lt;div class="ad"&gt;</code> 區塊中預設顯示共同的內容 <code>Ad Words</code> ，當套用的頁面中有設定 <code>content_for :sp_ad</code> 的段落時則會顯示設定的內容。</p>
+
+<p>因此我們在 Documents 的頁面 <code>documents.html.erb</code> 的內容最前方加上：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% content_for :sp_ad do %&gt;
+    If you need education support, please mail to:&lt;br /&gt;
+    &lt;a href="#"&gt;&lt;%= lorem_email %&gt;&lt;/a&gt;
+&lt;% end %&gt;
+</pre>
+
+<p>上述程式碼指定了 Documents 頁面中 <code>content_for :sp_ad</code> 的內容，因此現在只要切換到瀏覽器便能看見該頁面中的側欄和其他頁面不同，顯示了提供教育訓練的聯絡方式。</p>
+
+<div class="page-footer">
+    Next: <a href="tutorial_7.html">基於現有 Layout 製作變更部分內容的延伸 Layout（進階） <i class="lsf-icon arrow"></i></a>
+</div>
+
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="../../javascripts/prettify.js"></script>
+<script type="text/javascript" src="../../javascripts/lang-css.js"></script>
+<script type="text/javascript" src="../../javascripts/app.js"></script>
+</body>
+</html>

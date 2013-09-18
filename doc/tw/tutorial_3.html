@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Handlino Inc." />
+    <meta property="og:title" content="Fire.app" />
+    <meta property="og:url" content="http://fireapp.handlino.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Dead Easy HTML Prototyping" />
+    <meta property="og:image" content="http://fireapp.handlino.com/images/link-thumbnail.png" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Fire.app documents</title>
+    <link href="../../stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Anton|Bree+Serif|Vollkorn|Exo:300,600,900" rel="stylesheet" type="text/css">
+    <!-- html5shiv http://code.google.com/p/html5shiv/ -->
+    <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+<div class="nav">
+    <div class="logo">
+        <a href="index.html">
+            <img src="../../images/logo-big.png" alt="Fire.app logo" width="220" height="220" />
+        </a>
+        <h1>
+            <a href="index.html">
+                <span class="title">Fire<span class="small">.app</span></span>
+                <span class="documents">Documents</span>
+            </a>
+        </h1>
+    </div>
+    <ul class="lang">
+        <li><a href="../index.html">English</a></li>
+        <li><a href="index.html" class="active">正體中文</a></li>
+    </ul>
+    <a href="#" class="collapse-menu">Menu <i class="lsf-icon down"></i></a>
+    <ul class="menu">
+        <li><a href="index.html">為什麼要使用 Fire.app？</a></li>
+        <li><a href="getting_started.html">快速入門指南</a></li>
+        <li>
+            Fire.app 機能應用教學
+            <ul>
+              <li><a href="tutorial_1.html">觀看範例及準備實作</a></li>
+              <li><a href="tutorial_2.html">樣板語言 ERB 簡介</a></li>
+              <li><a href="tutorial_3.html">使用 Template Helper</a></li>
+              <li><a href="tutorial_4.html">Layout 的基本用法</a></li>
+              <li><a href="tutorial_5.html">Partial 的應用與指定 Layout</a></li>
+              <li><a href="tutorial_6.html">在特定頁面變更已套用 Layout 部分的內容（進階）</a></li>
+              <li><a href="tutorial_7.html">基於現有 Layout 製作變更部分內容的延伸 Layout（進階）</a></li>
+              <li><a href="tutorial_8.html">取得目前的頁面路徑及其應用（進階）</a></li>
+              <li><a href="tutorial_9.html">Build Project</a></li>
+            </ul>
+        </li>
+        <li>
+            相關文件
+            <ul>
+                <li><a href="preference.html">Preference 設定</a></li>
+                <li><a href="options.html">Options 設定</a></li>
+                <li><a href="coffeescript.html">使用 CoffeeScript</a></li>
+                <li><a href="extension.html">使用 Extension</a></li>
+                <li><a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a></li>
+                <li><a href="template_helper.html">Template Helper</a></li>
+                
+            </ul>
+        </li> 
+        <li><a href="http://fireapp.handlino.com/">Fire.app 官網</a></li>
+        <li><a href="https://github.com/handlino/FireApp">GitHub 頁面</a></li>
+    </ul>
+</div>
+
+<div class="main-wrapper">
+    <div class="main">
+        <h1>Fire.app 機能應用教學</h1>
+<h2>使用 Template Helper</h2>
+
+<p>Template Helper 是一些能夠在樣板語言中使用的函式，能更簡單的達成許多建置網頁時不可或缺的功能。</p>
+
+<p>在瀏覽器中開啟 <code>http://127.0.0.1:24681/screenshots.html</code> 即可看見目前的 Screenshots 頁面。  
+使用慣用的編輯器打開 <code>screenshots.html</code> 觀察原始碼，可以看到此頁面的原始碼是以許多重複的 HTML 組成頁面中的假文內容。</p>
+
+<p>首先請將檔案 <code>screenshots.html</code> 的副檔名 <code>.html</code> 更改成對應 ERB 檔案的 <code>.html.erb</code> ，這樣之後才能在檔案中撰寫 ERB 語法。</p>
+
+<p>修改完檔名後，可在 <code>&lt;/body&gt;</code> 的前一行插入生成 LiveReload js 的 helper ：</p>
+
+<pre class="prettyprint linenums lang-ruby">
+&lt;%= livereload_js %&gt;
+</pre>
+
+<p>加入後先切換至瀏覽器重新整理一次使 LiveReload 生效，之後修改檔案存檔時瀏覽器便會自動重新整理頁面。 </p>
+
+<p>接下來要使用 ERB 語法簡化頁面中假文內容的部份，<br />
+請先找到內文區塊 <code>&lt;div class=&quot;main&quot;&gt;</code> 中重複 5 次的 HTML 假文內容：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;h2&gt;Lorem ipsum title&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;http://placehold.it/640x360&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Lorem ipsum … &lt;/p&gt;
+</pre>
+
+<p>將此 5 組 HTML 刪除 4 組只留下 1 組後，使用 Helper 來替代原有的內容：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;h2&gt;&lt;%= lorem_words(4+rand(4)) %&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img src="&lt;%= lorem_image("640x360") %&gt;" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;%= lorem_paragraph %&gt;&lt;/p&gt;
+</pre>
+
+<p>在上面的程式碼中可以看見 <code>rand()</code> 的應用，使用 <code>lorem_words(4+rand(4))</code> 可以確保輸出的假文字數在 4 字（即4+0）至 7 字（即4+3）之間。以 Helper 產生假資料的優點除了可讓頁面看起來更為真實，由於每次重新整理頁面時假文資料都會改變，可以有效在早期發現當資料長度不符預期時發生的版面問題。
+</p>   
+
+<p>變更假資料的產生方式後，使用 ERB 語法來達成區塊重複的效果：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% 5.times do %&gt;
+    &lt;h2&gt;&lt;%= lorem_words(4+rand(4)) %&gt;&lt;/h2&gt;
+    &lt;p&gt;&lt;img src="&lt;%= lorem_image("640x360") %&gt;" /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;%= lorem_paragraph %&gt;&lt;/p&gt;
+&lt;% end %&gt;
+</pre>
+
+<p>切換至瀏覽器，便可看見此頁面的內容變成 5 組內容相異的假文。</p>
+
+<p>以同樣的方式將側欄部分的 <code>&lt;div class=&quot;links&quot;&gt;</code> 和 footer 區域 <code>&lt;div class=&quot;footer&quot;&gt;</code> 的內容也替換成 Helper 的形式：</p>
+
+<p>側欄：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;div class="links"&gt;
+    &lt;h2&gt;Information Links&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;% 5.times do %&gt;
+            &lt;li&gt;&lt;a href="#"&gt;&lt;%= lorem_words(4+rand(4)) %&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;% end %&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+
+<p>footer：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;div class="footer"&gt;
+    &lt;%= lorem_sentence %&gt;
+&lt;/div&gt;
+</pre>
+
+<p>切換至瀏覽器確認頁面內容已經被更換成假文後即可進行下一階段的操作。</p>
+
+<div class="page-footer">
+    Next: <a href="tutorial_4.html">Layout 的基本用法 <i class="lsf-icon arrow"></i></a>
+</div>
+
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="../../javascripts/prettify.js"></script>
+<script type="text/javascript" src="../../javascripts/lang-css.js"></script>
+<script type="text/javascript" src="../../javascripts/app.js"></script>
+</body>
+</html>

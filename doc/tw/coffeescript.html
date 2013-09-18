@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Handlino Inc." />
+    <meta property="og:title" content="Fire.app" />
+    <meta property="og:url" content="http://fireapp.handlino.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Dead Easy HTML Prototyping" />
+    <meta property="og:image" content="http://fireapp.handlino.com/images/link-thumbnail.png" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Fire.app documents</title>
+    <link href="../../stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Anton|Bree+Serif|Vollkorn|Exo:300,600,900" rel="stylesheet" type="text/css">
+    <!-- html5shiv http://code.google.com/p/html5shiv/ -->
+    <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+<div class="nav">
+    <div class="logo">
+        <a href="index.html">
+            <img src="../../images/logo-big.png" alt="Fire.app logo" width="220" height="220" />
+        </a>
+        <h1>
+            <a href="index.html">
+                <span class="title">Fire<span class="small">.app</span></span>
+                <span class="documents">Documents</span>
+            </a>
+        </h1>
+    </div>
+    <ul class="lang">
+        <li><a href="../index.html">English</a></li>
+        <li><a href="index.html" class="active">正體中文</a></li>
+    </ul>
+    <a href="#" class="collapse-menu">Menu <i class="lsf-icon down"></i></a>
+    <ul class="menu">
+        <li><a href="index.html">為什麼要使用 Fire.app？</a></li>
+        <li><a href="getting_started.html">快速入門指南</a></li>
+        <li>
+            Fire.app 機能應用教學
+            <ul>
+              <li><a href="tutorial_1.html">觀看範例及準備實作</a></li>
+              <li><a href="tutorial_2.html">樣板語言 ERB 簡介</a></li>
+              <li><a href="tutorial_3.html">使用 Template Helper</a></li>
+              <li><a href="tutorial_4.html">Layout 的基本用法</a></li>
+              <li><a href="tutorial_5.html">Partial 的應用與指定 Layout</a></li>
+              <li><a href="tutorial_6.html">在特定頁面變更已套用 Layout 部分的內容（進階）</a></li>
+              <li><a href="tutorial_7.html">基於現有 Layout 製作變更部分內容的延伸 Layout（進階）</a></li>
+              <li><a href="tutorial_8.html">取得目前的頁面路徑及其應用（進階）</a></li>
+              <li><a href="tutorial_9.html">Build Project</a></li>
+            </ul>
+        </li>
+        <li>
+            相關文件
+            <ul>
+                <li><a href="preference.html">Preference 設定</a></li>
+                <li><a href="options.html">Options 設定</a></li>
+                <li><a href="coffeescript.html">使用 CoffeeScript</a></li>
+                <li><a href="extension.html">使用 Extension</a></li>
+                <li><a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a></li>
+                <li><a href="template_helper.html">Template Helper</a></li>
+                
+            </ul>
+        </li> 
+        <li><a href="http://fireapp.handlino.com/">Fire.app 官網</a></li>
+        <li><a href="https://github.com/handlino/FireApp">GitHub 頁面</a></li>
+    </ul>
+</div>
+
+<div class="main-wrapper">
+    <div class="main">
+        <h1>使用 CoffeeScript</h1>
+
+<p>透過 Fire.app 使用 CoffeeScript 時，需滿足以下條件：</p>
+
+<ol class="qa">
+    <li>在專案資料夾中必須有 <code>coffeescripts/</code> 資料夾。</li>
+    <li>在 <code>coffeescripts/</code> 資料夾內建立 CoffeeScript 檔案並使用相應的副檔名 <code>.js.coffee</code> ，如 <code>app.js.coffee</code>，如此便可在該檔案中撰寫 CoffeeScript 。</li>
+    <li><code>coffeescripts/</code> 中的檔案在存檔時會被 compile 至 javascripts 資料夾，使用時只需要在頁面檔案或 Layout 檔中插入輸出檔案的路徑如 <code>&lt;script src="/javascripts/app.js"&gt;&lt;/script&gt;</code> ，就能使用。</li>   
+</ol>
+
+<p>若想更改 CoffeeScript complie 後之檔案放置的資料夾名稱，請在 Fire.app Watch 該專案的狀況下點選 Fire.app 選單之 "Change Options"，變更 JavaScript Folder 的資料夾名稱後存檔，之後 Fire.app 便會將輸出的 js 檔案放置在指定名稱的資料夾中。</p>
+
+
+
+
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="../../javascripts/prettify.js"></script>
+<script type="text/javascript" src="../../javascripts/lang-css.js"></script>
+<script type="text/javascript" src="../../javascripts/app.js"></script>
+</body>
+</html>

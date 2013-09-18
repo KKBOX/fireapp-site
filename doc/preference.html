@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Handlino Inc." />
+    <meta property="og:title" content="Fire.app" />
+    <meta property="og:url" content="http://fireapp.handlino.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Dead Easy HTML Prototyping" />
+    <meta property="og:image" content="http://fireapp.handlino.com/images/link-thumbnail.png" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Fire.app documents</title>
+    <link href="../stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Anton|Bree+Serif|Vollkorn|Exo:300,600,900" rel="stylesheet" type="text/css">
+    <!-- html5shiv http://code.google.com/p/html5shiv/ -->
+    <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+<body>
+<div class="nav">
+    <div class="logo">
+        <a href="index.html">
+            <img src="../images/logo-big.png" alt="Fire.app logo" width="220" height="220" />
+        </a>
+        <h1>
+            <a href="index.html">
+                <span class="title">Fire<span class="small">.app</span></span>
+                <span class="documents">Documents</span>
+            </a>
+        </h1>
+    </div>
+    <ul class="lang">
+        <li><a href="index.html" class="active">English</a></li>
+        <li><a href="tw/index.html">正體中文</a></li>
+    </ul>
+    <a href="#" class="collapse-menu">Menu <i class="lsf-icon down"></i></a>
+    <ul class="menu">
+        <li><a href="index.html">Why Fire.app？</a></li>
+        <li><a href="getting_started.html">Getting Started</a></li>
+        <li>
+            Fire.app Feature Tutorial
+            <ul>
+              <li><a href="tutorial_1.html">Viewing the Example and Preparing for Exercises</a></li>
+              <li><a href="tutorial_2.html">Introducing Template Language: ERB</a></li>
+              <li><a href="tutorial_3.html">Using Template Helpers</a></li>
+              <li><a href="tutorial_4.html">Basic Usage of Layout</a></li>
+              <li><a href="tutorial_5.html">Using Partial Files and Specifying Layouts</a></li>
+              <li><a href="tutorial_6.html">Changing the Content of Layouts for Particular Pages (Advanced)</a></li>
+              <li><a href="tutorial_7.html">Making an Extended Layout Based-on an Existing Layout (Advanced)</a></li>
+              <li><a href="tutorial_8.html">Getting Current Page Path and Understanding Its Usage (Advanced)</a></li>
+              <li><a href="tutorial_9.html">Building Projects</a></li>
+            </ul>
+        </li>
+        <li>
+            Documents
+            <ul>
+                <li><a href="preference.html">Preference</a></li>
+                <li><a href="options.html">Options</a></li>
+                <li><a href="coffeescript.html">Using CoffeeScript</a></li>
+                <li><a href="extension.html">Using Extensions</a></li>
+                <li><a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a></li>
+                <li><a href="template_helper.html">Template Helper</a></li>
+            </ul>
+        </li> 
+        <li><a href="http://fireapp.handlino.com/">Official Site</a></li>
+        <li><a href="https://github.com/handlino/FireApp">GitHub</a></li>
+    </ul>
+</div>
+
+<div class="main-wrapper">
+    <div class="main">
+        <h1>Preference</h1>
+<p>There are some settings in the prefrences.</p>
+
+<h2>Compass</h2>
+
+<p><img src="../images/preference-compass.png" alt="Compass" /></p>
+
+<ul>
+<li><p>Preferred Syntax: <br/>
+Sass has two syntax choices: SCSS (.scss) and indented syntax (.sass). Fire.app supports both, but you must choose which one you want for generating files from templates.</p></li>
+<li><p>Compass Version: <br/>
+Fire.app always uses <a href="http://compass-style.org/CHANGELOG/">the latest stable release of Compass</a> by default. If you want to use other Sass/Compass versions, or use RubyGems to manage Compass extensions manually, please use the "Custom" option. <br />
+<span class="sp-point">WARNING: This is for advanced users only.</span></p></li>
+</ul>
+
+
+<h2>Notification</h2>
+
+<p><img src="../images/preference-notification.png" alt="Notification" /></p>
+
+<p>Fire.app supports <a href="http://growl.info/">Growl</a>. You can decide which types of notifications you want. Compass.app can also generate a log file for debugging purposes.</p>
+
+<h2>Services</h2>
+
+<p><img src="../images/preference-services.png" alt="Services" /></p>
+
+<p><strong>Enable Web Server:</strong> <br/>
+If you have enabled this option, Compass.app will start a tiny web server (WEBrick) from your project path. You can instantly check your design by opening <code>http://localhost:24681</code> in your browser. You can also modify the default port.</p>
+
+<p><strong>Enable LiveReload:</strong> <br/>
+Fire.app has built-in LiveReload support, so you can stop refreshing your browser manually. Browser extensions must be installed to make this work. If you have enabled both web server and livereload, you can even use the <a href="https://github.com/livereload/livereload-js">LiveReload-js</a> feature. (Our thanks to @livereload for the MIT License.) We also recommend <a href="http://livereload.com/">LiveReload 2</a>.</p>
+
+<ul>
+<li><a href="http://help.livereload.com/kb/general-use/browser-extensions">Browser extensions from LiveReload</a></li>
+<li>Older version:
+
+<ul>
+<li>Safari: <a href="https://github.com/downloads/mockko/livereload/LiveReload-1.6.2.safariextz">Download LiveReload 1.6.2 extension</a></li>
+<li><a href="https://chrome.google.com/extensions/detail/jnihajbhpnppcggbcgedagnkighmdlei">Chrome</a></li>
+<li><a href="https://addons.mozilla.org/zh-TW/firefox/addon/livereload/">Firefox</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>If you do not want to install browser extensions, you can use LiveReload-js by pasting this code into your HTML:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;script&gt;document.write('&lt;script src="http://'
++ (location.host || 'localhost').split(':')[0]
++ ':35729/livereload.js?snipver=1"&gt;&lt;/'
++ 'script&gt;')&lt;/script&gt;
+</pre>
+
+<p>Then LiveReload will work automatically.<br />
+   If you are using ERB files, you can simply use this helper to generate LiveReload-js:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= livereload_js %&gt;
+</pre>
+
+<p>If you use the helper but don't want to generate LiveReload-js in the output static files, you can use:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= livereload_js if ENV["RACK_ENV"] != "production" %&gt;
+</pre>
+
+<h2>History</h2>
+
+<p><img src="../images/preference-history.png" alt="History" /></p>
+
+<p>Click the "Clear History" button to destroy the history list.</p>
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="../javascripts/prettify.js"></script>
+<script type="text/javascript" src="../javascripts/lang-css.js"></script>
+<script type="text/javascript" src="../javascripts/app.js"></script>
+</body>
+</html>

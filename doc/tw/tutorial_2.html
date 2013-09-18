@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Handlino Inc." />
+    <meta property="og:title" content="Fire.app" />
+    <meta property="og:url" content="http://fireapp.handlino.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Dead Easy HTML Prototyping" />
+    <meta property="og:image" content="http://fireapp.handlino.com/images/link-thumbnail.png" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Fire.app documents</title>
+    <link href="../../stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Anton|Bree+Serif|Vollkorn|Exo:300,600,900" rel="stylesheet" type="text/css">
+    <!-- html5shiv http://code.google.com/p/html5shiv/ -->
+    <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+<div class="nav">
+    <div class="logo">
+        <a href="index.html">
+            <img src="../../images/logo-big.png" alt="Fire.app logo" width="220" height="220" />
+        </a>
+        <h1>
+            <a href="index.html">
+                <span class="title">Fire<span class="small">.app</span></span>
+                <span class="documents">Documents</span>
+            </a>
+        </h1>
+    </div>
+    <ul class="lang">
+        <li><a href="../index.html">English</a></li>
+        <li><a href="index.html" class="active">正體中文</a></li>
+    </ul>
+    <a href="#" class="collapse-menu">Menu <i class="lsf-icon down"></i></a>
+    <ul class="menu">
+        <li><a href="index.html">為什麼要使用 Fire.app？</a></li>
+        <li><a href="getting_started.html">快速入門指南</a></li>
+        <li>
+            Fire.app 機能應用教學
+            <ul>
+              <li><a href="tutorial_1.html">觀看範例及準備實作</a></li>
+              <li><a href="tutorial_2.html">樣板語言 ERB 簡介</a></li>
+              <li><a href="tutorial_3.html">使用 Template Helper</a></li>
+              <li><a href="tutorial_4.html">Layout 的基本用法</a></li>
+              <li><a href="tutorial_5.html">Partial 的應用與指定 Layout</a></li>
+              <li><a href="tutorial_6.html">在特定頁面變更已套用 Layout 部分的內容（進階）</a></li>
+              <li><a href="tutorial_7.html">基於現有 Layout 製作變更部分內容的延伸 Layout（進階）</a></li>
+              <li><a href="tutorial_8.html">取得目前的頁面路徑及其應用（進階）</a></li>
+              <li><a href="tutorial_9.html">Build Project</a></li>
+            </ul>
+        </li>
+        <li>
+            相關文件
+            <ul>
+                <li><a href="preference.html">Preference 設定</a></li>
+                <li><a href="options.html">Options 設定</a></li>
+                <li><a href="coffeescript.html">使用 CoffeeScript</a></li>
+                <li><a href="extension.html">使用 Extension</a></li>
+                <li><a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a></li>
+                <li><a href="template_helper.html">Template Helper</a></li>
+                
+            </ul>
+        </li> 
+        <li><a href="http://fireapp.handlino.com/">Fire.app 官網</a></li>
+        <li><a href="https://github.com/handlino/FireApp">GitHub 頁面</a></li>
+    </ul>
+</div>
+
+<div class="main-wrapper">
+    <div class="main">
+        <h1>Fire.app 機能應用教學</h1>
+<h2>樣板語言 ERB 簡介</h2>
+
+<p>Fire.app 支援多種樣板語言，讓建立HTML變得更簡單。<br />
+此處介紹的樣板語言是在 HTML 中嵌入 RUBY 語法的 ERB ( Embedded Ruby ) ，因大部分內容仍維持 HTML 格式，對一般開發者來說較易上手。</p>
+
+<p>在 Fire.app 中能夠很簡便的使用樣板語言，只要存檔時使用相對應的副檔名即可。使用 ERB 樣板語言時對應之副檔名為 <code>.html.erb</code> 。</p>
+
+<p>ERB 檔案的特點便是除了能撰寫一般的 HTML 外，也能插入 RUBY 語法，插入的方式如下：</p>
+
+<p>只執行 Ruby code 但不輸出結果時使用：</p>
+<pre class="prettyprint linenums lang-ruby">
+&lt;% Ruby code... %&gt;
+</pre>
+
+<p>執行 Ruby code 且在 HTML 中插入輸出結果時使用 <code>=</code> 符號：</p>
+<pre class="prettyprint linenums lang-ruby">
+&lt;%= Ruby code... %&gt;
+</pre>
+
+<p>要將 Ruby code 轉為註解時可以使用 <code>#</code> 符號：</p>
+<pre class="prettyprint linenums lang-ruby">
+&lt;%# Comment... %&gt;
+</pre>
+
+<h3>常用 ERB 語法</h3>
+<h4>if...else</h4>
+<pre class="prettyprint linenums lang-ruby">
+&lt;% if 某條件 %&gt;  
+  當條件成立時執行的部份
+&lt;% else %&gt;
+  當條件不成立時執行的部份
+&lt;% end %&gt;
+</pre>
+<p>ex:</p>
+<pre class="prettyprint linenums lang-ruby">
+&lt;% if (1+1==2) %&gt;  
+  會顯示這一行
+&lt;% else %&gt;
+  永遠不會顯示
+&lt;% end %&gt;
+</pre>
+<p>因為 <code>1+1==2</code> 永遠成立，上面的程式碼不管執行幾次結果都會是 <code>會顯示這一行</code> 。</p>   
+<h4>做某件事情 n 次</h4>
+<pre class="prettyprint linenums lang-ruby">
+&lt;% n.times do %&gt;  
+  做某件事
+&lt;% end %&gt;
+</pre>
+<p>ex:</p>   
+<pre class="prettyprint linenums lang-ruby">
+&lt;% 3.times do %&gt;  
+  早安您好
+&lt;% end %&gt;
+</pre>
+<p>輸出結果會是 <code>早安您好早安您好早安您好</code> 。</p>   
+<h4>隨機挑一個 0 到 n-1 之間的數字</h4>
+<pre class="prettyprint linenums lang-ruby">
+&lt;%= rand(n) %&gt;
+</pre>
+<p>ex:</p> 
+<pre class="prettyprint linenums lang-ruby">
+&lt;%= rand(3) %&gt;
+</pre>
+<p>輸出結果可能會是 <code>0</code> 、 <code>1</code> 或 <code>2</code> 。</p>
+
+<div class="page-footer">
+    Next: <a href="tutorial_3.html">使用 Template Helper <i class="lsf-icon arrow"></i></a>
+</div>
+
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="../../javascripts/prettify.js"></script>
+<script type="text/javascript" src="../../javascripts/lang-css.js"></script>
+<script type="text/javascript" src="../../javascripts/app.js"></script>
+</body>
+</html>

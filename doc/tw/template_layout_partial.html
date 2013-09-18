@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Handlino Inc." />
+    <meta property="og:title" content="Fire.app" />
+    <meta property="og:url" content="http://fireapp.handlino.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Dead Easy HTML Prototyping" />
+    <meta property="og:image" content="http://fireapp.handlino.com/images/link-thumbnail.png" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Fire.app documents</title>
+    <link href="../../stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Anton|Bree+Serif|Vollkorn|Exo:300,600,900" rel="stylesheet" type="text/css">
+    <!-- html5shiv http://code.google.com/p/html5shiv/ -->
+    <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+<div class="nav">
+    <div class="logo">
+        <a href="index.html">
+            <img src="../../images/logo-big.png" alt="Fire.app logo" width="220" height="220" />
+        </a>
+        <h1>
+            <a href="index.html">
+                <span class="title">Fire<span class="small">.app</span></span>
+                <span class="documents">Documents</span>
+            </a>
+        </h1>
+    </div>
+    <ul class="lang">
+        <li><a href="../index.html">English</a></li>
+        <li><a href="index.html" class="active">正體中文</a></li>
+    </ul>
+    <a href="#" class="collapse-menu">Menu <i class="lsf-icon down"></i></a>
+    <ul class="menu">
+        <li><a href="index.html">為什麼要使用 Fire.app？</a></li>
+        <li><a href="getting_started.html">快速入門指南</a></li>
+        <li>
+            Fire.app 機能應用教學
+            <ul>
+              <li><a href="tutorial_1.html">觀看範例及準備實作</a></li>
+              <li><a href="tutorial_2.html">樣板語言 ERB 簡介</a></li>
+              <li><a href="tutorial_3.html">使用 Template Helper</a></li>
+              <li><a href="tutorial_4.html">Layout 的基本用法</a></li>
+              <li><a href="tutorial_5.html">Partial 的應用與指定 Layout</a></li>
+              <li><a href="tutorial_6.html">在特定頁面變更已套用 Layout 部分的內容（進階）</a></li>
+              <li><a href="tutorial_7.html">基於現有 Layout 製作變更部分內容的延伸 Layout（進階）</a></li>
+              <li><a href="tutorial_8.html">取得目前的頁面路徑及其應用（進階）</a></li>
+              <li><a href="tutorial_9.html">Build Project</a></li>
+            </ul>
+        </li>
+        <li>
+            相關文件
+            <ul>
+                <li><a href="preference.html">Preference 設定</a></li>
+                <li><a href="options.html">Options 設定</a></li>
+                <li><a href="coffeescript.html">使用 CoffeeScript</a></li>
+                <li><a href="extension.html">使用 Extension</a></li>
+                <li><a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a></li>
+                <li><a href="template_helper.html">Template Helper</a></li>
+                
+            </ul>
+        </li> 
+        <li><a href="http://fireapp.handlino.com/">Fire.app 官網</a></li>
+        <li><a href="https://github.com/handlino/FireApp">GitHub 頁面</a></li>
+    </ul>
+</div>
+
+<div class="main-wrapper">
+    <div class="main">
+        <h1>Templates, Layouts &amp; Partials</h1>
+
+<p>Fire.app 目前支援以下 Template Languages：</p>
+
+<ul>
+    <li>ERB<br /><a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/erb/rdoc/ERB.html">http://ruby-doc.org/stdlib-1.9.3/libdoc/erb/rdoc/ERB.html</a></li>
+    <li>Markdown (Kramdown)<br /><a href="http://kramdown.rubyforge.org/">http://kramdown.rubyforge.org/</a>
+    </li>
+    <li>Slim<br /><a href="http://slim-lang.com/">http://slim-lang.com/</a>
+    </li>
+    <li>Haml<br /><a href="http://haml.info/">http://haml.info/</a>
+    </li>
+    <li>Liquid<br /><a href="http://liquidmarkup.org/">http://liquidmarkup.org/</a>
+    </li>
+</ul>
+<p>使用 Template Languages 能讓建立HTML變得更簡單。<br />
+除此之外還能套用 Layout 及使用 Partial ，有效簡化建置網站 Prototype 時繁雜而高重複性的部份。</p>
+
+<h2>Templates</h2>
+
+<p>樣板語言有很多種，但如果你想完整的利用 Fire.app 的 Layout 、 Partial 和 Template Helpers 等部分，我們建議使用 ERB 或 Haml 。
+這兩種語言對於熟悉 HTML 的 designer/developer 來說都不會太難上手，特別是和 HTML 非常相似的 ERB 。在 ERB 檔案中除了能夠使用一般的 HTML 語法，還能應用 Ruby 語法來省去一些在使用純 HTML 時無法避免的重複性工作。例如像這樣的 HTML ：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;h1&gt;sample list&lt;/h1&gt;
+&lt;ul&gt;
+    &lt;li&gt;list 1&lt;/li&gt;
+    &lt;li&gt;list 2&lt;/li&gt;
+    &lt;li&gt;list 3&lt;/li&gt;
+    &lt;li&gt;list 4&lt;/li&gt;
+    &lt;li&gt;list 5&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+
+<p>使用 ERB 撰寫時能夠利用RUBY語法加以簡化，未來想增減條列的數量也非常方便：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;h1&gt;sample list&lt;/h1&gt;
+&lt;ul&gt;
+    &lt;% (1..5).each do |n| %&gt;
+        &lt;li&gt;list &lt;%= n %&gt;&lt;/li&gt;
+    &lt;% end %&gt;
+&lt;/ul&gt;
+</pre>
+
+<p>若使用 Haml 撰寫相同部分則會如下：</p>
+
+<pre class="prettyprint linenums lang-haml">
+%h1 sample list
+%ul
+  - (1..5).each do |n|
+    %li="list "+n.to_s 
+</pre>
+
+<p>在 Fire.app 中要使用樣板語言相當簡單，只要存檔時使用相對應的副檔名即可。使用 ERB 時對應的副檔名是 <code>.html.erb</code>，使用 Haml 時對應的副檔名則是 <code>.html.haml</code> 。例如儲存了一個 <code>test.html.erb</code> 檔案在網站的專案目錄下時，在瀏覽器開啟 <code>http://127.0.0.1:24681/test.html</code> 便可以看見該檔案最終呈現的狀況。</p>
+
+<p>以下項目皆使用 ERB 樣板語言進行示範，若想更加了解上述兩種樣板語言，可以參考下列資料：</p>
+
+<ul>
+<li>
+<h4>ERB</h4>
+
+<ul>
+<li><a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/erb/rdoc/ERB.html">http://ruby-doc.org/stdlib-1.9.3/libdoc/erb/rdoc/ERB.html</a></li>
+<li><a href="http://rrn.dk/rubys-erb-templating-system">http://rrn.dk/rubys-erb-templating-system</a></li>
+<li><a href="http://www.stuartellis.eu/articles/erb/">http://www.stuartellis.eu/articles/erb/</a></li>
+</ul>
+</li>
+<li>
+<h4>Haml</h4>
+
+<ul>
+<li><a href="http://haml-lang.com/">http://haml-lang.com/</a></li>
+</ul>
+</li>
+</ul>
+
+<h2>Layouts</h2>
+
+<p>製作一個網站時通常許多頁面會擁有相同的架構和共通元素，使用 HTML 來製作 Prototype 時經常必須把這些相同部分的原始碼複製到各頁面中，要修改時便需要逐個檔案修改，相當麻煩且容易遺漏。藉由 Fire.app 可以利用 Layout 來包含這些頁面中相同部分的原始碼，至於各頁面產出的內容則會生成在 Layout 中 <code>yield</code> 的部份。通常 Layout 檔案的內容會類似於下列原始碼，可以看到 <code>&lt;%= yield %&gt;</code> 的部份便是套用此 Layout 的頁面內容會產生的位置。</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;Site Title&lt;/title&gt;
+    &lt;link href="/stylesheets/style.css" rel="stylesheet"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;div class="header"&gt;&lt;/div&gt;
+        &lt;%= yield %&gt;
+        &lt;div class="footer"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<p>要套用 Layout 有三種方法：</p>
+
+<ol>
+<li>使用對應目錄中的 Layout 檔案</li>
+<li>指定想套用的 Layout 檔案</li>
+<li>指定 Render Template </li>
+</ol>
+
+<h3>使用對應目錄中的 Layout 檔案</h3>
+
+<p>當網頁頁面的所在目錄或上層目錄中有 <code>_layout.html.erb</code> 或 <code>_layout.html.haml</code> 檔案時，便會自動套用該檔案做為 Layout ，因此使用時只要將編輯好的 Layout 檔案放在適當的位置即可。當頁面所在資料夾和上層目錄同時都存在 Layout 檔案時會套用同一資料夾的 Layout 。例如網站根目錄下有 <code>/about</code> 和 <code>/products</code> 兩個資料夾，資料夾內各自有該分類的頁面，而根目錄下和 <code>/products</code> 資料夾中都有 Layout 檔案時， <code>/about</code> 資料夾內的頁面會套用根目錄下的 Layout ； <code>/products</code> 資料夾內的頁面則會套用該資料夾內的 Layout 檔案。</p>
+
+<h3>指定想套用的 Layout 檔案</h3>
+
+<p>當網站中有少數無法套用制式 Layout 的例外頁面時，可以指定該頁面欲套用的 Layout 檔案。方法是建立一個相對應的 Layout 設定檔來指定想套用的 Layout ，舉例來說在網站的根目錄有一個 <code>contact.html.erb</code> 想套用的 Layout 是 <code>/special_layouts/_special_layout.html.erb</code> ，那麼就要在 <code>contact.html.erb</code> 所在的資料夾建立一個新檔案，檔名對應於 <code>contact.html.erb</code> 必須是 <code>contact.html.layout</code> ，這個檔案便是 <code>contact.html.erb</code> 專用的設定檔，只要在檔案中寫這一行：</p>
+
+<pre class="prettyprint linenums lang-html">
+special_layouts/_special_layout.html.erb
+</pre>
+
+<p><code>contact.html.erb</code> 便會使用 <code>/special_layouts/_special_layout.html.erb</code> 這個檔案做為套用的 Layout 了。</p>
+
+<h3>指定 Render Template </h3>
+
+<p>此方法通常用於搭配 <code>content_for</code> 使用，例如當共用的 Layout <code>/_layout.html.erb</code> 中使用了</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% if content_for? :ad %&gt;
+    &lt;%= yield :ad %&gt;
+&lt;% end %&gt;
+</pre>
+
+<p>使用以上的程式碼，當有設定 <code>:ad</code> 的內容時便會顯示出來。<br />但要是資料夾 <code>/doc</code> 中所有的頁面都要顯示同樣的 <code>:ad</code> 內容但使用同樣的預設 Layout ，就可以在 <code>/doc</code> 中新增一個供此資料夾內檔案使用的 Layout <code>/doc/_layout.html.erb</code> ，內容為：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% content_for :ad do %&gt;
+    doc 資料夾內共用的廣告內容
+&lt;% end %&gt;
+
+&lt;%= render :template => "/_layout" %&gt;
+</pre>
+
+<p>如此便可在使用相同 Layout 的狀況下新增可共用的 <code>content_for</code> 設定。關於 <code>content_for</code> 的詳細用法請參照： <a href="template_helper.html">Template Helpers</a></p>
+
+<h2>Partials</h2>
+
+<p>在前面的介紹可以看到隨著頁面性質的不同可以套用不同的 Layout ，可想而知一個網站的 Layout 很可能不只一種。然而在不同的 Layout 中仍然可能會有共同的網頁元件，如側欄、主選單等。 Partials 便是用來將這些經常重複出現的部份抽出成單一檔案，便於維護和再利用。 Partial 的檔名需以底線 <code>_</code> 開頭，例如 <code>_footer.html.erb</code> 或 <code>_footer.html.haml</code> ，無論是 Layout 檔案、頁面檔案或 Partial 檔都可以利用 render 語法來取用，如 <code>&lt;%= render :partial =&gt; "footer" %&gt;</code> 。</p>
+
+<p>詳細使用方式請見以下範例：</p>
+
+<p>首先將網站中的主選單取出成 Partial ，內容是</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;ul id="main_menu"&gt;
+    &lt;li class="about"&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="products"&gt;&lt;a href="#"&gt;Products&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="contact"&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;   
+&lt;/ul&gt;
+</pre>
+
+<p>檔名取為 <code>_main_menu.html.erb</code> ，當同一個資料夾內的 <code>_layout.html.erb</code> 檔案想載入主選單的部分時便可以寫成：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;Site Title&lt;/title&gt;
+    &lt;link href="/stylesheets/style.css" rel="stylesheet"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;div class="header"&gt;
+            &lt;%= render :partial =&gt; "main_menu" %&gt;
+        &lt;/div&gt;
+        &lt;%= yield %&gt;
+        &lt;div class="footer"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<p>需注意的是 render 部分的引號中輸入的是 Partial 檔案的檔名去掉底線也不帶有副檔名的部分，這麼一來只要是套用了這個 Layout 的頁面便都會有主選單出現在 <code>&lt;%= yield %&gt;</code> 區塊的上方。</p>
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="../../javascripts/prettify.js"></script>
+<script type="text/javascript" src="../../javascripts/lang-css.js"></script>
+<script type="text/javascript" src="../../javascripts/app.js"></script>
+</body>
+</html>

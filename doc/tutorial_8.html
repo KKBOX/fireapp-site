@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Handlino Inc." />
+    <meta property="og:title" content="Fire.app" />
+    <meta property="og:url" content="http://fireapp.handlino.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Dead Easy HTML Prototyping" />
+    <meta property="og:image" content="http://fireapp.handlino.com/images/link-thumbnail.png" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Fire.app documents</title>
+    <link href="../stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Anton|Bree+Serif|Vollkorn|Exo:300,600,900" rel="stylesheet" type="text/css">
+    <!-- html5shiv http://code.google.com/p/html5shiv/ -->
+    <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+<body>
+<div class="nav">
+    <div class="logo">
+        <a href="index.html">
+            <img src="../images/logo-big.png" alt="Fire.app logo" width="220" height="220" />
+        </a>
+        <h1>
+            <a href="index.html">
+                <span class="title">Fire<span class="small">.app</span></span>
+                <span class="documents">Documents</span>
+            </a>
+        </h1>
+    </div>
+    <ul class="lang">
+        <li><a href="index.html" class="active">English</a></li>
+        <li><a href="tw/index.html">正體中文</a></li>
+    </ul>
+    <a href="#" class="collapse-menu">Menu <i class="lsf-icon down"></i></a>
+    <ul class="menu">
+        <li><a href="index.html">Why Fire.app？</a></li>
+        <li><a href="getting_started.html">Getting Started</a></li>
+        <li>
+            Fire.app Feature Tutorial
+            <ul>
+              <li><a href="tutorial_1.html">Viewing the Example and Preparing for Exercises</a></li>
+              <li><a href="tutorial_2.html">Introducing Template Language: ERB</a></li>
+              <li><a href="tutorial_3.html">Using Template Helpers</a></li>
+              <li><a href="tutorial_4.html">Basic Usage of Layout</a></li>
+              <li><a href="tutorial_5.html">Using Partial Files and Specifying Layouts</a></li>
+              <li><a href="tutorial_6.html">Changing the Content of Layouts for Particular Pages (Advanced)</a></li>
+              <li><a href="tutorial_7.html">Making an Extended Layout Based-on an Existing Layout (Advanced)</a></li>
+              <li><a href="tutorial_8.html">Getting Current Page Path and Understanding Its Usage (Advanced)</a></li>
+              <li><a href="tutorial_9.html">Building Projects</a></li>
+            </ul>
+        </li>
+        <li>
+            Documents
+            <ul>
+                <li><a href="preference.html">Preference</a></li>
+                <li><a href="options.html">Options</a></li>
+                <li><a href="coffeescript.html">Using CoffeeScript</a></li>
+                <li><a href="extension.html">Using Extensions</a></li>
+                <li><a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a></li>
+                <li><a href="template_helper.html">Template Helper</a></li>
+            </ul>
+        </li> 
+        <li><a href="http://fireapp.handlino.com/">Official Site</a></li>
+        <li><a href="https://github.com/handlino/FireApp">GitHub</a></li>
+    </ul>
+</div>
+
+<div class="main-wrapper">
+    <div class="main">
+        <h1>Fire.app Feature Tutorial</h1>
+<h2>Getting Current Page Path and Understanding Its Usage (Advanced)</h2>
+
+<p>In this step, we'll add some highlight effect on the link corresponding to the current page in the main menu. We offer a simple way for beginners and for intermediates we include a more detailed explaination.</p>
+
+<h3>For Beginners</h3>
+
+<p>You can use this helper to add "active" class to the corresponding links. Please add the new file <code>view_helpers.rb</code> in the project folder. The content of this file is shown below: </p> 
+
+<pre class="prettyprint linenums lang-ruby">
+module ViewHelpers
+  def new_link_to(name, href, options={})
+    if href == request.path
+      options[:class] ||=''
+      options[:class] += "active"
+    end
+    link_to name, href, options
+  end
+end
+</pre>
+
+<p>When using the helper <code>new_link_to</code>, we need to pass two arguments. The first one is the content we want to wrap with the <code>&lt;a&gt;</code> tag. The second one is the url which the `href` attribute needs. For example, if we want to use this helper to add an <code>&lt;a&gt;</code> tag  link to <code>/index.html</code> and with the text <code>Home</code>, it should look like this: </p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= new_link_to("Home","/index.html") %&gt;
+</pre>
+
+<p>This helper detects if the current page path is the same as the link url. When the current page is not <code>/index.html</code>, the output result is:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;a href="/index.html"&gt;Home&lt;/a&gt;
+</pre>
+
+<p>If the current page is <code>/index.html</code>, the output result is: </p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;a href="/index.html" class="active"&gt;Home&lt;/a&gt;
+</pre>
+
+<p>In this project, we must change the content of <code>_main_menu.html.erb</code> to: </p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;div class="main-menu"&gt;
+    &lt;ul&gt;
+        &lt;li&gt;
+            &lt;%= new_link_to('&lt;span class="icons-home"&gt;Home&lt;/span&gt;',"/index.html") %&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;%= new_link_to('&lt;span class="icons-features"&gt;Features&lt;/span&gt;',"/features/index.html") %&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;%= new_link_to('&lt;span class="icons-documents"&gt;Documents&lt;/span&gt;',"/documents.html") %&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;%= new_link_to('&lt;span class="icons-screenshots"&gt;Screenshots&lt;/span&gt;',"/screenshots.html") %&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+
+<p>In CSS, we already defined the style for main menu links which have "active" class. After changing the content of <code>_main_menu.html.erb</code>, you'll immediately see the effect in your browser.</p>
+
+<p class="sp-point">Note: In the code above, we use a whole span tag with class like <code>&lt;span class="icons-home"&gt;Home&lt;/span&gt;</code> as the first argument for <code>new_link_to</code>. Because this argument has double quotes <code>"</code> inside, we need to use single quotes <code>'</code> to wrap them to avoid an error. </p>
+
+<h3>For Intermediates</h3>
+
+<p>Actually we need to use <code>request.path</code> to get current page path and achieve our goal with <code>if</code> conditionals. Let's see this version's <code>_main_menu.html.erb</code> which uses `if` conditionals instead of the helper, it's easier for understanding the mechanism: </p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;div class="main-menu"&gt;
+    &lt;ul&gt;
+        &lt;li&gt;
+            &lt;a href="/index.html" &lt;%= 'class="active"' if request.path == "/index.html" || request.path == "/" %&gt;&gt;
+                &lt;span class="icons-home"&gt;Home&lt;/span&gt;
+            &lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href="/features/index.html" &lt;%= 'class="active"' if request.path =~ /^\/features\// %&gt;&gt;
+                &lt;span class="icons-features"&gt;Features&lt;/span&gt;
+            &lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href="/documents.html" &lt;%= 'class="active"' if request.path == "/documents.html" %&gt;&gt;
+                &lt;span class="icons-documents"&gt;Documents&lt;/span&gt;
+            &lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href="/screenshots.html" &lt;%= 'class="active"' if request.path == "/screenshots.html" %&gt;&gt;
+                &lt;span class="icons-screenshots"&gt;Screenshots&lt;/span&gt;
+            &lt;/a&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+
+<p>After finding <code>request.path</code>, we can see that the helper we've seen previously uses <code>request.path</code> too. </p>
+
+<pre class="prettyprint linenums lang-ruby">
+module ViewHelpers
+  def new_link_to(name, href, options={})
+    if href == request.path
+      options[:class] ||=''
+      options[:class] += "active"
+    end
+    link_to name, href, options
+  end
+end
+</pre>
+
+<p>To learn more about custom helpers, please see <a href="template_helper.html">Template Helper</a>.</p>
+
+<div class="page-footer">
+    Next: <a href="tutorial_9.html">Building Projects  <i class="lsf-icon arrow"></i></a>
+</div>
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="../javascripts/prettify.js"></script>
+<script type="text/javascript" src="../javascripts/lang-css.js"></script>
+<script type="text/javascript" src="../javascripts/app.js"></script>
+</body>
+</html>

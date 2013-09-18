@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Handlino Inc." />
+    <meta property="og:title" content="Fire.app" />
+    <meta property="og:url" content="http://fireapp.handlino.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Dead Easy HTML Prototyping" />
+    <meta property="og:image" content="http://fireapp.handlino.com/images/link-thumbnail.png" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Fire.app documents</title>
+    <link href="../stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Anton|Bree+Serif|Vollkorn|Exo:300,600,900" rel="stylesheet" type="text/css">
+    <!-- html5shiv http://code.google.com/p/html5shiv/ -->
+    <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+<body>
+<div class="nav">
+    <div class="logo">
+        <a href="index.html">
+            <img src="../images/logo-big.png" alt="Fire.app logo" width="220" height="220" />
+        </a>
+        <h1>
+            <a href="index.html">
+                <span class="title">Fire<span class="small">.app</span></span>
+                <span class="documents">Documents</span>
+            </a>
+        </h1>
+    </div>
+    <ul class="lang">
+        <li><a href="index.html" class="active">English</a></li>
+        <li><a href="tw/index.html">正體中文</a></li>
+    </ul>
+    <a href="#" class="collapse-menu">Menu <i class="lsf-icon down"></i></a>
+    <ul class="menu">
+        <li><a href="index.html">Why Fire.app？</a></li>
+        <li><a href="getting_started.html">Getting Started</a></li>
+        <li>
+            Fire.app Feature Tutorial
+            <ul>
+              <li><a href="tutorial_1.html">Viewing the Example and Preparing for Exercises</a></li>
+              <li><a href="tutorial_2.html">Introducing Template Language: ERB</a></li>
+              <li><a href="tutorial_3.html">Using Template Helpers</a></li>
+              <li><a href="tutorial_4.html">Basic Usage of Layout</a></li>
+              <li><a href="tutorial_5.html">Using Partial Files and Specifying Layouts</a></li>
+              <li><a href="tutorial_6.html">Changing the Content of Layouts for Particular Pages (Advanced)</a></li>
+              <li><a href="tutorial_7.html">Making an Extended Layout Based-on an Existing Layout (Advanced)</a></li>
+              <li><a href="tutorial_8.html">Getting Current Page Path and Understanding Its Usage (Advanced)</a></li>
+              <li><a href="tutorial_9.html">Building Projects</a></li>
+            </ul>
+        </li>
+        <li>
+            Documents
+            <ul>
+                <li><a href="preference.html">Preference</a></li>
+                <li><a href="options.html">Options</a></li>
+                <li><a href="coffeescript.html">Using CoffeeScript</a></li>
+                <li><a href="extension.html">Using Extensions</a></li>
+                <li><a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a></li>
+                <li><a href="template_helper.html">Template Helper</a></li>
+            </ul>
+        </li> 
+        <li><a href="http://fireapp.handlino.com/">Official Site</a></li>
+        <li><a href="https://github.com/handlino/FireApp">GitHub</a></li>
+    </ul>
+</div>
+
+<div class="main-wrapper">
+    <div class="main">
+        <h1>Getting Started</h1>
+<h2>Download and Start Fire.app</h2>
+<p>After buying Fire.app, we will send you an email with download links to your registered PayPal email address. You will also get 1.x updates for free.</p>
+<p>Please download the file which is appropriate to your OS and unzip it. Next, proceed to the section below for your OS.</p>
+
+<div class="switch-block">
+  <ul class="nav-tabs">
+    <li class="windows"><a href="#">Windows</a></li>
+    <li class="osx"><a href="#">Mac OS</a></li>
+    <li class="linux"><a href="#">Linux</a></li>
+  </ul>
+  <div class="content-wrapper">
+    <div class="content windows">
+      <h3>Windows</h3>
+      <p>You will get a folder containing all the Fire.app files. You can put this folder anywhere you want. Run Fire-app.exe and you'll see a little gray icon appear in the Windows notification area.</p>
+      <img src="../images/windows.jpg" />
+    </div>
+    <div class="content osx">
+      <h3>Mac OS</h3>
+      <p>You will get a file named Fire.app. You can put it anywhere you want. Start the app and you'll see a little gray icon appear in the menubar.</p>
+      <img src="../images/osx.jpg" />
+    </div>
+    <div class="content linux">
+      <h3>Linux</h3>
+      <p>You will get a folder containing all the Fire.app files. You can put this folder anywhere you want. Execute run.sh and you'll see a little gray icon appear in the menubar.</p>
+      <img src="../images/linux.jpg" />
+    </div>
+  </div>
+</div>
+
+<p class="sp-point">NOTE: Fire.app is written in Java, so it will take a few seconds to start.</p>
+
+<h2>Creating Projects</h2>
+<p>To create a project, click the Fire.app icon and choose "Create Project" then choose the project type you want from any of the frameworks on the list.<br />
+If you don't prefer any of the frameworks, we suggest to choose "compass" -> "project". It will create a compass project which contains sass files and import <a href="http://compass-style.org/reference/compass/reset/">compass reset</a> by default.</p>
+
+<p>Note: "Fireapp Example" on the "Create Project" list is not a framework but a Fire.app project example. You can read some source code inside this project to learn how to use Fire.app.</p>
+
+<p>Give your new project a name and save it. A dialog window will appear saying your project has been created.</p>
+<img src="../images/create-project-report.png" />
+
+<p>Also, the icon turns orange, which means Fire.app is "watching" your project. If your project is being watched, after you change a Sass/CoffeeScript file it automatically compiles into a corresponding CSS/JavaScript file. Also, you can use Fire.app's built-in web server to see the project result in your browser.</p>
+
+<p>Let's build a compass project as an example. The project folder should look like this:</p>
+<img src="../images/project-folder.png" />
+<pre class="prettyprint">
+awesome-website/
+  sass/          // Sass folder.
+    screen.scss
+    ...
+  stylesheets/   // Default CSS output folder.
+    ...
+  .sass-cache/   // The hidden sass cache folder. Do not touch it.
+  config.rb      // Compass setting. Do not remove it.
+</pre>
+
+<h2>Editing and Preview</h2>
+<p>Add a file to the project folder and name it <code>index.html</code>. Then write some content like <code>Hello World!</code>. Save the file and open <code>http://127.0.0.1:24681/index.html</code> in your browser. You will see the result of your code.</p>
+<img src="../images/helloworld_01.png" />
+
+<p>Next, add more HTML to import a CSS file which is generated from a Sass file. For example, here is what it looks like: </p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;Hello World!&lt;/title&gt;
+  &lt;link href=&quot;/stylesheets/screen.css&quot; media=&quot;screen&quot; rel=&quot;stylesheet&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello World!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<p>Write some CSS in the corresponding Sass file <code>/sass/screen.scss</code> for a test. For example: </p>   
+
+<pre class="prettyprint linenums lang-css">
+h1 {
+    color: #cc0000;
+}
+</pre>
+
+<p>Because SCSS is a superset of CSS syntax, we can just write normal CSS here. Switch to the browser and refresh the page, then you'll see the result.</p>
+<img src="../images/helloworld_02.png" />
+
+<h2>Using Template Languages</h2>   
+
+<p>Using template languages with Fire.app is very easy, simply name the file with a corresponding file extension. For example, rename your <code>index.html</code> to <code>index.html.erb</code> then you can use the ERB template language. </p>
+<p>After renaming the file, you can add a lorem ipsum helper <code>&lt;%= lorem_paragraph %&gt;</code> after <code>h1</code> to generate a paragraph. Here's what it looks like:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;Hello World!&lt;/title&gt;
+  &lt;link href=&quot;/stylesheets/screen.css&quot; media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello World!&lt;/h1&gt;
+  &lt;%= lorem_paragraph %&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<p>Save the file and refresh the browser. Now you will see the lorem peragraph.</p>
+
+<img src="../images/helloworld_03.png" />
+
+<p>If you want to learn more about template languages or Fire.app's built-in helpers, please follow these links below.
+</p>
+
+<ul>
+  <li><a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a></li>
+  <li><a href="template_helper.html">Template Helpers</a></li>
+</ul>
+
+<h2>Generating Static Files</h2>
+
+<p>After completing your project, you can use "Build Project" to generate the static files. Click the Fire.app icon and choose "Build Project". You will get a folder named <code>build_##############</code> which contains all the static files generated from your project. </p>
+
+<img src="../images/helloworld_04.png" />
+
+
+
+
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="../javascripts/prettify.js"></script>
+<script type="text/javascript" src="../javascripts/lang-css.js"></script>
+<script type="text/javascript" src="../javascripts/app.js"></script>
+  <script>
+$(function(){
+  $(".switch-block .content").hide();
+  $(".switch-block .nav-tabs li:eq(0)").addClass("active");
+  $(".switch-block .content:eq(0)").show();
+  $(".switch-block .nav-tabs a").on("click", function(e){
+    e.preventDefault();
+    $(".switch-block .nav-tabs li").removeClass("active");
+    $(".switch-block .content").hide();
+    var currentClass = $(this).parent().attr("class");
+    $(this).parent().addClass("active");
+    $(".switch-block .content-wrapper").find("."+currentClass).show();
+    console.log(currentClass);
+  });
+});
+</script>
+
+</body>
+</html>

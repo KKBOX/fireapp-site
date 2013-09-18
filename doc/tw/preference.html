@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Handlino Inc." />
+    <meta property="og:title" content="Fire.app" />
+    <meta property="og:url" content="http://fireapp.handlino.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Dead Easy HTML Prototyping" />
+    <meta property="og:image" content="http://fireapp.handlino.com/images/link-thumbnail.png" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Fire.app documents</title>
+    <link href="../../stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Anton|Bree+Serif|Vollkorn|Exo:300,600,900" rel="stylesheet" type="text/css">
+    <!-- html5shiv http://code.google.com/p/html5shiv/ -->
+    <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+<div class="nav">
+    <div class="logo">
+        <a href="index.html">
+            <img src="../../images/logo-big.png" alt="Fire.app logo" width="220" height="220" />
+        </a>
+        <h1>
+            <a href="index.html">
+                <span class="title">Fire<span class="small">.app</span></span>
+                <span class="documents">Documents</span>
+            </a>
+        </h1>
+    </div>
+    <ul class="lang">
+        <li><a href="../index.html">English</a></li>
+        <li><a href="index.html" class="active">正體中文</a></li>
+    </ul>
+    <a href="#" class="collapse-menu">Menu <i class="lsf-icon down"></i></a>
+    <ul class="menu">
+        <li><a href="index.html">為什麼要使用 Fire.app？</a></li>
+        <li><a href="getting_started.html">快速入門指南</a></li>
+        <li>
+            Fire.app 機能應用教學
+            <ul>
+              <li><a href="tutorial_1.html">觀看範例及準備實作</a></li>
+              <li><a href="tutorial_2.html">樣板語言 ERB 簡介</a></li>
+              <li><a href="tutorial_3.html">使用 Template Helper</a></li>
+              <li><a href="tutorial_4.html">Layout 的基本用法</a></li>
+              <li><a href="tutorial_5.html">Partial 的應用與指定 Layout</a></li>
+              <li><a href="tutorial_6.html">在特定頁面變更已套用 Layout 部分的內容（進階）</a></li>
+              <li><a href="tutorial_7.html">基於現有 Layout 製作變更部分內容的延伸 Layout（進階）</a></li>
+              <li><a href="tutorial_8.html">取得目前的頁面路徑及其應用（進階）</a></li>
+              <li><a href="tutorial_9.html">Build Project</a></li>
+            </ul>
+        </li>
+        <li>
+            相關文件
+            <ul>
+                <li><a href="preference.html">Preference 設定</a></li>
+                <li><a href="options.html">Options 設定</a></li>
+                <li><a href="coffeescript.html">使用 CoffeeScript</a></li>
+                <li><a href="extension.html">使用 Extension</a></li>
+                <li><a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a></li>
+                <li><a href="template_helper.html">Template Helper</a></li>
+                
+            </ul>
+        </li> 
+        <li><a href="http://fireapp.handlino.com/">Fire.app 官網</a></li>
+        <li><a href="https://github.com/handlino/FireApp">GitHub 頁面</a></li>
+    </ul>
+</div>
+
+<div class="main-wrapper">
+    <div class="main">
+        <h1>Preference 設定</h1>
+<p>在 Preferences 選項中可調整下列設定：</p>
+
+<h2>Compass</h2>
+
+<p><img src="../../images/preference-compass.png" alt="Compass" /></p>
+
+<ul>
+<li><p>Preferred Syntax: <br/>
+Sass 有兩種語法可供選擇，分別是 SCSS (.scss) 和 indented syntax (.sass) 。 Fire.app 兩種語法皆支援，此處所選擇的是專案建立時產生樣板檔案所使用的語法。</p></li>
+<li><p>Compass Version: <br/>
+Fire.app 預設使用<a href="http://compass-style.org/CHANGELOG/">最新 stable 版本的 Compass </a>。若是想使用其他版本的 Sass/Compass，或使用 RybyGems 來管理 Compass extensions ，則需使用 "Custom" 選項。<br />
+<span class="sp-point">注意：非進階使用者不建議使用。</span></p></li>
+</ul>
+
+
+<h2>Notification</h2>
+
+<p><img src="../../images/preference-notification.png" alt="Notification" /></p>
+
+<p>Fire.app 支援 <a href="http://growl.info/">Growl</a> ，可選擇想顯示的通知訊息類型。也可以選擇是否產出 debug 用的 log 檔。</p>
+
+<h2>Services</h2>
+
+<p><img src="../../images/preference-services.png" alt="Services" /></p>
+
+<p><strong>Enable Web Server:</strong> <br/>
+若開啟此選項， Fire.app 將在專案路徑啟動一個微 server(WEBrick) ，如此一來便可在瀏覽器中開啟 <code>http://localhost:24681</code> 來即時預覽實際上的編輯結果，預設的port是 <code>24681</code> 但可以自行更換成想要的 port 。</p>
+
+<p><strong>Enable LiveReload:</strong> <br/>
+Fire.app 內建了對 LiveReload 的支援，如此便可免去編輯頁面後必須手動重新整理的步驟。欲使用此功能必須安裝瀏覽器外掛，若同時開啟 web server 和 livereload 功能，也可以使用 <a href="https://github.com/livereload/livereload-js">LiveReload-js</a> 來達成目的。(感謝使用 MIT Licens 的 @livereload 。) 我們也推薦使用 <a href="http://livereload.com/">LiveReload 2</a> 。</p>
+
+<ul>
+<li><a href="http://help.livereload.com/kb/general-use/browser-extensions">LiveReload 提供的瀏覽器外掛</a></li>
+<li>舊版本：
+
+<ul>
+<li>Safari: <a href="https://github.com/downloads/mockko/livereload/LiveReload-1.6.2.safariextz">Download LiveReload 1.6.2 extension</a></li>
+<li><a href="https://chrome.google.com/extensions/detail/jnihajbhpnppcggbcgedagnkighmdlei">Chrome</a></li>
+<li><a href="https://addons.mozilla.org/zh-TW/firefox/addon/livereload/">Firefox</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>若不想安裝瀏覽器外掛，可以直接在 HTML 中置入 <code>LiveReload-js</code> 如下：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;script&gt;document.write('&lt;script src="http://'
++ (location.host || 'localhost').split(':')[0]
++ ':35729/livereload.js?snipver=1"&gt;&lt;/'
++ 'script&gt;')&lt;/script&gt;
+</pre>
+
+<p>LiveReload便會自動作用。<br />
+    當使用 ERB 檔案時也可以直接用：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= livereload_js %&gt;
+</pre>
+
+<p>來產生上面的 livereload-js 程式碼。<br />
+    如果只想在開發時插入 LiveReload 程式碼但不想讓它出現在輸出的靜態網頁中，可以使用：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= livereload_js if ENV["RACK_ENV"] != "production" %&gt;
+</pre>
+
+<h2>History</h2>
+
+<p><img src="../../images/preference-history.png" alt="History" /></p>
+
+<p>點擊 "Clear History" 按鈕會清空最近使用的專案列表。</p>
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="../../javascripts/prettify.js"></script>
+<script type="text/javascript" src="../../javascripts/lang-css.js"></script>
+<script type="text/javascript" src="../../javascripts/app.js"></script>
+</body>
+</html>

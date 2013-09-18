@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Handlino Inc." />
+    <meta property="og:title" content="Fire.app" />
+    <meta property="og:url" content="http://fireapp.handlino.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Dead Easy HTML Prototyping" />
+    <meta property="og:image" content="http://fireapp.handlino.com/images/link-thumbnail.png" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Fire.app documents</title>
+    <link href="../../stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Anton|Bree+Serif|Vollkorn|Exo:300,600,900" rel="stylesheet" type="text/css">
+    <!-- html5shiv http://code.google.com/p/html5shiv/ -->
+    <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+<div class="nav">
+    <div class="logo">
+        <a href="index.html">
+            <img src="../../images/logo-big.png" alt="Fire.app logo" width="220" height="220" />
+        </a>
+        <h1>
+            <a href="index.html">
+                <span class="title">Fire<span class="small">.app</span></span>
+                <span class="documents">Documents</span>
+            </a>
+        </h1>
+    </div>
+    <ul class="lang">
+        <li><a href="../index.html">English</a></li>
+        <li><a href="index.html" class="active">正體中文</a></li>
+    </ul>
+    <a href="#" class="collapse-menu">Menu <i class="lsf-icon down"></i></a>
+    <ul class="menu">
+        <li><a href="index.html">為什麼要使用 Fire.app？</a></li>
+        <li><a href="getting_started.html">快速入門指南</a></li>
+        <li>
+            Fire.app 機能應用教學
+            <ul>
+              <li><a href="tutorial_1.html">觀看範例及準備實作</a></li>
+              <li><a href="tutorial_2.html">樣板語言 ERB 簡介</a></li>
+              <li><a href="tutorial_3.html">使用 Template Helper</a></li>
+              <li><a href="tutorial_4.html">Layout 的基本用法</a></li>
+              <li><a href="tutorial_5.html">Partial 的應用與指定 Layout</a></li>
+              <li><a href="tutorial_6.html">在特定頁面變更已套用 Layout 部分的內容（進階）</a></li>
+              <li><a href="tutorial_7.html">基於現有 Layout 製作變更部分內容的延伸 Layout（進階）</a></li>
+              <li><a href="tutorial_8.html">取得目前的頁面路徑及其應用（進階）</a></li>
+              <li><a href="tutorial_9.html">Build Project</a></li>
+            </ul>
+        </li>
+        <li>
+            相關文件
+            <ul>
+                <li><a href="preference.html">Preference 設定</a></li>
+                <li><a href="options.html">Options 設定</a></li>
+                <li><a href="coffeescript.html">使用 CoffeeScript</a></li>
+                <li><a href="extension.html">使用 Extension</a></li>
+                <li><a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a></li>
+                <li><a href="template_helper.html">Template Helper</a></li>
+                
+            </ul>
+        </li> 
+        <li><a href="http://fireapp.handlino.com/">Fire.app 官網</a></li>
+        <li><a href="https://github.com/handlino/FireApp">GitHub 頁面</a></li>
+    </ul>
+</div>
+
+<div class="main-wrapper">
+    <div class="main">
+        <h1>Fire.app 機能應用教學</h1>
+<h2>Partial 的應用與指定 Layout</h2>
+
+<p>在瀏覽器中點選主選單的 "Home" 部分切換到首頁，可以看到目前首頁的版面和先前預定不同，是有包含側欄的，這是因為目前整個網站的頁面都套用了同一個含有側欄的 Layout。為了要讓首頁能夠不要有側欄，我們必須讓首頁套用另一份 Layout。</p>
+
+<p>要達成目的，最簡單的方法似乎是複製一份 Layout 內容至首頁用的 Layout 中再把側欄部分的程式碼刪除，但是這樣一來兩個 Layout 中又包含了重複的程式碼，當必須修改時仍然必須改兩份，並未確實達到程式碼精簡的效果：</p>
+
+<img src="../../images/partial_01.png" />
+
+<p>為了避免上述狀況，需要使用 Partial 搭配 Layout 來解決問題。</p>   
+
+<p>Partial 的主要功能是將 Layout 與 Layout 之間共通的部分再抽出成獨立檔案，可以有效避免程式碼重複的問題：</p>
+
+<img src="../../images/partial_02.png" />
+
+<p>Partial 檔案和 Layout 檔案一樣並未要在 Build Project 時輸出成獨立檔案，故檔名首字也使用底線。其他詳細說明可以參考文件： <a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a>。</p>
+<p>接下來要將全站 Layout 和首頁 Layout 共通的 Header 、 Footer 、 主選單等部分抽出為 Partial，首先在專案根目錄建立一個 <code>_header.html.erb</code> 檔案，之後找到 <code>_layout.html.erb</code> 中 <code>&lt;div class="header-wrapper"&gt;</code> 的部份，將整段 HTML 剪下貼至 <code>_header.html.erb</code> 內容，存檔後便完成 Header 部分的 Partial 檔案：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;div class="header-wrapper"&gt;
+    &lt;div class="header"&gt;
+        &lt;h1 class="logo"&gt;&lt;a href="index.html"&gt;Fire.app&lt;/a&gt;&lt;/h1&gt;
+        &lt;h2&gt;&lt;%= lorem_sentence %&gt;&lt;/h2&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+<p>至於 <code>_layout.html.erb</code> 內則需要在剛才剪下的程式碼位置補上：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= render :partial =&gt; "header" %&gt;
+</pre>
+
+<p>才能把已抽出的檔案讀入，維持原來的頁面呈現。</p>
+
+<p>由於課程教材檔中已經準備好其他要抽出的 Partial 檔案，故只要把 <code>_layout.html.erb</code> 中對應的部分換成 render 出 Partial 的語法即可，全部需要更換的部分如下：</p>
+
+<img src="../../images/partial_03.png" />
+
+<p>完成後 <code>_layout.html.erb</code> 的內容如下：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;%= render :partial =&gt; "head" %&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;%= render :partial =&gt; "header" %&gt;
+    &lt;%= render :partial =&gt; "main_menu" %&gt;
+    &lt;div class="main-block"&gt;
+        &lt;div class="main"&gt;
+            &lt;%= yield %&gt;
+        &lt;/div&gt;
+        &lt;div class="side"&gt;
+            &lt;div class="ad"&gt;
+                Ad Words
+            &lt;/div&gt;
+            &lt;div class="links"&gt;
+                &lt;h2&gt;Information Links&lt;/h2&gt;
+                &lt;ul&gt;
+                    &lt;% 8.times do %&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;%= lorem_words (4+rand(3)) %&gt;&lt;/a&gt;&lt;/li&gt;
+                    &lt;% end %&gt;
+                &lt;/ul&gt;  
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;%= render :partial =&gt; "footer" %&gt;
+    &lt;%= livereload_js %&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<p>從程式碼中我們可以看到側欄的部份並沒有抽出成 Partial ，這是因為首頁的 Layout 並沒有用到側欄的部份，因此目前沒有需要特別將側欄也抽出成 Partial 檔案。</p>
+
+<p>完成專案共用的 Layout 改造後即可著手處理首頁的 Layout 部分，先在專案根目錄建立一個名稱為 <code>_sp_layout.html.erb</code> 的檔案，並將 <code>_layout.html.erb</code> 的全部內容複製貼到 <code>_sp_layout.html.erb</code> 檔案中，然後刪除整個 <code>&lt;div class="side"&gt;</code> 部分，這樣就完成了要給首頁使用的無側欄 Layout <code>_sp_layout.html.erb</code> ，內容如下：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;%= render :partial =&gt; "head" %&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;%= render :partial =&gt; "header" %&gt;
+    &lt;%= render :partial =&gt; "main_menu" %&gt;
+    &lt;div class="main-block"&gt;
+        &lt;div class="main"&gt;
+            &lt;%= yield %&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;%= render :partial =&gt; "footer" %&gt;
+    &lt;%= livereload_js %&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<p>雖然已經準備好給首頁用的 Layout 內容，不過目前首頁檔案 <code>index.html.erb</code> 並未使用我們做好的 <code>_sp_layout.html.erb</code> 做為 Layout。<br />
+為達成需求，我們必須使用一個特殊檔案來指定首頁要用的 Layout，其檔名必須和要套用 Layout 的頁面名稱對應且副檔名的最後一段為 <code>.layout</code>。以目前的專案為例，需要指定 Layout 的檔案是首頁 <code>index.html.erb</code> ，用來指定 Layout 的檔案名稱必須和首頁相同但更改副檔名最後的 erb 部分，變成 <code>index.html.layout</code> 。建立 <code>index.html.layout</code> 後只需要在內容中寫入欲指定的 Layout 檔案即可。也就是 <code>index.html.layout</code> 之內容為：</p>
+
+<pre class="prettyprint linenums lang-html">
+_sp_layout.html.erb
+</pre>
+
+<p>如此一來 <code>index.html.erb</code> 就會使用 <code>_sp_layout.html.erb</code> 而不是預設的 Layout 來呈現內容，切換至瀏覽器便可看見首頁的部份已經成為我們預期中沒有側欄的版面。網站目前的 Layout 架構如下：</p>
+
+<img src="../../images/layout_01.png" />
+
+<div class="page-footer">
+    Next: <a href="tutorial_6.html">在特定頁面變更已套用 Layout 部分的內容（進階） <i class="lsf-icon arrow"></i></a>
+</div>
+
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="../../javascripts/prettify.js"></script>
+<script type="text/javascript" src="../../javascripts/lang-css.js"></script>
+<script type="text/javascript" src="../../javascripts/app.js"></script>
+</body>
+</html>

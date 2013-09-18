@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Handlino Inc." />
+    <meta property="og:title" content="Fire.app" />
+    <meta property="og:url" content="http://fireapp.handlino.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Dead Easy HTML Prototyping" />
+    <meta property="og:image" content="http://fireapp.handlino.com/images/link-thumbnail.png" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Fire.app documents</title>
+    <link href="../../stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Anton|Bree+Serif|Vollkorn|Exo:300,600,900" rel="stylesheet" type="text/css">
+    <!-- html5shiv http://code.google.com/p/html5shiv/ -->
+    <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+<div class="nav">
+    <div class="logo">
+        <a href="index.html">
+            <img src="../../images/logo-big.png" alt="Fire.app logo" width="220" height="220" />
+        </a>
+        <h1>
+            <a href="index.html">
+                <span class="title">Fire<span class="small">.app</span></span>
+                <span class="documents">Documents</span>
+            </a>
+        </h1>
+    </div>
+    <ul class="lang">
+        <li><a href="../index.html">English</a></li>
+        <li><a href="index.html" class="active">正體中文</a></li>
+    </ul>
+    <a href="#" class="collapse-menu">Menu <i class="lsf-icon down"></i></a>
+    <ul class="menu">
+        <li><a href="index.html">為什麼要使用 Fire.app？</a></li>
+        <li><a href="getting_started.html">快速入門指南</a></li>
+        <li>
+            Fire.app 機能應用教學
+            <ul>
+              <li><a href="tutorial_1.html">觀看範例及準備實作</a></li>
+              <li><a href="tutorial_2.html">樣板語言 ERB 簡介</a></li>
+              <li><a href="tutorial_3.html">使用 Template Helper</a></li>
+              <li><a href="tutorial_4.html">Layout 的基本用法</a></li>
+              <li><a href="tutorial_5.html">Partial 的應用與指定 Layout</a></li>
+              <li><a href="tutorial_6.html">在特定頁面變更已套用 Layout 部分的內容（進階）</a></li>
+              <li><a href="tutorial_7.html">基於現有 Layout 製作變更部分內容的延伸 Layout（進階）</a></li>
+              <li><a href="tutorial_8.html">取得目前的頁面路徑及其應用（進階）</a></li>
+              <li><a href="tutorial_9.html">Build Project</a></li>
+            </ul>
+        </li>
+        <li>
+            相關文件
+            <ul>
+                <li><a href="preference.html">Preference 設定</a></li>
+                <li><a href="options.html">Options 設定</a></li>
+                <li><a href="coffeescript.html">使用 CoffeeScript</a></li>
+                <li><a href="extension.html">使用 Extension</a></li>
+                <li><a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a></li>
+                <li><a href="template_helper.html">Template Helper</a></li>
+                
+            </ul>
+        </li> 
+        <li><a href="http://fireapp.handlino.com/">Fire.app 官網</a></li>
+        <li><a href="https://github.com/handlino/FireApp">GitHub 頁面</a></li>
+    </ul>
+</div>
+
+<div class="main-wrapper">
+    <div class="main">
+        <h1>Fire.app 機能應用教學</h1>
+<h2>取得目前的頁面路徑及其應用（進階）</h2>
+
+<p>接下來要將主選單加上對應目前的頁面時項目會較為醒目的效果，此部份提供初學者較單純的解決方案，也提供讓進階者更了解其作用原理的說明。</p>
+
+<h3>初學者版本</h3>
+
+<p>可以直接使用我們提供的 Helper 來達成需求。請在根目錄中建立檔案 <code>view_helpers.rb</code> ，內容如下： </p> 
+
+<pre class="prettyprint linenums lang-ruby">
+module ViewHelpers
+  def new_link_to(name, href, options={})
+    if href == request.path
+      options[:class] ||=''
+      options[:class] += "active"
+    end
+    link_to name, href, options
+  end
+end
+</pre>
+
+<p>使用這個 <code>new_link_to</code> Helper 時需要傳入兩個參數，第一個是 <code>&lt;a&gt;</code> tag 裡面要放的內容，第二個是 <code>&lt;a&gt;</code> tag 中 href 屬性的值。例如我們想要製作一個連結到 <code>/index.html</code> 且顯示文字為 <code>首頁</code> 的連結，利用這個 Helper 的寫法便是：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= new_link_to("首頁","/index.html") %&gt;
+</pre>
+
+<p>使用 <code>new_link_to</code> Helper 後會自動判斷目前的頁面路徑是否和該連結的路徑相同來決定輸出的結果。當目前的頁面不是 <code>/index.html</code> 時，產出的結果為：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;a href="/index.html"&gt;首頁&lt;/a&gt;
+</pre>
+
+<p>若目前的頁面是 <code>/index.html</code> 時，產出的結果為：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;a href="/index.html" class="active"&gt;首頁&lt;/a&gt;
+</pre>
+
+<p>在此份教學範例中，必須改寫 <code>_main_menu.html.erb</code> 的內容如下：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;div class="main-menu"&gt;
+    &lt;ul&gt;
+        &lt;li&gt;
+            &lt;%= new_link_to('&lt;span class="icons-home"&gt;Home&lt;/span&gt;',"/index.html") %&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;%= new_link_to('&lt;span class="icons-features"&gt;Features&lt;/span&gt;',"/features/index.html") %&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;%= new_link_to('&lt;span class="icons-documents"&gt;Documents&lt;/span&gt;',"/documents.html") %&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;%= new_link_to('&lt;span class="icons-screenshots"&gt;Screenshots&lt;/span&gt;',"/screenshots.html") %&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+
+<p>由於在 CSS 中我們已經定義了主選單連結在 <code>class="active"</code> 時應呈現的樣式，完成改寫後便可達成對應目前的頁面時主選單項目會較為醒目的效果。</p>
+
+<p class="sp-point">注意：在上面的程式碼中傳入 <code>new_link_to</code> 的第一個參數使用了含有 class 的整個 span <code>&lt;span class="icons-home"&gt;Home&lt;/span&gt;</code>，由於其中包含了雙引號 <code>"</code> ，故傳入時需要使用單引號 <code>'</code> 來包圍才不會發生錯誤。</p>
+
+<h3>進階者版本</h3>
+
+<p>此需求實際上是先利用 <code>request.path</code> 來取得目前的路徑，再配合判斷式來達成想要的效果。以下先列出不使用 Helper 而是直接插入 if 判斷式的 <code>_main_menu.html.erb</code> 寫法，較易看出作用的原理：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;div class="main-menu"&gt;
+    &lt;ul&gt;
+        &lt;li&gt;
+            &lt;a href="/index.html" &lt;%= 'class="active"' if request.path == "/index.html" || request.path == "/" %&gt;&gt;
+                &lt;span class="icons-home"&gt;Home&lt;/span&gt;
+            &lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href="/features/index.html" &lt;%= 'class="active"' if request.path =~ /^\/features\// %&gt;&gt;
+                &lt;span class="icons-features"&gt;Features&lt;/span&gt;
+            &lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href="/documents.html" &lt;%= 'class="active"' if request.path == "/documents.html" %&gt;&gt;
+                &lt;span class="icons-documents"&gt;Documents&lt;/span&gt;
+            &lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href="/screenshots.html" &lt;%= 'class="active"' if request.path == "/screenshots.html" %&gt;&gt;
+                &lt;span class="icons-screenshots"&gt;Screenshots&lt;/span&gt;
+            &lt;/a&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+
+<p>了解 <code>request.path</code> 的作用原理後，可以看見前面提供的 Helper 寫法其實同樣是利用 <code>request.path</code> 來達成效果：</p>
+
+<pre class="prettyprint linenums lang-ruby">
+module ViewHelpers
+  def new_link_to(name, href, options={})
+    if href == request.path
+      options[:class] ||=''
+      options[:class] += "active"
+    end
+    link_to name, href, options
+  end
+end
+</pre>
+
+<p>關於自訂 Helper 的詳細說明請參考： <a href="template_helper.html">Template Helper</a></p>
+
+<div class="page-footer">
+    Next: <a href="tutorial_9.html">Build Project <i class="lsf-icon arrow"></i></a>
+</div>
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="../../javascripts/prettify.js"></script>
+<script type="text/javascript" src="../../javascripts/lang-css.js"></script>
+<script type="text/javascript" src="../../javascripts/app.js"></script>
+</body>
+</html>

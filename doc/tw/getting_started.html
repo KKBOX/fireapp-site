@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Handlino Inc." />
+    <meta property="og:title" content="Fire.app" />
+    <meta property="og:url" content="http://fireapp.handlino.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Dead Easy HTML Prototyping" />
+    <meta property="og:image" content="http://fireapp.handlino.com/images/link-thumbnail.png" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Fire.app documents</title>
+    <link href="../../stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Anton|Bree+Serif|Vollkorn|Exo:300,600,900" rel="stylesheet" type="text/css">
+    <!-- html5shiv http://code.google.com/p/html5shiv/ -->
+    <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+<div class="nav">
+    <div class="logo">
+        <a href="index.html">
+            <img src="../../images/logo-big.png" alt="Fire.app logo" width="220" height="220" />
+        </a>
+        <h1>
+            <a href="index.html">
+                <span class="title">Fire<span class="small">.app</span></span>
+                <span class="documents">Documents</span>
+            </a>
+        </h1>
+    </div>
+    <ul class="lang">
+        <li><a href="../index.html">English</a></li>
+        <li><a href="index.html" class="active">正體中文</a></li>
+    </ul>
+    <a href="#" class="collapse-menu">Menu <i class="lsf-icon down"></i></a>
+    <ul class="menu">
+        <li><a href="index.html">為什麼要使用 Fire.app？</a></li>
+        <li><a href="getting_started.html">快速入門指南</a></li>
+        <li>
+            Fire.app 機能應用教學
+            <ul>
+              <li><a href="tutorial_1.html">觀看範例及準備實作</a></li>
+              <li><a href="tutorial_2.html">樣板語言 ERB 簡介</a></li>
+              <li><a href="tutorial_3.html">使用 Template Helper</a></li>
+              <li><a href="tutorial_4.html">Layout 的基本用法</a></li>
+              <li><a href="tutorial_5.html">Partial 的應用與指定 Layout</a></li>
+              <li><a href="tutorial_6.html">在特定頁面變更已套用 Layout 部分的內容（進階）</a></li>
+              <li><a href="tutorial_7.html">基於現有 Layout 製作變更部分內容的延伸 Layout（進階）</a></li>
+              <li><a href="tutorial_8.html">取得目前的頁面路徑及其應用（進階）</a></li>
+              <li><a href="tutorial_9.html">Build Project</a></li>
+            </ul>
+        </li>
+        <li>
+            相關文件
+            <ul>
+                <li><a href="preference.html">Preference 設定</a></li>
+                <li><a href="options.html">Options 設定</a></li>
+                <li><a href="coffeescript.html">使用 CoffeeScript</a></li>
+                <li><a href="extension.html">使用 Extension</a></li>
+                <li><a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a></li>
+                <li><a href="template_helper.html">Template Helper</a></li>
+                
+            </ul>
+        </li> 
+        <li><a href="http://fireapp.handlino.com/">Fire.app 官網</a></li>
+        <li><a href="https://github.com/handlino/FireApp">GitHub 頁面</a></li>
+    </ul>
+</div>
+
+<div class="main-wrapper">
+    <div class="main">
+        <h1>快速入門指南</h1>
+<h2>下載與開啟</h2>
+<p>購買 Fire.app 後，附有下載連結的 email 將會寄至購買時填寫的信箱。所有 1.x 版的更新下載連結亦會透過 email 提供。</p>
+<p>請透過連結下載符合自己作業系統的 Fire.app 檔案，並將檔案解壓縮。可參考下列對應於所使用作業系統之說明：</p>
+
+<div class="switch-block">
+  <ul class="nav-tabs">
+    <li class="windows"><a href="#">Windows</a></li>
+    <li class="osx"><a href="#">Mac OS</a></li>
+    <li class="linux"><a href="#">Linux</a></li>
+  </ul>
+  <div class="content-wrapper">
+    <div class="content windows">
+      <h3>Windows</h3>
+      <p>解壓縮檔案後會得到一個包含 Fire.app 所需檔案之資料夾，可將此資料夾搬移至想放置的位置，執行 Fire-app.exe 即可啟動 Fire.app 並看見灰色的小 icon 出現在右下角的工作列中。</p>
+      <img src="../../images/windows.jpg" />
+    </div>
+    <div class="content osx">
+      <h3>Mac OS</h3>
+      <p>解壓縮檔案後會得到一個檔名為 Fire.app 的檔案，可搬移至想放置的位置。執行此 app 便可看見灰色的小 icon 出現在 menu bar 。</p>
+      <img src="../../images/osx.jpg" />
+    </div>
+    <div class="content linux">
+      <h3>Linux</h3>
+      <p>解壓縮後會得到一個包含 Fire.app 所需檔案之資料夾，可將此資料夾搬移至想放置的位置，執行 run.sh 即可啟動 Fire.app 並看見灰色的小 icon 出現在 menu bar 。</p>
+      <img src="../../images/linux.jpg" />
+    </div>
+  </div>
+</div>
+
+<p class="sp-point">註: 因 Fire.app 以 Java 撰寫，啟動時可能花費數秒，請耐心等待。</p>
+
+<h2>建立專案</h2>
+<p>要使用 Fire.app 建立專案時，只需點選 Fire.app icon，再從 "Create Project" 選單中選取自己想建立的專案類型，輸入專案資料夾名稱後點擊儲存即可建立新專案。<br />
+若沒有特別想使用的 framework，建議選擇 "compass" -> "project" 即可建立一個已包含 sass 檔案的專案，預設即載入 <a href="http://compass-style.org/reference/compass/reset/">compass reset</a> 。 <br /> 
+（註： "Create Project" 選單中的 "Fireapp Example" 一項並非可使用的 framwork，而是直接建立一個 Fire.app 範例專案在指定的資料夾中，供使用者參考此範例中各種 Fire.app 的應用方法。）</p>
+
+<p>輸入專案名稱並點擊儲存後，畫面上將出現一個對話框顯示專案已成功建立。</p>
+<img src="../../images/create-project-report.png" />
+
+<p>當專案被 Watch 時 Fire.app 的 icon 會由灰色轉為彩色，此時除了可以使用 Fire.app 所提供的 Web Server 在瀏覽器中看到目前專案的呈現畫面外，當 Sass 、 CoffeeScript 檔案被變更時，Fire.app 便會自動產生出相應的 CSS 和 JavaScript 檔案。</p>
+
+<p>以建立 compass 專案為例，建立專案後之資料夾內容如下：</p>
+<img src="../../images/project-folder.png" />
+<pre class="prettyprint">
+awesome-website/
+  sass/          // Sass 檔案夾
+    screen.scss
+    ...
+  stylesheets/   // 預設的 CSS 輸出資料夾
+    ...
+  .sass-cache/   // 隱藏的 sass cache 資料夾，請勿變更
+  config.rb      // Compass 設定檔，請勿刪除
+</pre>
+
+<h2>寫入專案內容及預覽</h2>
+<p>在專案資料夾中新增一個 index.html ，寫入一些內容如 <code>Hello World!</code> 後在瀏覽器中打開 <code>http://127.0.0.1:24681/index.html</code> 便能看見剛剛新增的頁面在瀏覽器中呈現的樣子。</p>
+<img src="../../images/helloworld_01.png" />
+
+<p>補上 html 的其他部分以便載入由 Sass 檔生成的 CSS 檔案。範例如下：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;Hello World!&lt;/title&gt;
+  &lt;link href=&quot;/stylesheets/screen.css&quot; media=&quot;screen&quot; rel=&quot;stylesheet&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello World!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<p>並在相對應的 <code>/sass/screen.scss</code> 中寫入測試用的 CSS，例如：</p>   
+
+<pre class="prettyprint linenums lang-css">
+h1 {
+    color: #cc0000;
+}
+</pre>
+
+<p>因為 CSS 相容於 SCSS 語法，此處寫一般的 CSS 即可。切換至瀏覽器並重新整理便可看見呈現結果：</p>
+<img src="../../images/helloworld_02.png" />
+
+<h2>使用樣板語言</h2>   
+
+<p>透過 Fire.app ，只需使用對應的副檔名即可撰寫樣板語言。例如將前面撰寫的 <code>index.html</code> 更名為 <code>index.html.erb</code> 即可插入 ERB 樣板語言的語法，以便使用樣板語言的功能。</p>
+<p>更改副檔名後可以試著在 <code>h1</code> 下面加上生成假文段落用的 Helper <code>&lt;%= lorem_paragraph %&gt;</code>：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;Hello World!&lt;/title&gt;
+  &lt;link href=&quot;/stylesheets/screen.css&quot; media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello World!&lt;/h1&gt;
+  &lt;%= lorem_paragraph %&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<p>加入後切換至瀏覽器重新整理，便可看見假文已經出現在畫面中：</p>
+
+<img src="../../images/helloworld_03.png" />
+
+<p>關於樣板語言和 Fire.app 支援的 Helper 可參考說明文件：</p>
+
+<ul>
+  <li><a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a></li>
+  <li><a href="template_helper.html">Template Helpers</a></li>
+</ul>
+
+<h2>生成靜態檔案</h2>
+
+<p>完成網站後，可使用 Build Project 功能生成網站的靜態檔。點擊 Fire.app icon 並選擇 "Build Project"，便可看見專案資料夾中出現了一個以 <code>build_</code> 開頭加上時間戳記為名稱的資料夾，裡面即會包含此專案生成的所有靜態檔案。</p>
+
+<img src="../../images/helloworld_04.png" />
+
+
+
+
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="../../javascripts/prettify.js"></script>
+<script type="text/javascript" src="../../javascripts/lang-css.js"></script>
+<script type="text/javascript" src="../../javascripts/app.js"></script>
+  <script>
+$(function(){
+  $(".switch-block .content").hide();
+  $(".switch-block .nav-tabs li:eq(0)").addClass("active");
+  $(".switch-block .content:eq(0)").show();
+  $(".switch-block .nav-tabs a").on("click", function(e){
+    e.preventDefault();
+    $(".switch-block .nav-tabs li").removeClass("active");
+    $(".switch-block .content").hide();
+    var currentClass = $(this).parent().attr("class");
+    $(this).parent().addClass("active");
+    $(".switch-block .content-wrapper").find("."+currentClass).show();
+    console.log(currentClass);
+  });
+});
+</script>
+
+</body>
+</html>

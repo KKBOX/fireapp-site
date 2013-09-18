@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Handlino Inc." />
+    <meta property="og:title" content="Fire.app" />
+    <meta property="og:url" content="http://fireapp.handlino.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Dead Easy HTML Prototyping" />
+    <meta property="og:image" content="http://fireapp.handlino.com/images/link-thumbnail.png" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Fire.app documents</title>
+    <link href="../stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Anton|Bree+Serif|Vollkorn|Exo:300,600,900" rel="stylesheet" type="text/css">
+    <!-- html5shiv http://code.google.com/p/html5shiv/ -->
+    <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+<body>
+<div class="nav">
+    <div class="logo">
+        <a href="index.html">
+            <img src="../images/logo-big.png" alt="Fire.app logo" width="220" height="220" />
+        </a>
+        <h1>
+            <a href="index.html">
+                <span class="title">Fire<span class="small">.app</span></span>
+                <span class="documents">Documents</span>
+            </a>
+        </h1>
+    </div>
+    <ul class="lang">
+        <li><a href="index.html" class="active">English</a></li>
+        <li><a href="tw/index.html">正體中文</a></li>
+    </ul>
+    <a href="#" class="collapse-menu">Menu <i class="lsf-icon down"></i></a>
+    <ul class="menu">
+        <li><a href="index.html">Why Fire.app？</a></li>
+        <li><a href="getting_started.html">Getting Started</a></li>
+        <li>
+            Fire.app Feature Tutorial
+            <ul>
+              <li><a href="tutorial_1.html">Viewing the Example and Preparing for Exercises</a></li>
+              <li><a href="tutorial_2.html">Introducing Template Language: ERB</a></li>
+              <li><a href="tutorial_3.html">Using Template Helpers</a></li>
+              <li><a href="tutorial_4.html">Basic Usage of Layout</a></li>
+              <li><a href="tutorial_5.html">Using Partial Files and Specifying Layouts</a></li>
+              <li><a href="tutorial_6.html">Changing the Content of Layouts for Particular Pages (Advanced)</a></li>
+              <li><a href="tutorial_7.html">Making an Extended Layout Based-on an Existing Layout (Advanced)</a></li>
+              <li><a href="tutorial_8.html">Getting Current Page Path and Understanding Its Usage (Advanced)</a></li>
+              <li><a href="tutorial_9.html">Building Projects</a></li>
+            </ul>
+        </li>
+        <li>
+            Documents
+            <ul>
+                <li><a href="preference.html">Preference</a></li>
+                <li><a href="options.html">Options</a></li>
+                <li><a href="coffeescript.html">Using CoffeeScript</a></li>
+                <li><a href="extension.html">Using Extensions</a></li>
+                <li><a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a></li>
+                <li><a href="template_helper.html">Template Helper</a></li>
+            </ul>
+        </li> 
+        <li><a href="http://fireapp.handlino.com/">Official Site</a></li>
+        <li><a href="https://github.com/handlino/FireApp">GitHub</a></li>
+    </ul>
+</div>
+
+<div class="main-wrapper">
+    <div class="main">
+        <h1>Fire.app Feature Tutorial</h1>
+<h2>Building Projects</h2>
+
+<p>After completing the previous steps, you can use "Build Project" in the Fire.app menu to generate the static files of this project. You will get a folder named <code>build_##############</code> which contains all the static files, and the content should be the same as the example file we've seen previously. </p>
+
+<p>Because we used absolute urls in this project, it needs to be on a web server to work correctly, even the static files. If you can't create a server environment, you can use Fire.app's built-in web server. Just use Fire.app to watch the output folder and you can check the results in your browser. 
+</p>
+
+<p>If you need to pass your end-products to someone else who can't create a server environment and doesn't have Fire.app, you can legally copy your Fire.app for them because Fire.app uses <a href="http://www.gnu.org/licenses/gpl.html">GPL liscence</a>.</p>   
+
+<p>If you really need to generate static pages with relative urls, you have to adjust every url  manually. And, if you use any compass helper which is related to <a href="http://compass-style.org/reference/compass/helpers/urls/#image-url">image-url()</a> in the Sass file, be sure to check "Sass" &gt; "Relative Assets" in the "Change Options" panel, then it will use relative urls in the output CSS files.</p>   
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="../javascripts/prettify.js"></script>
+<script type="text/javascript" src="../javascripts/lang-css.js"></script>
+<script type="text/javascript" src="../javascripts/app.js"></script>
+</body>
+</html>

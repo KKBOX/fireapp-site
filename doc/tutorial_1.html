@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Handlino Inc." />
+    <meta property="og:title" content="Fire.app" />
+    <meta property="og:url" content="http://fireapp.handlino.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Dead Easy HTML Prototyping" />
+    <meta property="og:image" content="http://fireapp.handlino.com/images/link-thumbnail.png" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Fire.app documents</title>
+    <link href="../stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Anton|Bree+Serif|Vollkorn|Exo:300,600,900" rel="stylesheet" type="text/css">
+    <!-- html5shiv http://code.google.com/p/html5shiv/ -->
+    <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+<body>
+<div class="nav">
+    <div class="logo">
+        <a href="index.html">
+            <img src="../images/logo-big.png" alt="Fire.app logo" width="220" height="220" />
+        </a>
+        <h1>
+            <a href="index.html">
+                <span class="title">Fire<span class="small">.app</span></span>
+                <span class="documents">Documents</span>
+            </a>
+        </h1>
+    </div>
+    <ul class="lang">
+        <li><a href="index.html" class="active">English</a></li>
+        <li><a href="tw/index.html">正體中文</a></li>
+    </ul>
+    <a href="#" class="collapse-menu">Menu <i class="lsf-icon down"></i></a>
+    <ul class="menu">
+        <li><a href="index.html">Why Fire.app？</a></li>
+        <li><a href="getting_started.html">Getting Started</a></li>
+        <li>
+            Fire.app Feature Tutorial
+            <ul>
+              <li><a href="tutorial_1.html">Viewing the Example and Preparing for Exercises</a></li>
+              <li><a href="tutorial_2.html">Introducing Template Language: ERB</a></li>
+              <li><a href="tutorial_3.html">Using Template Helpers</a></li>
+              <li><a href="tutorial_4.html">Basic Usage of Layout</a></li>
+              <li><a href="tutorial_5.html">Using Partial Files and Specifying Layouts</a></li>
+              <li><a href="tutorial_6.html">Changing the Content of Layouts for Particular Pages (Advanced)</a></li>
+              <li><a href="tutorial_7.html">Making an Extended Layout Based-on an Existing Layout (Advanced)</a></li>
+              <li><a href="tutorial_8.html">Getting Current Page Path and Understanding Its Usage (Advanced)</a></li>
+              <li><a href="tutorial_9.html">Building Projects</a></li>
+            </ul>
+        </li>
+        <li>
+            Documents
+            <ul>
+                <li><a href="preference.html">Preference</a></li>
+                <li><a href="options.html">Options</a></li>
+                <li><a href="coffeescript.html">Using CoffeeScript</a></li>
+                <li><a href="extension.html">Using Extensions</a></li>
+                <li><a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a></li>
+                <li><a href="template_helper.html">Template Helper</a></li>
+            </ul>
+        </li> 
+        <li><a href="http://fireapp.handlino.com/">Official Site</a></li>
+        <li><a href="https://github.com/handlino/FireApp">GitHub</a></li>
+    </ul>
+</div>
+
+<div class="main-wrapper">
+    <div class="main">
+        <h1>Fire.app Feature Tutorial</h1>
+<p>This tutorial uses many Fire.app features to build a website prototype. We recommend beginners follow this tutorial, doing exercises from start to finish then you'll know how to use Fire.app.</p>
+
+<h2>Viewing the Example and Preparing for Exercises</h2>
+
+<p>
+Please download our <a href="../files/fireapp-documents-example.zip">Example File</a> first. <br />
+This zip file contains all the files that will be generated from the project after completing the entire tutorial. Please unzip this file and use Fire.app to watch the folder. Next, open <code>http://127.0.0.1:24681/index.html</code> in your browser and view these pages to understand the structure of this website.</p>
+
+<p class="sp-point">Note: Although all files in this folder are static, they need to be on a web server to work correctly because of the absolute urls they use. That's why we must use Fire.app to watch the folder. If you need to generate files with relative urls, please check <a href="tutorial_9.html">Building Projects</a>.</p>
+
+<p>The structure of this website is shown in the following image. There are Home (<code>/index.html</code>), Features List (<code>/features/index.html</code>), Features Detail (<code>/features/detail.html</code>), Documents (<code>/documents.html</code>) and Screenshots (<code>/screenshots.html</code>) pages.</p>
+
+<img src="../images/structure_01.png" />
+
+<p>We can see many common or duplicated parts in the website, include content, block and code. These duplicated parts are our main target in the following tutorial.</p>
+
+<p>After viewing this website's structure, let's prepare for the following exercise. Please download our <a href="../files/fireapp-documents-teaching-material.zip">Teaching Material File</a> and unzip it. </p>
+
+<p class="sp-point">Note: This teaching material file is the initial setup for the following exercises, please don't confusion it with the example file we just saw.</p>
+
+<p>Use Fire.app to watch this folder, then follow the steps below.</p>
+
+<ul class="qa">
+    <li>
+        <a href="tutorial_2.html">Introducing Template Language: ERB</a><br />
+        Because we need to use a template language to achieve many of Fire.app's features, let's see the basic template language first.
+    </li>
+    <li>
+        <a href="tutorial_3.html">Using Template Helpers</a><br />
+        Adding LiveReload to automatically refresh browsers after modifying files and using built-in lorem ipsum helpers to generate placeholder texts.
+    </li>
+    <li>
+        <a href="tutorial_4.html">Basic Usage of Layout</a><br />
+        Moving duplicated parts in every page to a layout for avoiding pasting the same code to many files.
+    </li>
+    <li>
+        <a href="tutorial_5.html">Using Partial Files and Specifying Layouts</a><br />
+        If multiple layouts are needed, we can move the common parts in layouts to partial files for easy maintenance.
+    </li>
+    <li>
+        <a href="tutorial_6.html">Changing the Content of Layouts for Particular Pages (Advanced) </a><br />
+        When we need to change a layout's content in a particular page but the layout has already been used in many pages, we can use template helpers to accomplish this, instead of adding a new layout.
+    </li>
+    <li>
+        <a href="tutorial_7.html">Making an Extended Layout Based-on an Existing Layout (Advanced) </a><br />
+        If we have to change a layout's content in many pages, we can make an extended layout based-on an existing layout to reduce duplicated code.
+    </li>
+    <li>
+        <a href="tutorial_8.html">Getting Current Page Path and Understanding Its Usage (Advanced)</a><br />
+        We can get current page path with template language. It's often used to add a specific class to an anchor link corresponding to the current page.
+    </li>
+    <li>
+        <a href="tutorial_9.html">Building Projects</a><br />
+        Using "build project" to generate static files from the completed project.
+    </li>
+</ul>
+
+<p>You can skip all the "Advanced" parts if you don't need to use them.</p>
+
+<div class="page-footer">
+    Next: <a href="tutorial_2.html">Introducing Template Language: ERB <i class="lsf-icon arrow"></i></a>
+</div>
+
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="../javascripts/prettify.js"></script>
+<script type="text/javascript" src="../javascripts/lang-css.js"></script>
+<script type="text/javascript" src="../javascripts/app.js"></script>
+</body>
+</html>

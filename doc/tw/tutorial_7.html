@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Handlino Inc." />
+    <meta property="og:title" content="Fire.app" />
+    <meta property="og:url" content="http://fireapp.handlino.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Dead Easy HTML Prototyping" />
+    <meta property="og:image" content="http://fireapp.handlino.com/images/link-thumbnail.png" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Fire.app documents</title>
+    <link href="../../stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Anton|Bree+Serif|Vollkorn|Exo:300,600,900" rel="stylesheet" type="text/css">
+    <!-- html5shiv http://code.google.com/p/html5shiv/ -->
+    <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+<div class="nav">
+    <div class="logo">
+        <a href="index.html">
+            <img src="../../images/logo-big.png" alt="Fire.app logo" width="220" height="220" />
+        </a>
+        <h1>
+            <a href="index.html">
+                <span class="title">Fire<span class="small">.app</span></span>
+                <span class="documents">Documents</span>
+            </a>
+        </h1>
+    </div>
+    <ul class="lang">
+        <li><a href="../index.html">English</a></li>
+        <li><a href="index.html" class="active">正體中文</a></li>
+    </ul>
+    <a href="#" class="collapse-menu">Menu <i class="lsf-icon down"></i></a>
+    <ul class="menu">
+        <li><a href="index.html">為什麼要使用 Fire.app？</a></li>
+        <li><a href="getting_started.html">快速入門指南</a></li>
+        <li>
+            Fire.app 機能應用教學
+            <ul>
+              <li><a href="tutorial_1.html">觀看範例及準備實作</a></li>
+              <li><a href="tutorial_2.html">樣板語言 ERB 簡介</a></li>
+              <li><a href="tutorial_3.html">使用 Template Helper</a></li>
+              <li><a href="tutorial_4.html">Layout 的基本用法</a></li>
+              <li><a href="tutorial_5.html">Partial 的應用與指定 Layout</a></li>
+              <li><a href="tutorial_6.html">在特定頁面變更已套用 Layout 部分的內容（進階）</a></li>
+              <li><a href="tutorial_7.html">基於現有 Layout 製作變更部分內容的延伸 Layout（進階）</a></li>
+              <li><a href="tutorial_8.html">取得目前的頁面路徑及其應用（進階）</a></li>
+              <li><a href="tutorial_9.html">Build Project</a></li>
+            </ul>
+        </li>
+        <li>
+            相關文件
+            <ul>
+                <li><a href="preference.html">Preference 設定</a></li>
+                <li><a href="options.html">Options 設定</a></li>
+                <li><a href="coffeescript.html">使用 CoffeeScript</a></li>
+                <li><a href="extension.html">使用 Extension</a></li>
+                <li><a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a></li>
+                <li><a href="template_helper.html">Template Helper</a></li>
+                
+            </ul>
+        </li> 
+        <li><a href="http://fireapp.handlino.com/">Fire.app 官網</a></li>
+        <li><a href="https://github.com/handlino/FireApp">GitHub 頁面</a></li>
+    </ul>
+</div>
+
+<div class="main-wrapper">
+    <div class="main">
+        <h1>Fire.app 機能應用教學</h1>
+<h2>基於現有 Layout 製作變更部分內容的延伸 Layout（進階）</h2>
+
+<p>在範例網站中可以看到 Features 列表頁和內容頁的主選單下方都有一個宣傳文字區塊，為了讓 <code>features</code> 資料夾內的頁面都能擁有這個宣傳區塊，我們必須使用提供另一個 layout 給 <code>features</code> 資料夾內的頁面使用。但是如果要將共通 Layout 的內容複製一次的話便又增加了重複的程式碼量，因此我們可以改用指定 render template 搭配 content_for 的方式解決。</p>
+
+<p>首先更改全站共用的 Layout 檔案 <code>/_layout.html.erb</code> ，在 <code>&lt;%= render :partial =&gt; "main_menu" %&gt;</code> 下方加上要插入宣傳文字的 <code>content_for</code> 區塊：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% if content_for? :feature_slogan %&gt;
+    &lt;%= yield :feature_slogan %&gt;
+&lt;% end %&gt;
+</pre>
+
+<p>由於預設狀況下此位置並不需要顯示任何內容，故無需撰寫 else 的部份。</p>
+
+<p>接下來在 <code>features</code> 資料夾中新增一個 <code>_layout.html.erb</code> 檔案。由於資料夾中的檔案會使用離自己最近的 Layout 檔案， <code>features</code> 資料夾內的檔案便會使用新增的 Layout 檔案做為 Layout。</p>
+
+<p>新增的 <code>_layout.html.erb</code> 內容如下：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% content_for :feature_slogan do %&gt;
+    &lt;div class="well"&gt;
+        &lt;h3&gt;&lt;%= lorem_sentences 2 %&gt;&lt;/h3&gt;
+    &lt;/div&gt;
+&lt;% end %&gt;
+&lt;%= render :template =&gt; "/_layout" %&gt;
+</pre>
+
+<p>上面的程式碼建立了一個基於共用 Layout 的 新 Layout，使用 <code>&lt;%= render :template =&gt; "/_layout" %&gt;</code> 表示套用這個 Layout 的頁面仍是以根目錄的 <code>_layout.html.erb</code> 做為實際上的 Layout ，而 <code>content_for :feature_slogan</code> 的部份則是指定套用此 Layout 的頁面都會擁有宣傳文字的區塊。完成後切換至瀏覽器便可看見 Features 列表頁和內容頁都加上了宣傳文字區塊。</p>
+
+<div class="page-footer">
+    Next: <a href="tutorial_8.html">取得目前的頁面路徑及其應用（進階） <i class="lsf-icon arrow"></i></a>
+</div>
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="../../javascripts/prettify.js"></script>
+<script type="text/javascript" src="../../javascripts/lang-css.js"></script>
+<script type="text/javascript" src="../../javascripts/app.js"></script>
+</body>
+</html>

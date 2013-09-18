@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Handlino Inc." />
+    <meta property="og:title" content="Fire.app" />
+    <meta property="og:url" content="http://fireapp.handlino.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Dead Easy HTML Prototyping" />
+    <meta property="og:image" content="http://fireapp.handlino.com/images/link-thumbnail.png" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Fire.app documents</title>
+    <link href="../../stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Anton|Bree+Serif|Vollkorn|Exo:300,600,900" rel="stylesheet" type="text/css">
+    <!-- html5shiv http://code.google.com/p/html5shiv/ -->
+    <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+<div class="nav">
+    <div class="logo">
+        <a href="index.html">
+            <img src="../../images/logo-big.png" alt="Fire.app logo" width="220" height="220" />
+        </a>
+        <h1>
+            <a href="index.html">
+                <span class="title">Fire<span class="small">.app</span></span>
+                <span class="documents">Documents</span>
+            </a>
+        </h1>
+    </div>
+    <ul class="lang">
+        <li><a href="../index.html">English</a></li>
+        <li><a href="index.html" class="active">正體中文</a></li>
+    </ul>
+    <a href="#" class="collapse-menu">Menu <i class="lsf-icon down"></i></a>
+    <ul class="menu">
+        <li><a href="index.html">為什麼要使用 Fire.app？</a></li>
+        <li><a href="getting_started.html">快速入門指南</a></li>
+        <li>
+            Fire.app 機能應用教學
+            <ul>
+              <li><a href="tutorial_1.html">觀看範例及準備實作</a></li>
+              <li><a href="tutorial_2.html">樣板語言 ERB 簡介</a></li>
+              <li><a href="tutorial_3.html">使用 Template Helper</a></li>
+              <li><a href="tutorial_4.html">Layout 的基本用法</a></li>
+              <li><a href="tutorial_5.html">Partial 的應用與指定 Layout</a></li>
+              <li><a href="tutorial_6.html">在特定頁面變更已套用 Layout 部分的內容（進階）</a></li>
+              <li><a href="tutorial_7.html">基於現有 Layout 製作變更部分內容的延伸 Layout（進階）</a></li>
+              <li><a href="tutorial_8.html">取得目前的頁面路徑及其應用（進階）</a></li>
+              <li><a href="tutorial_9.html">Build Project</a></li>
+            </ul>
+        </li>
+        <li>
+            相關文件
+            <ul>
+                <li><a href="preference.html">Preference 設定</a></li>
+                <li><a href="options.html">Options 設定</a></li>
+                <li><a href="coffeescript.html">使用 CoffeeScript</a></li>
+                <li><a href="extension.html">使用 Extension</a></li>
+                <li><a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a></li>
+                <li><a href="template_helper.html">Template Helper</a></li>
+                
+            </ul>
+        </li> 
+        <li><a href="http://fireapp.handlino.com/">Fire.app 官網</a></li>
+        <li><a href="https://github.com/handlino/FireApp">GitHub 頁面</a></li>
+    </ul>
+</div>
+
+<div class="main-wrapper">
+    <div class="main">
+        <h1>使用 Extension</h1>
+
+<p>Fire.app 已內建了一些可供選用的 extension，若想使用其他 extension ，以下提供兩種方法：</p>
+
+<h2>使用 Fire.app 內建功能</h2>
+
+<p>點擊 Fire.app 的 icon ，選擇 "Open Extensions Folder"， Fire.app 會直接開啟放置 extension 的資料夾。只要將想使用的 extension 放入該資料夾， Fire.app 在啟動時便會讀取它，該 extension 即可被使用於任何被 Fire.app watch 的專案，亦會出現在 "Create Compass Project" 之選單中。</p>
+
+<p>除了安裝自己想要的新 extension 之外，若內建之 extansion 版本不適用，亦可用相同方法將內建版本覆蓋成自己想使用的版本。</p>
+
+<h3>以安裝 Fancy Buttons 為例</h3>
+
+<p>此處以安裝 <a href="https://github.com/imathis/fancy-buttons">fancy-buttons</a> 作為使用範例。以下列出詳細步驟：</p>
+
+<ol class="qa">
+<li>下載 <a href="https://github.com/imathis/fancy-buttons">fancy-buttons</a> 之 zip 檔案<br />
+    <img src="../../images/extension_01.png" />
+</li>
+<li>解壓縮下載的 zip 檔案<br />
+    <img src="../../images/extension_02.png" />
+</li>
+<li>開啟 "lib" 資料夾，內有一個檔案內容為註冊路徑之 "fancy-buttons.rb" 檔案，務必將解壓縮後之資料夾更名為與此檔案相同，此例即為 "fancy-buttons"<br />
+    <img src="../../images/extension_03.png" />
+</li>
+<li>點擊 Fire.app 的 icon ，選擇 "Open Extensions Folder" ，此動作會開啟放置 Extension 的資料夾。<br />
+    <img src="../../images/extension_04.png" />
+</li>
+<li>將步驟 3 中更名完畢的資料夾搬移至此資料夾中<br />
+    <img src="../../images/extension_05.png" />
+</li>
+<li>關閉 Fire.app 並重新開啟一次，在 "Create Compass Project" 的選單中即可看見剛才安裝的 extension<br />
+    <img src="../../images/extension_06.png" />
+</li>
+</ol>
+
+<h2>使用 Ruby gem</h2>
+
+<p class="sp-point">注意！不建議初學者使用！</p>
+
+<p>點擊 Fire.app 的 icon ，點擊 "Preference" 中的 "Compass" 項目，並在 "Compass version" 項目選擇 "Custom" 並指定欲使用的 gem path ， Fire.app 將試著讀取它。由於 Fire.app 使用的是 JRuby 故 native gem 並不會正常作用。</p>
+
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="../../javascripts/prettify.js"></script>
+<script type="text/javascript" src="../../javascripts/lang-css.js"></script>
+<script type="text/javascript" src="../../javascripts/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Handlino Inc." />
+    <meta property="og:title" content="Fire.app" />
+    <meta property="og:url" content="http://fireapp.handlino.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Dead Easy HTML Prototyping" />
+    <meta property="og:image" content="http://fireapp.handlino.com/images/link-thumbnail.png" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Fire.app documents</title>
+    <link href="../../stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Anton|Bree+Serif|Vollkorn|Exo:300,600,900" rel="stylesheet" type="text/css">
+    <!-- html5shiv http://code.google.com/p/html5shiv/ -->
+    <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+<div class="nav">
+    <div class="logo">
+        <a href="index.html">
+            <img src="../../images/logo-big.png" alt="Fire.app logo" width="220" height="220" />
+        </a>
+        <h1>
+            <a href="index.html">
+                <span class="title">Fire<span class="small">.app</span></span>
+                <span class="documents">Documents</span>
+            </a>
+        </h1>
+    </div>
+    <ul class="lang">
+        <li><a href="../index.html">English</a></li>
+        <li><a href="index.html" class="active">正體中文</a></li>
+    </ul>
+    <a href="#" class="collapse-menu">Menu <i class="lsf-icon down"></i></a>
+    <ul class="menu">
+        <li><a href="index.html">為什麼要使用 Fire.app？</a></li>
+        <li><a href="getting_started.html">快速入門指南</a></li>
+        <li>
+            Fire.app 機能應用教學
+            <ul>
+              <li><a href="tutorial_1.html">觀看範例及準備實作</a></li>
+              <li><a href="tutorial_2.html">樣板語言 ERB 簡介</a></li>
+              <li><a href="tutorial_3.html">使用 Template Helper</a></li>
+              <li><a href="tutorial_4.html">Layout 的基本用法</a></li>
+              <li><a href="tutorial_5.html">Partial 的應用與指定 Layout</a></li>
+              <li><a href="tutorial_6.html">在特定頁面變更已套用 Layout 部分的內容（進階）</a></li>
+              <li><a href="tutorial_7.html">基於現有 Layout 製作變更部分內容的延伸 Layout（進階）</a></li>
+              <li><a href="tutorial_8.html">取得目前的頁面路徑及其應用（進階）</a></li>
+              <li><a href="tutorial_9.html">Build Project</a></li>
+            </ul>
+        </li>
+        <li>
+            相關文件
+            <ul>
+                <li><a href="preference.html">Preference 設定</a></li>
+                <li><a href="options.html">Options 設定</a></li>
+                <li><a href="coffeescript.html">使用 CoffeeScript</a></li>
+                <li><a href="extension.html">使用 Extension</a></li>
+                <li><a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a></li>
+                <li><a href="template_helper.html">Template Helper</a></li>
+                
+            </ul>
+        </li> 
+        <li><a href="http://fireapp.handlino.com/">Fire.app 官網</a></li>
+        <li><a href="https://github.com/handlino/FireApp">GitHub 頁面</a></li>
+    </ul>
+</div>
+
+<div class="main-wrapper">
+    <div class="main">
+        <h1>為什麼要使用 Fire.app？</h1>
+<p>
+Fire.app 是為了方便網站開發人員製作網站原型而開發的工具，不僅改善了許多在此階段容易造成困擾的問題，寫出的成品亦能沿用至後續的工作流程。  <br />
+如果你常在工作時遇到以下狀況，就應該考慮試試 Fire.app ：
+</p>
+
+<ol class="qa">
+    <li>使用所見即所得的工具製作網站原型時耗費許多時間製作及溝通修改才好不容易定案，卻還得重新把定案的版本寫成 html 才能用，感覺很沒效率？<br />
+        <span class="point"><i class="lsf-icon arrow"></i>
+        使用 Fire.app 製作出來的成品就是網站實際使用的 HTML 、 CSS 和 JavaScript，無需大幅修改就能銜接後續的網站製作流程。</span></li>
+    <li>負責做網站切版時，對於每個頁面都要複製一次各頁面共同的部分感到既不方便又浪費時間，需要修改時更是萬分痛苦？<br />
+        <span class="point"><i class="lsf-icon arrow"></i>
+        Fire.app 支援許多樣板語言，利用樣板語言搭配 Fire.app 的 layout 與 partial 機能便能有效解決這樣的問題。<br />
+        <img src="../../images/use-fireapp_01.png" />
+        </span></li>
+    <li>製作網站切版時必須自己複製貼上模擬版面用的假文，卻在網站套版後發現資料長度與原來使用的假文不同而爆版，只好反覆修改但覺得非常厭煩？<br />
+        <span class="point"><i class="lsf-icon arrow"></i>
+        Fire.app 提供中、英、日三國語言的假文產生 helper ，能依指定的類型或長度產生假文。當重新整理頁面時便會更新文字，設計師便能盡早處理可能因文字長度改變而發生的版面問題。</span></li>
+    <li>製作頁面切版時要重複貼上多次同樣的 HTML 段落來達成指定長度的清單或選單，長度變更時還要自己數，感覺很蠢？<br />
+        <span class="point"><i class="lsf-icon arrow"></i>
+        利用 Fire.app 支援的樣板語言，只要撰寫簡單的幾行程式便能達成相同的需求，還能直接指定長度，方便快速調整與修改。</span></li>
+    <li>CSS 愈寫愈長也愈寫愈亂，覺得很難整理維護？或已經聽說過 Sass 和 Compass 的好處但不知道怎麼安裝才能使用？<br />
+        <span class="point"><i class="lsf-icon arrow"></i>
+        Fire.app 支援 Sass 和 Compass ，不用安裝就能使用。利用這兩樣工具能讓撰寫 CSS 變得更快速、直覺，維護起來也更加方便。</span></li>
+    <li>久聞 CoffeeScript 很棒，但卻不知道要怎麼裝起來用？<br />
+        <span class="point"><i class="lsf-icon arrow"></i>
+        Fire.app 支援 CoffeeScript ，不用特別裝，打開就能用。</span></li>
+    <li>每次修改檔案都要不斷的按重新整理，很煩人。<br />
+        <span class="point"><i class="lsf-icon arrow"></i>
+        Fire.app 支援 LiveReload，裝上外掛或插入程式碼就能在每次更新檔案後自動重新整理，再也不用按個不停。</span></li>
+</ol>
+
+<p class="sp-point">看完上面的情境說明後，是否對 Fire.app 感到心動了呢？ 也許你還會有以下的疑慮：</p>
+
+<ol class="qa">
+    <li>我的電腦系統是 Windows / Mac OS / Linux，可以使用 Fire.app 嗎？<br />
+        <span class="point"><i class="lsf-icon arrow"></i>
+        Fire.app 是一個跨平台的工具，只要購買一次就能同時取得 Windows 版、Mac OS 版及 Linux 版。不但自己切換作業系統時能夠無痛轉移，需要和使用其他平台的同事協作專案時也無須煩惱。</span></li>
+    <li>用 Fire.app 的話還能使用我原來的編輯器嗎？<br />
+        <span class="point"><i class="lsf-icon arrow"></i>
+        當然可以。Fire.app 的功能和編輯器完全無關，它只是一個協助處理檔案的工具，所以可以使用任何自己喜歡的編輯器進行工作。</span></li>
+    <li>用 Fire.app 做出來的成品能讓不會使用 Fire.app 的人接手嗎？ <br />
+        <span class="point"><i class="lsf-icon arrow"></i>
+        Fire.app 具有 「Build Project」的功能，這個功能能把做好的專案輸出成一般的靜態 HTML / CSS 檔案，完全不需要懂 Fire.app 也能接手處理專案成品。</span></li>
+    <li>想使用 Fire.app 需要哪些基礎知識？<br />
+        <span class="point"><i class="lsf-icon arrow"></i>
+        其實只要懂基本的 HTML 和 CSS，再參考我們提供的教學及範例應該就能了解如何利用 Fire.app 的機能，最重要的是要抱著願意嘗試寫程式的心態，很快就能有所收穫。</span></li>
+</ol>
+
+<p>如果你已經決定要使用 Fire.app ，可以參考我們的 <a href="getting_started.html">快速入門指南</a> 或 <a href="tutorial_1.html">機能應用教學</a> :)</p>
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="../../javascripts/prettify.js"></script>
+<script type="text/javascript" src="../../javascripts/lang-css.js"></script>
+<script type="text/javascript" src="../../javascripts/app.js"></script>
+</body>
+</html>

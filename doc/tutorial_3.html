@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Handlino Inc." />
+    <meta property="og:title" content="Fire.app" />
+    <meta property="og:url" content="http://fireapp.handlino.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Dead Easy HTML Prototyping" />
+    <meta property="og:image" content="http://fireapp.handlino.com/images/link-thumbnail.png" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Fire.app documents</title>
+    <link href="../stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Anton|Bree+Serif|Vollkorn|Exo:300,600,900" rel="stylesheet" type="text/css">
+    <!-- html5shiv http://code.google.com/p/html5shiv/ -->
+    <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+<body>
+<div class="nav">
+    <div class="logo">
+        <a href="index.html">
+            <img src="../images/logo-big.png" alt="Fire.app logo" width="220" height="220" />
+        </a>
+        <h1>
+            <a href="index.html">
+                <span class="title">Fire<span class="small">.app</span></span>
+                <span class="documents">Documents</span>
+            </a>
+        </h1>
+    </div>
+    <ul class="lang">
+        <li><a href="index.html" class="active">English</a></li>
+        <li><a href="tw/index.html">正體中文</a></li>
+    </ul>
+    <a href="#" class="collapse-menu">Menu <i class="lsf-icon down"></i></a>
+    <ul class="menu">
+        <li><a href="index.html">Why Fire.app？</a></li>
+        <li><a href="getting_started.html">Getting Started</a></li>
+        <li>
+            Fire.app Feature Tutorial
+            <ul>
+              <li><a href="tutorial_1.html">Viewing the Example and Preparing for Exercises</a></li>
+              <li><a href="tutorial_2.html">Introducing Template Language: ERB</a></li>
+              <li><a href="tutorial_3.html">Using Template Helpers</a></li>
+              <li><a href="tutorial_4.html">Basic Usage of Layout</a></li>
+              <li><a href="tutorial_5.html">Using Partial Files and Specifying Layouts</a></li>
+              <li><a href="tutorial_6.html">Changing the Content of Layouts for Particular Pages (Advanced)</a></li>
+              <li><a href="tutorial_7.html">Making an Extended Layout Based-on an Existing Layout (Advanced)</a></li>
+              <li><a href="tutorial_8.html">Getting Current Page Path and Understanding Its Usage (Advanced)</a></li>
+              <li><a href="tutorial_9.html">Building Projects</a></li>
+            </ul>
+        </li>
+        <li>
+            Documents
+            <ul>
+                <li><a href="preference.html">Preference</a></li>
+                <li><a href="options.html">Options</a></li>
+                <li><a href="coffeescript.html">Using CoffeeScript</a></li>
+                <li><a href="extension.html">Using Extensions</a></li>
+                <li><a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a></li>
+                <li><a href="template_helper.html">Template Helper</a></li>
+            </ul>
+        </li> 
+        <li><a href="http://fireapp.handlino.com/">Official Site</a></li>
+        <li><a href="https://github.com/handlino/FireApp">GitHub</a></li>
+    </ul>
+</div>
+
+<div class="main-wrapper">
+    <div class="main">
+        <h1>Fire.app Feature Tutorial</h1>
+<h2>Using Template Helpers</h2>
+
+<p>Template helpers are methods which can be used to simplify building HTML. Fire.app provides a lot of built-in helpers and you can customize what you want.</p>
+
+<p>Open <code>http://127.0.0.1:24681/screenshots.html</code> in your browser and you'll see the "Screenshots" page. Then open <code>screenshots.html</code> in your IDE and read the source code. You'll find that it has a lot of duplicated HTML code.</p>
+
+<p>First, modify the file extension of <code>screenshots.html</code> from <code>.html</code> to <code>.html.erb</code>, so we can use ERB syntax in this file.</p>
+
+<p>After modifying the file name, add a helper to generate LiveReload-js before <code>&lt;/body&gt;</code></p>
+
+<pre class="prettyprint linenums lang-ruby">
+&lt;%= livereload_js %&gt;
+</pre>
+
+<p>Refresh the browser to active the added JavaScripts. Now, the browser will automatically refresh after modifying files.</p>
+
+<p>Next, we will use some helpers to simplify the placeholder texts. Please find the HTML content that is duplicated five times in <code>&lt;div class=&quot;main&quot;&gt;</code>.</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;h2&gt;Lorem ipsum title&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;http://placehold.it/640x360&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Lorem ipsum … &lt;/p&gt;
+</pre>
+
+<p>Delete four sections but leave one, then use helpers to replace the original content.</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;h2&gt;&lt;%= lorem_words(4+rand(4)) %&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img src="&lt;%= lorem_image("640x360") %&gt;" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;%= lorem_paragraph %&gt;&lt;/p&gt;
+</pre>
+
+<p>In the code above, we see the usage of <code>rand()</code>. We used <code>lorem_words(4+rand(4))</code>  to limit the length of <code>lorem_words()</code>'s result between 4 (4 + 0) to 7 (4 + 3). Using lorem ipsum helpers to generate placeholder texts, we can make the page look more realistic. Furthermore, because the resulting content will automatically change each time after refreshing the browser, it's easy to find problems caused by different content length.
+</p>   
+
+<p>Then, use ERB syntax to duplicate the content.</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% 5.times do %&gt;
+    &lt;h2&gt;&lt;%= lorem_words(4+rand(4)) %&gt;&lt;/h2&gt;
+    &lt;p&gt;&lt;img src="&lt;%= lorem_image("640x360") %&gt;" /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;%= lorem_paragraph %&gt;&lt;/p&gt;
+&lt;% end %&gt;
+</pre>
+
+<p>Switch to your browser and you will see the content changed to five different placeholder sections.</p>
+
+<p>Use this same idea to change the content of <code>&lt;div class=&quot;links&quot;&gt;</code> and <code>&lt;div class=&quot;footer&quot;&gt;</code>.</p>
+
+<p><code>&lt;div class=&quot;links&quot;&gt;</code></p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;div class="links"&gt;
+    &lt;h2&gt;Information Links&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;% 5.times do %&gt;
+            &lt;li&gt;&lt;a href="#"&gt;&lt;%= lorem_words(4+rand(4)) %&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;% end %&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+
+<p><code>&lt;div class=&quot;footer&quot;&gt;</code></p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;div class="footer"&gt;
+    &lt;%= lorem_sentence %&gt;
+&lt;/div&gt;
+</pre>
+
+<p>Switch to your browser again to verify that the page has already changed. Now we can continue to the next step.</p>
+
+<div class="page-footer">
+    Next: <a href="tutorial_4.html">Basic Usage of Layout <i class="lsf-icon arrow"></i></a>
+</div>
+
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="../javascripts/prettify.js"></script>
+<script type="text/javascript" src="../javascripts/lang-css.js"></script>
+<script type="text/javascript" src="../javascripts/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Handlino Inc." />
+    <meta property="og:title" content="Fire.app" />
+    <meta property="og:url" content="http://fireapp.handlino.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Dead Easy HTML Prototyping" />
+    <meta property="og:image" content="http://fireapp.handlino.com/images/link-thumbnail.png" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Fire.app documents</title>
+    <link href="../stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Anton|Bree+Serif|Vollkorn|Exo:300,600,900" rel="stylesheet" type="text/css">
+    <!-- html5shiv http://code.google.com/p/html5shiv/ -->
+    <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+<body>
+<div class="nav">
+    <div class="logo">
+        <a href="index.html">
+            <img src="../images/logo-big.png" alt="Fire.app logo" width="220" height="220" />
+        </a>
+        <h1>
+            <a href="index.html">
+                <span class="title">Fire<span class="small">.app</span></span>
+                <span class="documents">Documents</span>
+            </a>
+        </h1>
+    </div>
+    <ul class="lang">
+        <li><a href="index.html" class="active">English</a></li>
+        <li><a href="tw/index.html">正體中文</a></li>
+    </ul>
+    <a href="#" class="collapse-menu">Menu <i class="lsf-icon down"></i></a>
+    <ul class="menu">
+        <li><a href="index.html">Why Fire.app？</a></li>
+        <li><a href="getting_started.html">Getting Started</a></li>
+        <li>
+            Fire.app Feature Tutorial
+            <ul>
+              <li><a href="tutorial_1.html">Viewing the Example and Preparing for Exercises</a></li>
+              <li><a href="tutorial_2.html">Introducing Template Language: ERB</a></li>
+              <li><a href="tutorial_3.html">Using Template Helpers</a></li>
+              <li><a href="tutorial_4.html">Basic Usage of Layout</a></li>
+              <li><a href="tutorial_5.html">Using Partial Files and Specifying Layouts</a></li>
+              <li><a href="tutorial_6.html">Changing the Content of Layouts for Particular Pages (Advanced)</a></li>
+              <li><a href="tutorial_7.html">Making an Extended Layout Based-on an Existing Layout (Advanced)</a></li>
+              <li><a href="tutorial_8.html">Getting Current Page Path and Understanding Its Usage (Advanced)</a></li>
+              <li><a href="tutorial_9.html">Building Projects</a></li>
+            </ul>
+        </li>
+        <li>
+            Documents
+            <ul>
+                <li><a href="preference.html">Preference</a></li>
+                <li><a href="options.html">Options</a></li>
+                <li><a href="coffeescript.html">Using CoffeeScript</a></li>
+                <li><a href="extension.html">Using Extensions</a></li>
+                <li><a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a></li>
+                <li><a href="template_helper.html">Template Helper</a></li>
+            </ul>
+        </li> 
+        <li><a href="http://fireapp.handlino.com/">Official Site</a></li>
+        <li><a href="https://github.com/handlino/FireApp">GitHub</a></li>
+    </ul>
+</div>
+
+<div class="main-wrapper">
+    <div class="main">
+        <h1>Templates, Layouts &amp; Partials</h1>
+
+<p>Fire.app provides many template languages to simplify HTML development. Template languages help reduce repetitive work when using features like layouts and partials during prototyping.</p>
+
+<h2>Templates</h2>
+
+<p>Fire.app supports many template languages:</p>
+
+<ul>
+    <li>ERB<br /><a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/erb/rdoc/ERB.html">http://ruby-doc.org/stdlib-1.9.3/libdoc/erb/rdoc/ERB.html</a></li>
+    <li>Markdown (Kramdown)<br /><a href="http://kramdown.rubyforge.org/">http://kramdown.rubyforge.org/</a>
+    </li>
+    <li>Slim<br /><a href="http://slim-lang.com/">http://slim-lang.com/</a>
+    </li>
+    <li>Haml<br /><a href="http://haml.info/">http://haml.info/</a>
+    </li>
+    <li>Liquid<br /><a href="http://liquidmarkup.org/">http://liquidmarkup.org/</a>
+    </li>
+</ul>
+
+
+<p>We recommend the ERB or Haml to best utilize Fire.app's features including layouts, partials and template helpers. Those good with HTML will find ERB and Haml are easy to get familiar with. Particularly, ERB (HTML with embedded Ruby) supports plain HTML and Ruby code for handling duplicate HTML parts. For example:</p>
+
+<p>HTML:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;h1&gt;sample list&lt;/h1&gt;
+&lt;ul&gt;
+    &lt;li&gt;list 1&lt;/li&gt;
+    &lt;li&gt;list 2&lt;/li&gt;
+    &lt;li&gt;list 3&lt;/li&gt;
+    &lt;li&gt;list 4&lt;/li&gt;
+    &lt;li&gt;list 5&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+
+<p>ERB: less code and easier to change its size.</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;h1&gt;sample list&lt;/h1&gt;
+&lt;ul&gt;
+    &lt;% (1..5).each do |n| %&gt;
+        &lt;li&gt;list &lt;%= n %&gt;&lt;/li&gt;
+    &lt;% end %&gt;
+&lt;/ul&gt;
+</pre>
+
+<p>Haml:</p>
+
+<pre class="prettyprint linenums lang-haml">
+%h1 sample list
+%ul
+  - (1..5).each do |n|
+    %li="list "+n.to_s 
+</pre>
+
+<p>Using template languages with Fire.app is very easy, just name the file with a corresponding file extension. For example, ERB uses this file extension <code>.html.erb</code>. In the same way, if you chose Haml, use <code>.html.haml</code>.</p>
+
+<p>Given a file named <code>test.html.erb</code> in the project folder, opening the url <code>http://127.0.0.1:24681/test.html</code> in your browser displays the render result.</p>
+
+<p>If you want to learn more about the ERB and Haml, please follow these links below. In all the following examples we use ERB.</p>
+
+<ul>
+<li>
+<h4>ERB</h4>
+
+<ul>
+<li><a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/erb/rdoc/ERB.html">http://ruby-doc.org/stdlib-1.9.3/libdoc/erb/rdoc/ERB.html</a></li>
+<li><a href="http://rrn.dk/rubys-erb-templating-system">http://rrn.dk/rubys-erb-templating-system</a></li>
+<li><a href="http://www.stuartellis.eu/articles/erb/">http://www.stuartellis.eu/articles/erb/</a></li>
+</ul>
+</li>
+<li>
+<h4>Haml</h4>
+
+<ul>
+<li><a href="http://haml-lang.com/">http://haml-lang.com/</a></li>
+</ul>
+</li>
+</ul>
+
+<h2>Layouts</h2>
+
+<p>Pages within a website often have the same layout and several identical elements. You will need to copy the source code of these duplicate parts to many files when prototyping in plain HTML. Modifying the duplicate parts in these files is very inconvenient and tedious. Fire.app solves this problem with layouts. The rendered results of every single page are generated at the <code>&lt;%= yield %&gt;</code> position. For example, the ERB layout file might look like this: </p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;Site Title&lt;/title&gt;
+    &lt;link href="/stylesheets/style.css" rel="stylesheet"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;div class="header"&gt;&lt;/div&gt;
+        &lt;%= yield %&gt;
+        &lt;div class="footer"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<p>There are three ways to use layouts as shown here:</p>
+
+<ol>
+<li>Adding layout file to the folder</li>
+<li>Using a specific layout file</li>
+<li>Specifying render template</li>
+</ol>
+
+<h3>Adding layout file to the folder</h3>
+
+<p>ERB and Haml files automatically use <code>_layout.html.erb</code> or <code>_layout.html.haml</code> as their layout when these files are found in the same folder or parent folder. Please note, file names with an initial underline are NOT generated to an individual file. If both current and parent folders have layout files, the first one is used.</p>
+
+<h3>Using a specific layout file</h3>
+
+<p>When a particular page doesn't use the default layout, you can assign another specific layout file. For example, you have a page <code>contact.html.erb</code> which needs to use the specific layout <code>/special_layouts/_special_layout.html.erb</code>. Add a file named <code>contact.html.layout</code>, which corresponds with the page's file name as shown:</p>
+
+<pre class="prettyprint linenums lang-html">
+special_layouts/_special_layout.html.erb
+</pre>
+
+<p>Now <code>contact.html.erb</code> will use <code>/special_layouts/_special_layout.html.erb</code> as its layout.</p>
+
+<h3>Specifying render template</h3>
+
+<p>This method is usually used with <code>content_for</code>. For example, if we write this segment in our common layout <code>/_layout.html.erb</code>:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% if content_for? :ad %&gt;
+    &lt;%= yield :ad %&gt;
+&lt;% end %&gt;
+</pre>
+
+<p>The code above will display the content of the identifier <code>:ad</code>. <br />
+   But, if we need to use the same <code>:ad</code> content in all of the pages in the folder <code>/doc</code> with the common layout, we can add a new layout file <code>_layout.html.erb</code> in the <code>/doc</code> folder with this content: </p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% content_for :ad do %&gt;
+    Common content for pages in /doc.
+&lt;% end %&gt;
+
+&lt;%= render :template => "/_layout" %&gt;
+</pre>
+
+<p>With the code above, we can add common content with <code>content_for</code> and still use the common layout. For more about <code>content_for</code>, please check <a href="template_helper.html">Template Helpers</a>.</p>
+
+<h2>Partials</h2>
+
+<p>Besides layout, websites often have common elements, like a main menu or advertisements. They may only appear on some particular page or specific layouts. Partials help you maintain and easily reuse these parts and use the same initial underline as layouts, for example: <code>_footer.html.erb</code> or <code>_footer.html.haml</code>. To get partial content, just use a render statement similar to <code>&lt;%= render :partial =&gt; "footer" %&gt;</code>.</p>
+
+<p>Here is another example using our main menu to become a partial file:</p>
+
+<p>Main menu:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;ul id="main_menu"&gt;
+    &lt;li class="about"&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="products"&gt;&lt;a href="#"&gt;Products&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="contact"&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;   
+&lt;/ul&gt;
+</pre>
+
+<p>Name the file <code>_main_menu.html.erb</code>. Then, put file <code>_layout.html.erb</code> in the same folder:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;Site Title&lt;/title&gt;
+    &lt;link href="/stylesheets/style.css" rel="stylesheet"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;div class="header"&gt;
+            &lt;%= render :partial =&gt; "main_menu" %&gt;
+        &lt;/div&gt;
+        &lt;%= yield %&gt;
+        &lt;div class="footer"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<p>Please note, when using a render statement with a partial file, there is no need to include an underscore or file name extension.</p>
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="../javascripts/prettify.js"></script>
+<script type="text/javascript" src="../javascripts/lang-css.js"></script>
+<script type="text/javascript" src="../javascripts/app.js"></script>
+</body>
+</html>

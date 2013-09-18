@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Handlino Inc." />
+    <meta property="og:title" content="Fire.app" />
+    <meta property="og:url" content="http://fireapp.handlino.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Dead Easy HTML Prototyping" />
+    <meta property="og:image" content="http://fireapp.handlino.com/images/link-thumbnail.png" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Fire.app documents</title>
+    <link href="../stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Anton|Bree+Serif|Vollkorn|Exo:300,600,900" rel="stylesheet" type="text/css">
+    <!-- html5shiv http://code.google.com/p/html5shiv/ -->
+    <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+<body>
+<div class="nav">
+    <div class="logo">
+        <a href="index.html">
+            <img src="../images/logo-big.png" alt="Fire.app logo" width="220" height="220" />
+        </a>
+        <h1>
+            <a href="index.html">
+                <span class="title">Fire<span class="small">.app</span></span>
+                <span class="documents">Documents</span>
+            </a>
+        </h1>
+    </div>
+    <ul class="lang">
+        <li><a href="index.html" class="active">English</a></li>
+        <li><a href="tw/index.html">正體中文</a></li>
+    </ul>
+    <a href="#" class="collapse-menu">Menu <i class="lsf-icon down"></i></a>
+    <ul class="menu">
+        <li><a href="index.html">Why Fire.app？</a></li>
+        <li><a href="getting_started.html">Getting Started</a></li>
+        <li>
+            Fire.app Feature Tutorial
+            <ul>
+              <li><a href="tutorial_1.html">Viewing the Example and Preparing for Exercises</a></li>
+              <li><a href="tutorial_2.html">Introducing Template Language: ERB</a></li>
+              <li><a href="tutorial_3.html">Using Template Helpers</a></li>
+              <li><a href="tutorial_4.html">Basic Usage of Layout</a></li>
+              <li><a href="tutorial_5.html">Using Partial Files and Specifying Layouts</a></li>
+              <li><a href="tutorial_6.html">Changing the Content of Layouts for Particular Pages (Advanced)</a></li>
+              <li><a href="tutorial_7.html">Making an Extended Layout Based-on an Existing Layout (Advanced)</a></li>
+              <li><a href="tutorial_8.html">Getting Current Page Path and Understanding Its Usage (Advanced)</a></li>
+              <li><a href="tutorial_9.html">Building Projects</a></li>
+            </ul>
+        </li>
+        <li>
+            Documents
+            <ul>
+                <li><a href="preference.html">Preference</a></li>
+                <li><a href="options.html">Options</a></li>
+                <li><a href="coffeescript.html">Using CoffeeScript</a></li>
+                <li><a href="extension.html">Using Extensions</a></li>
+                <li><a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a></li>
+                <li><a href="template_helper.html">Template Helper</a></li>
+            </ul>
+        </li> 
+        <li><a href="http://fireapp.handlino.com/">Official Site</a></li>
+        <li><a href="https://github.com/handlino/FireApp">GitHub</a></li>
+    </ul>
+</div>
+
+<div class="main-wrapper">
+    <div class="main">
+        <h1>Fire.app Feature Tutorial</h1>
+<h2>Making an Extended Layout Based-on an Existing Layout (Advanced)</h2>
+
+<p>In the example file we've seen previously, both the "Features List" page and the "Feature Detail" page have a promotion text block. To make sure every page in the <code>features</code> folder contains this block, we need a new layout for these pages. But, if we copy the content of our common layout, there will be more duplicated code. So, we'll solve this by using the render template method and <code>content_for</code>. </p>
+
+<p>First, modify the common layout <code>/_layout.html.erb</code>, add this <code>content_for</code> block below the <code>&lt;%= render :partial =&gt; "main_menu" %&gt;</code>:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% if content_for? :feature_slogan %&gt;
+    &lt;%= yield :feature_slogan %&gt;
+&lt;% end %&gt;
+</pre>
+
+<p>Because we don't need to display anything by default, there's no need to write the "else" part.</p>
+
+<p>Next, add a new layout file <code>_layout.html.erb</code> in the <code>features</code> folder. Page files use the closest layout file by default, so the page files in the <code>features</code> folder will use the new layout.</p>
+
+<p>The content of <code>/features/_layout.html.erb</code> is:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% content_for :feature_slogan do %&gt;
+    &lt;div class="well"&gt;
+        &lt;h3&gt;&lt;%= lorem_sentences 2 %&gt;&lt;/h3&gt;
+    &lt;/div&gt;
+&lt;% end %&gt;
+&lt;%= render :template =&gt; "/_layout" %&gt;
+</pre>
+
+<p>The code above makes a new layout based on our common layout. It uses <code>&lt;%= render :template =&gt; "/_layout" %&gt;</code> to assign the layout <code>/_layout.html.erb</code> for these pages to use. And the <code>&lt;% content_for :feature_slogan do %&gt;</code> part adds the promotion text block for every page which uses this layout. Switch to your browser and you'll see both the "Features List" page and the "Feature Detail" page now have a promotion text block. </p>
+
+<div class="page-footer">
+    Next: <a href="tutorial_8.html">Getting Current Page Path and Understanding Its Usage (Advanced) <i class="lsf-icon arrow"></i></a>
+</div>
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="../javascripts/prettify.js"></script>
+<script type="text/javascript" src="../javascripts/lang-css.js"></script>
+<script type="text/javascript" src="../javascripts/app.js"></script>
+</body>
+</html>
