@@ -1,0 +1,87 @@
+<h1>Fire.app 機能應用教學</h1>
+<h2>Layout 的基本用法</h2>
+
+<p>由前面看過的完成頁面中可以看見各個頁面內容有許多相同的部份：</p>
+
+<img src="../../images/structure_02.png" />
+
+<p>如上圖所顯示，各個頁面中的 Header 、 Footer 及主選單都是相同的，且除了首頁之外，所有頁面也有相同的側欄部分。<br/>
+僅使用 HTML 來完成整個網站原型時，無可避免的在每個頁面檔案中都會包含相同部分的程式碼，若要修改這些共通的部份便需要變更多個檔案，相當不便。 Layout 便是用來解決這種狀況，它能把網站中各頁面相同的部份集合在一個檔案中供各個頁面套用，詳細的使用說明請參考： <a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a>。</p>
+
+<p>了解 Layout 的使用概念後便可開始動手實作，從前面的圖片可以看到所有網站頁面中只有首頁沒有側欄，故先將首頁當做例外忽略，將其餘頁面共通的部份抽出成 Layout 套用後便只有主內容的部份會隨著頁面不同而改變。</p>
+
+<p>前面完成的 Screenshots 頁面已經包含了我們想要的 Layout 部分，因此我們就用這個檔案來拆出全站的 Layout。<br/>
+首先在專案根目錄中新增檔案 <code>_layout.html.erb</code> ，此檔案即為所有頁面預設要套用的 Layout ，檔名以底線開頭表示該檔案在 Build Project 時不會生成獨立檔案。</p>
+
+<p>將 <code>screenshots.html.erb</code> 的全部內容複製到 <code>_layout.html.erb</code> 中，然後刪除 <code>&lt;div class="main"&gt;</code> 的內容，替換成 Layout 檔案取得頁面內容所必須的 <code>&lt;%= yield %&gt;</code>。此時 <code>_layout.html.erb</code> 的內容應該如下：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Fire.app Demo&lt;/title&gt;
+    &lt;link rel="stylesheet" href="/stylesheets/screen.css" type="text/css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="header-wrapper"&gt;
+        &lt;div class="header"&gt;
+            &lt;h1 class="logo"&gt;&lt;a href="index.html"&gt;Fire.app&lt;/a&gt;&lt;/h1&gt;
+            &lt;h2&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/h2&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="main-menu"&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="/index.html"&gt;&lt;span class="icons-home"&gt;Home&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="/features/index.html"&gt;&lt;span class="icons-features"&gt;Features&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="/documents.html"&gt;&lt;span class="icons-documents"&gt;Documents&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="/screenshots.html"&gt;&lt;span class="icons-screenshots"&gt;Screenshots&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class="main-block"&gt;
+        &lt;div class="main"&gt;
+            &lt;%= yield %&gt;
+        &lt;/div&gt;
+        &lt;div class="side"&gt;
+            &lt;div class="ad"&gt;
+                Ad Words
+            &lt;/div&gt;
+            &lt;div class="links"&gt;
+                &lt;h2&gt;Information Links&lt;/h2&gt;
+                &lt;ul&gt;
+                    &lt;% 5.times do %&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;%= lorem_words(4+rand(4)) %&gt;&lt;/a&gt;&lt;/li&gt;
+                    &lt;% end %&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="footer-wrapper"&gt;
+        &lt;div class="footer"&gt;
+            &lt;%= lorem_sentence %&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;%= livereload_js %&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<p>至此我們已經把頁面中共同的部份抽出成 Layout 了，但是仍然需要處理 <code>screenshots.html.erb</code> 的內容，否則當 <code>screenshots.html.erb</code> 套用 Layout 後頁面間共同的部分就會變成兩份（可以切換至瀏覽器看看修改前頁面的狀況）。因此我們必須將 <code>screenshots.html.erb</code> 中已經抽出至 Layout 的共通部分刪掉，整個檔案應該只留下主內容的部份如下：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% 5.times do %&gt;
+    &lt;h2&gt;&lt;%= lorem_words(4+rand(4)) %&gt;&lt;/h2&gt;
+    &lt;p&gt;&lt;img src="&lt;%= lorem_image("640x360") %&gt;" /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;%= lorem_paragraph %&gt;&lt;/p&gt;
+&lt;% end %&gt;
+</pre>
+
+<p>上述步驟的示意圖如下：</p>
+<img src="../../images/layout.png" />
+
+<p>以上便完成了抽出 Layout 部分的操作，可切換至瀏覽器觀察頁面。<br/>
+由於教材檔案中已經準備好其他頁面的內容，因此現在點擊主選單的連結亦可看見其他頁面。也可以在編輯器中開啟其他頁面的檔案，便能發現各頁面的內容部分都和 Screenshots 頁面一樣只是利用 ERB 和 Helper 產生出來的假文。</p>
+
+<div class="page-footer">
+    Next: <a href="tutorial_5.html">Partial 的應用與指定 Layout <i class="lsf-icon arrow"></i></a>
+</div>

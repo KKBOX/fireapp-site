@@ -1,0 +1,76 @@
+<h1>Fire.app Feature Tutorial</h1>
+<h2>Using Template Helpers</h2>
+
+<p>Template helpers are methods which can be used to simplify building HTML. Fire.app provides a lot of built-in helpers and you can customize what you want.</p>
+
+<p>Open <code>http://127.0.0.1:24681/screenshots.html</code> in your browser and you'll see the "Screenshots" page. Then open <code>screenshots.html</code> in your IDE and read the source code. You'll find that it has a lot of duplicated HTML code.</p>
+
+<p>First, modify the file extension of <code>screenshots.html</code> from <code>.html</code> to <code>.html.erb</code>, so we can use ERB syntax in this file.</p>
+
+<p>After modifying the file name, add a helper to generate LiveReload-js before <code><%= h '</body>' %></code></p>
+
+<pre class="prettyprint linenums lang-ruby">
+&lt;%= livereload_js %&gt;
+</pre>
+
+<p>Refresh the browser to active the added JavaScripts. Now, the browser will automatically refresh after modifying files.</p>
+
+<p>Next, we will use some helpers to simplify the placeholder texts. Please find the HTML content that is duplicated five times in <code><%= h '<div class="main">' %></code>.</p>
+
+<pre class="prettyprint linenums lang-html">
+<%= h '<h2>Lorem ipsum title</h2>
+<p><img src="http://placehold.it/640x360" /></p>
+<p>Lorem ipsum … </p>' %>
+</pre>
+
+<p>Delete four sections but leave one, then use helpers to replace the original content.</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;h2&gt;&lt;%= lorem_words(4+rand(4)) %&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img src="&lt;%= lorem_image("640x360") %&gt;" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;%= lorem_paragraph %&gt;&lt;/p&gt;
+</pre>
+
+<p>In the code above, we see the usage of <code>rand()</code>. We used <code>lorem_words(4+rand(4))</code>  to limit the length of <code>lorem_words()</code>'s result between 4 (4 + 0) to 7 (4 + 3). Using lorem ipsum helpers to generate placeholder texts, we can make the page look more realistic. Furthermore, because the resulting content will automatically change each time after refreshing the browser, it's easy to find problems caused by different content length.
+</p>   
+
+<p>Then, use ERB syntax to duplicate the content.</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% 5.times do %&gt;
+    &lt;h2&gt;&lt;%= lorem_words(4+rand(4)) %&gt;&lt;/h2&gt;
+    &lt;p&gt;&lt;img src="&lt;%= lorem_image("640x360") %&gt;" /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;%= lorem_paragraph %&gt;&lt;/p&gt;
+&lt;% end %&gt;
+</pre>
+
+<p>Switch to your browser and you will see the content changed to five different placeholder sections.</p>
+
+<p>Use this same idea to change the content of <code><%= h '<div class="links">' %></code> and <code><%= h '<div class="footer">' %></code>.</p>
+
+<p><code><%= h '<div class="links">' %></code></p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;div class="links"&gt;
+    &lt;h2&gt;Information Links&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;% 5.times do %&gt;
+            &lt;li&gt;&lt;a href="#"&gt;&lt;%= lorem_words(4+rand(4)) %&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;% end %&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+
+<p><code><%= h '<div class="footer">' %></code></p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;div class="footer"&gt;
+    &lt;%= lorem_sentence %&gt;
+&lt;/div&gt;
+</pre>
+
+<p>Switch to your browser again to verify that the page has already changed. Now we can continue to the next step.</p>
+
+<div class="page-footer">
+    Next: <a href="tutorial_4.html">Basic Usage of Layout <i class="lsf-icon arrow"></i></a>
+</div>

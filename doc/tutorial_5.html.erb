@@ -1,0 +1,113 @@
+<h1>Fire.app Feature Tutorial</h1>
+<h2>Using Partial Files and Specifying Layouts</h2>
+
+<p>In your browser, click the "Home" link in the main menu. You'll see the homepage is different from the previous design, which had no sidebar. This is because all the pages use the same layout, which has a sidebar, including the homepage. To remove the sidebar from the homepage, we need to make another specific layout for it.</p>
+
+<p>It's seems the easiest way to achieve our goal is to make a homepage layout by copying & pasting the current layout's content then removing the sidebar. But if we do this, we'll get duplicated code again:
+</p>
+
+<img src="../images/partial_01.png" />
+
+<p>To handle this situation, we need to use partial files with the layout.</p>   
+
+<p>The primary use for partial files is collecting the common contents between layouts to independent files. This will efficiently avoid duplicating code. </p>
+
+<img src="../images/partial_02.png" />
+
+<p>Partial files, just like layout files, should have names with an initial underline, so they do not generate individual files after clicking "Build Project." To learn more about partial files, please check <a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a>.</p>
+
+<p>Next, we need to move the common parts in our layouts, like header, footer and main menu to partial files. Let's add the file <code>_layout.html.erb</code> to the project folder. Then, find <code>&lt;div class="header-wrapper"&gt;</code> block in <code>_layout.html.erb</code>, cut &amp; paste the whole block to <code>_header.html.erb</code>. Save the file and we get the header's partial file:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;div class="header-wrapper"&gt;
+    &lt;div class="header"&gt;
+        &lt;h1 class="logo"&gt;&lt;a href="index.html"&gt;Fire.app&lt;/a&gt;&lt;/h1&gt;
+        &lt;h2&gt;&lt;%= lorem_sentence %&gt;&lt;/h2&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+<p>We also need to insert this into <code>_layout.html.erb</code> at the position we just cut <code>&lt;div class="header-wrapper"&gt;</code> previously: </p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= render :partial =&gt; "header" %&gt;
+</pre>
+
+<p>This lets us use the content of the partial file to replace the origin header block, and the final output is the same.</p>
+
+<p>Because we already prepared the other necessary partial files from the unzipped teaching material file, we only have to change the corresponding segments in <code>_layout.html.erb</code> to use the render partial method. All we need to change are these parts:</p>
+
+<img src="../images/partial_03.png" />
+
+<p>The <code>_layout.html.erb</code> should look like this: </p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;%= render :partial =&gt; "head" %&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;%= render :partial =&gt; "header" %&gt;
+    &lt;%= render :partial =&gt; "main_menu" %&gt;
+    &lt;div class="main-block"&gt;
+        &lt;div class="main"&gt;
+            &lt;%= yield %&gt;
+        &lt;/div&gt;
+        &lt;div class="side"&gt;
+            &lt;div class="ad"&gt;
+                Ad Words
+            &lt;/div&gt;
+            &lt;div class="links"&gt;
+                &lt;h2&gt;Information Links&lt;/h2&gt;
+                &lt;ul&gt;
+                    &lt;% 8.times do %&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;%= lorem_words (4+rand(3)) %&gt;&lt;/a&gt;&lt;/li&gt;
+                    &lt;% end %&gt;
+                &lt;/ul&gt;  
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;%= render :partial =&gt; "footer" %&gt;
+    &lt;%= livereload_js %&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<p>In the above code, we can see <code>&lt;div class="side"&gt;</code> block doesn't use a partial file because the homepage's layout has no sidebar.</p>
+
+<p>After completing these steps, we can start to deal with the layout for the homepage. Add the file <code>_sp_layout.html.erb</code> in the project folder and copy & paste the whole content of <code>_layout.html.erb</code> into it. Then, delete the whole <code>&lt;div class="side"&gt;</code> and we have finished the layout for the homepage. It should look like this: </p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;%= render :partial =&gt; "head" %&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;%= render :partial =&gt; "header" %&gt;
+    &lt;%= render :partial =&gt; "main_menu" %&gt;
+    &lt;div class="main-block"&gt;
+        &lt;div class="main"&gt;
+            &lt;%= yield %&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;%= render :partial =&gt; "footer" %&gt;
+    &lt;%= livereload_js %&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<p>We already made <code>_sp_layout.html.erb</code>, the layout for our homepage, but the homepage file <code>index.html.erb</code> is not using it as its layout. To achieve the goal, we have to use a specific file to assign the layout. This specific file must have the same file name as the file we want to assign the layout to, but change the last part of its extension to <code>.layout</code>. For example, in this project we need to assign a specific layout for the homepage, and the homepage's file name is <code>index.html.erb</code>. So, the file we use for assigning the homepage's layout should be named <code>index.html.erb</code>. And the file's content is the layout's file name. In this case, the content of <code>index.html.layout</code> is :</p>
+
+<pre class="prettyprint linenums lang-html">
+_sp_layout.html.erb
+</pre>
+
+<p>Now, <code>index.html.erb</code> will use <code>_sp_layout.html.erb</code> as its layout, instead of the common layout. Switch to your browser and you'll see the sidebar in the homepage is now gone. The layout structure of this project is shown below: </p>
+
+<img src="../images/layout_01.png" />
+
+<div class="page-footer">
+    Next: <a href="tutorial_6.html">Changing the Content of Layouts for Particular Pages (Advanced) <i class="lsf-icon arrow"></i></a>
+</div>

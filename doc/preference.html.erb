@@ -1,0 +1,72 @@
+<h1>Preference</h1>
+<p>There are some settings in the prefrences.</p>
+
+<h2>Compass</h2>
+
+<p><img src="../images/preference-compass.png" alt="Compass" /></p>
+
+<ul>
+<li><p>Preferred Syntax: <br/>
+Sass has two syntax choices: SCSS (.scss) and indented syntax (.sass). Fire.app supports both, but you must choose which one you want for generating files from templates.</p></li>
+<li><p>Compass Version: <br/>
+Fire.app always uses <a href="http://compass-style.org/CHANGELOG/">the latest stable release of Compass</a> by default. If you want to use other Sass/Compass versions, or use RubyGems to manage Compass extensions manually, please use the "Custom" option. <br />
+<span class="sp-point">WARNING: This is for advanced users only.</span></p></li>
+</ul>
+
+
+<h2>Notification</h2>
+
+<p><img src="../images/preference-notification.png" alt="Notification" /></p>
+
+<p>Fire.app supports <a href="http://growl.info/">Growl</a>. You can decide which types of notifications you want. Compass.app can also generate a log file for debugging purposes.</p>
+
+<h2>Services</h2>
+
+<p><img src="../images/preference-services.png" alt="Services" /></p>
+
+<p><strong>Enable Web Server:</strong> <br/>
+If you have enabled this option, Compass.app will start a tiny web server (WEBrick) from your project path. You can instantly check your design by opening <code>http://localhost:24681</code> in your browser. You can also modify the default port.</p>
+
+<p><strong>Enable LiveReload:</strong> <br/>
+Fire.app has built-in LiveReload support, so you can stop refreshing your browser manually. Browser extensions must be installed to make this work. If you have enabled both web server and livereload, you can even use the <a href="https://github.com/livereload/livereload-js">LiveReload-js</a> feature. (Our thanks to @livereload for the MIT License.) We also recommend <a href="http://livereload.com/">LiveReload 2</a>.</p>
+
+<ul>
+<li><a href="http://help.livereload.com/kb/general-use/browser-extensions">Browser extensions from LiveReload</a></li>
+<li>Older version:
+
+<ul>
+<li>Safari: <a href="https://github.com/downloads/mockko/livereload/LiveReload-1.6.2.safariextz">Download LiveReload 1.6.2 extension</a></li>
+<li><a href="https://chrome.google.com/extensions/detail/jnihajbhpnppcggbcgedagnkighmdlei">Chrome</a></li>
+<li><a href="https://addons.mozilla.org/zh-TW/firefox/addon/livereload/">Firefox</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>If you do not want to install browser extensions, you can use LiveReload-js by pasting this code into your HTML:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;script&gt;document.write('&lt;script src="http://'
++ (location.host || 'localhost').split(':')[0]
++ ':35729/livereload.js?snipver=1"&gt;&lt;/'
++ 'script&gt;')&lt;/script&gt;
+</pre>
+
+<p>Then LiveReload will work automatically.<br />
+   If you are using ERB files, you can simply use this helper to generate LiveReload-js:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= livereload_js %&gt;
+</pre>
+
+<p>If you use the helper but don't want to generate LiveReload-js in the output static files, you can use:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= livereload_js if ENV["RACK_ENV"] != "production" %&gt;
+</pre>
+
+<h2>History</h2>
+
+<p><img src="../images/preference-history.png" alt="History" /></p>
+
+<p>Click the "Clear History" button to destroy the history list.</p>

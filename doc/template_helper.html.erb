@@ -1,0 +1,282 @@
+<h1>Template Helpers</h1>
+
+<p>Template helpers are methods which can be used to simplify HTML building. Fire.app provides a lot of built-in helpers and you can customize what you want.</p>
+
+<h2>LiveReload</h2>
+
+<p>The following code will generate <a href="https://github.com/livereload/livereload-js">LiveReload-js</a> ：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= livereload_js %&gt;
+</pre>
+
+<p>Only insert LiveReload-js in the develope files, not in the output static files:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= livereload_js if ENV["RACK_ENV"] != "production" %&gt;
+</pre>
+
+<h2>Content Helpers</h2>
+
+<p>These helpers handle duplicate work when building content.</p>
+
+<h3><code>capture(&amp;block)</code></h3>
+<p>The capture method allows you to extract part of a template into a variable. You can use this variable anywhere in your templates or layouts.</p>
+
+<p>For example, below we put a section of template into the variable <code>@today</code>.</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% @today = capture do %&gt;
+  Today is
+  &lt;%= Time.now.to_date %&gt;
+&lt;% end %&gt;
+</pre>
+
+<p>To use the variable, just write this:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= @today %&gt;
+</pre>
+
+<h3><code>content_for(symbol, &amp;block)</code></h3>
+<p>This helper stores a block of markup in an identifier for later use. You can make subsequent calls to the stored content in other templates, helper modules or layouts by passing the identifier as an argument to content_for.</p>
+
+<p>For example, we can write this inside the sidebar area in our layout template.</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= yield :special_block %&gt;
+</pre>
+
+<p>And write this in the "about" page:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% content_for :special_block do %&gt;
+  &lt;h2&gt;Our boss says&lt;/h2&gt;
+  &lt;p&gt;Blah blah blah blah blah…&lt;/p&gt;
+&lt;% end %&gt;
+</pre>
+
+<p>This uses the same layout and shows "Our boss says" only in the "about" page.</p>
+
+
+<h3><code>content_for?(symbol)</code></h3>
+<p>This helper checks whether any content has been captured yet using <code>content_for</code>. Continuing with the previous example, if we want every page without a special block to show a default link, we can change <code>&lt;%= yield :special_block %&gt;</code> to:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% if content_for?(:special_block) %&gt;
+  &lt;%= yield :special_block %&gt;
+&lt;% else %&gt;
+  &lt;a href="#"&gt;Special Discount!!!&lt;/a&gt;
+&lt;% end %&gt;
+</pre>
+
+<h2>Tag Helpers</h2>
+
+<p>Tag helpers are used to construct HTML "tags" within a view template.</p>
+
+<h3><code>link_to(name, href, ...)</code></h3>
+<p>This helper creates a link tag with attributes.</p>
+
+<pre class="prettyprint linenums lang-ruby">
+&lt;%= link_to("twitter", "http://twitter.com", :id =&gt; "twitter") %&gt;
+# => &lt;a id="twitter" href="http://twitter.com"&gt;twitter&lt;/a&gt;
+</pre>
+
+<h1></h1>
+
+<h3><code>mail_to(email_address, …)</code></h3>
+<p>This helper creates a mailto link tag for the specified email_address.</p>
+
+<pre class="prettyprint linenums lang-ruby">
+&lt;%= mail_to("example@mail.com", "example mail address") %&gt;
+# => &lt;a href="mailto:example@mail.com"&gt;example mail address&lt;/a&gt;
+</pre>
+
+<h3><code>content_tag(name, content, ...)</code></h3>
+<p>This helper returns an HTML block tag of type name surrounding the content, and attributes can be added. For example:</p>
+
+<pre class="prettyprint linenums lang-ruby">
+&lt;%= content_tag(:p, "OOPS!", :class =&gt; "strong") %&gt;
+# => &lt;p class="strong"&gt;OOPS!&lt;/p&gt;
+</pre>
+
+<p>Nesting is also supported as shown here:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= content_tag(:div, content_tag(:p, "OOPS!"), :class =&gt; "strong", :id =&gt; "oops") %&gt;
+</pre>
+
+<p>The code above returns the following:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;div id="oops" class="strong"&gt;
+  &lt;p&gt;OOPS!&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+
+<h3><code>tag(name, ...)</code></h3>
+<p>This helper returns an empty HTML tag.</p>
+
+<pre class="prettyprint linenums lang-ruby">
+&lt;%= tag("br") %&gt;
+# => &lt;br /&gt;
+</pre>
+
+<h3><code>image_tag(src, ...)</code></h3>
+<p>This helper returns an img tag.</p>
+
+<pre class="prettyprint linenums lang-ruby">
+&lt;%= image_tag("test.jpg") %&gt;
+# => &lt;img src="test.jpg" /&gt;
+</pre>
+
+<h3><code>javascript_tag(...)</code></h3>
+<p>This helper is used to insert javascripts. As shown here:</p>
+
+<pre class="prettyprint linenums lang-ruby">
+&lt;%= javascript_tag "alert('OOPS')" %&gt;
+</pre>
+
+<p>The code above returns the following:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;script type="text/javascript"&gt;
+//&lt;![CDATA[
+alert('OOPS')
+//]]&gt;
+&lt;/script&gt;
+</pre>
+
+<h3><code>javascript_include_tag(*sources)</code></h3>
+<p>This helper returns an HTML script tag for each of the sources provided. For example:</p>
+
+<pre class="prettyprint linenums lang-ruby">
+&lt;%= javascript_include_tag "main" %&gt;
+# => &lt;script src="/javascripts/main.js" type="text/javascript"&gt;&lt;/script&gt;
+</pre>
+
+<h3><code>stylesheet_link_tag(*sources)</code></h3>
+<p>This helper returns a stylesheet link tag for the sources specified as arguments. For example:</p>
+
+<pre class="prettyprint linenums lang-ruby">
+&lt;%= stylesheet_link_tag "main" %&gt;
+# => &lt;link href="/stylesheets/main.css" media="screen" rel="stylesheet" type="text/css" /&gt;
+</pre>
+
+<h2>Escape Helpers</h2>
+
+<p>These process specified tags and formats that need to escape.</p>
+
+<h3><code>html_escape(string)</code></h3>
+<p>This helper escapes HTML tags. It also has an alias: <code>h</code>.</p>
+
+<h3><code>json_escape(string)</code></h3>
+<p>This helper escapes JSON. It also has an alias: <code>j</code>.</p>
+
+<h2>Lorem Ipsum Helpers</h2>
+
+<p>Fire.app also comes with some helpers to make filler texts and images. The idea is borrowed from <a href="https://github.com/blahed/frank">Frank</a> and <a href="http://middlemanapp.com/">Middleman</a>.</p>
+
+<pre class="prettyprint linenums lang-ruby">
+lorem_word                    # returns a single sentence
+lorem_words(argument)         # returns individual words, length base on its argument
+lorem_sentence
+lorem_sentences(argument)
+lorem_paragraph
+lorem_paragraphs(argument)
+lorem_date                    # returns "ddd mmm dd, yyyy"
+lorem_date("%Y/%m/%d", 2011..2013) # returns "yyyy/mm/dd". Year must be in between 2011 to 2013. 
+lorem_date.to_date            # returns "yyyy-mm-dd"
+lorem_name                    # returns full name
+lorem_first_name
+lorem_last_name
+lorem_image("WIDTHxHEIGHT")   # returns a lorem image url
+</pre>
+
+
+<p>lorem_image("WIDTHxHEIGHT") uses <a href="http://placehold.it/">http://placehold.it/</a> to generate lorem image url. Usually use this with <code>image_tag</code>. For example: </p>
+
+<pre class="prettyprint linenums lang-ruby">
+&lt;%= image_tag(lorem_image("300x400")) %&gt;
+# => &lt;img src="http://placehold.it/300x400" /&gt;
+</pre>
+
+<p>Or use it in HTML directly:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;img src="&lt;%= lorem_image("300x400") %&gt;" /&gt;
+</pre>
+
+<h3>Traditional Chinese Lorem Ipsum Helpers</h3>
+
+<p>Fire.app also provide helpers for traditional Chinese:</p>
+
+<ul>
+    <li>zh_lorem_word, zh_lorem_words</li>
+    <li>zh_lorem_sentence, zh_lorem_sentences</li>
+    <li>zh_lorem_paragraph, zh_lorem_paragraphs</li>
+    <li>zh_lorem_name</li>
+    <li>zh_lorem_name_pinyin</li>
+    <li>zh_lorem_first_name</li>
+    <li>zh_lorem_first_name_pinyin</li>
+    <li>zh_lorem_last_name</li>
+    <li>zh_lorem_last_name_pinyin</li>
+    <li>zh_lorem_email</li>
+</ul>
+<p>The helpers ending in "_pinyin" and the <code>zh_lorem_email</code> helper replace Chinese with Pinyin.</p>
+
+<h3>Japanese Lorem Ipsum Helpers</h3>
+
+<p>We provide helpers for Japanese, too:</p>
+
+<ul>
+  <li>jp_lorem_word, jp_lorem_words</li>
+  <li>jp_lorem_sentence, jp_lorem_sentences</li>
+  <li>jp_lorem_paragraph, jp_lorem_paragraphs</li>
+  <li>jp_lorem_name</li>
+  <li>jp_lorem_name_en</li>
+  <li>jp_lorem_first_name</li>
+  <li>jp_lorem_first_name_en</li>
+  <li>jp_lorem_last_name</li>
+  <li>jp_lorem_last_name_en</li>
+  <li>jp_lorem_email</li>
+</ul>
+<p>The helpers ending in "_en" replace Japanese with Roman letters.</p>
+
+<p class="sp-point">Pull requests are welcome if you want to provide these helpers in your own language.</p>
+
+<h2>Custom Helper </h2>
+
+<p>You can customize your own helpers by creating a file named <code>view_helpers.rb</code> in the root folder. The idea is borrowed from <a href="http://get-serve.com/">Serve</a> and <a href="http://middlemanapp.com/">Middleman</a>. The file format looks like this:</p>
+
+<pre class="prettyprint linenums lang-ruby">
+module ViewHelpers
+  def helper_name(arg1, arg2, ....)
+      return "something"
+  end
+end
+</pre>
+
+<p>For example, take <code>view_helpers.rb</code> as shown here:</p>
+
+<pre class="prettyprint linenums lang-ruby">
+module ViewHelpers
+  def lorem_menu(num)
+    @list = ""
+    (1..num).map do |list|
+      @list += content_tag(:li, link_to(lorem_word, '#'));
+    end
+    return '&lt;ul class="menu"&gt;'+@list+'&lt;/ul&gt;'
+  end
+end
+</pre>
+
+<p>Now using <code>&lt;%= lorem_menu(3) %&gt;</code> returns a lorem menu:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;ul class="menu"&gt;
+    &lt;li&gt;&lt;a href="#"&gt;adipisci&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;dolor&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;eum&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</pre>

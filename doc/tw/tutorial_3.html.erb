@@ -1,0 +1,78 @@
+<h1>Fire.app 機能應用教學</h1>
+<h2>使用 Template Helper</h2>
+
+<p>Template Helper 是一些能夠在樣板語言中使用的函式，能更簡單的達成許多建置網頁時不可或缺的功能。</p>
+
+<p>在瀏覽器中開啟 <code>http://127.0.0.1:24681/screenshots.html</code> 即可看見目前的 Screenshots 頁面。  
+使用慣用的編輯器打開 <code>screenshots.html</code> 觀察原始碼，可以看到此頁面的原始碼是以許多重複的 HTML 組成頁面中的假文內容。</p>
+
+<p>首先請將檔案 <code>screenshots.html</code> 的副檔名 <code>.html</code> 更改成對應 ERB 檔案的 <code>.html.erb</code> ，這樣之後才能在檔案中撰寫 ERB 語法。</p>
+
+<p>修改完檔名後，可在 <code><%= h '</body>' %></code> 的前一行插入生成 LiveReload js 的 helper ：</p>
+
+<pre class="prettyprint linenums lang-ruby">
+&lt;%= livereload_js %&gt;
+</pre>
+
+<p>加入後先切換至瀏覽器重新整理一次使 LiveReload 生效，之後修改檔案存檔時瀏覽器便會自動重新整理頁面。 </p>
+
+<p>接下來要使用 ERB 語法簡化頁面中假文內容的部份，<br />
+請先找到內文區塊 <code><%= h '<div class="main">' %></code> 中重複 5 次的 HTML 假文內容：</p>
+
+<pre class="prettyprint linenums lang-html">
+<%= h '<h2>Lorem ipsum title</h2>
+<p><img src="http://placehold.it/640x360" /></p>
+<p>Lorem ipsum … </p>' %>
+</pre>
+
+<p>將此 5 組 HTML 刪除 4 組只留下 1 組後，使用 Helper 來替代原有的內容：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;h2&gt;&lt;%= lorem_words(4+rand(4)) %&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img src="&lt;%= lorem_image("640x360") %&gt;" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;%= lorem_paragraph %&gt;&lt;/p&gt;
+</pre>
+
+<p>在上面的程式碼中可以看見 <code>rand()</code> 的應用，使用 <code>lorem_words(4+rand(4))</code> 可以確保輸出的假文字數在 4 字（即4+0）至 7 字（即4+3）之間。以 Helper 產生假資料的優點除了可讓頁面看起來更為真實，由於每次重新整理頁面時假文資料都會改變，可以有效在早期發現當資料長度不符預期時發生的版面問題。
+</p>   
+
+<p>變更假資料的產生方式後，使用 ERB 語法來達成區塊重複的效果：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% 5.times do %&gt;
+    &lt;h2&gt;&lt;%= lorem_words(4+rand(4)) %&gt;&lt;/h2&gt;
+    &lt;p&gt;&lt;img src="&lt;%= lorem_image("640x360") %&gt;" /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;%= lorem_paragraph %&gt;&lt;/p&gt;
+&lt;% end %&gt;
+</pre>
+
+<p>切換至瀏覽器，便可看見此頁面的內容變成 5 組內容相異的假文。</p>
+
+<p>以同樣的方式將側欄部分的 <code><%= h '<div class="links">' %></code> 和 footer 區域 <code><%= h '<div class="footer">' %></code> 的內容也替換成 Helper 的形式：</p>
+
+<p>側欄：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;div class="links"&gt;
+    &lt;h2&gt;Information Links&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;% 5.times do %&gt;
+            &lt;li&gt;&lt;a href="#"&gt;&lt;%= lorem_words(4+rand(4)) %&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;% end %&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+
+<p>footer：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;div class="footer"&gt;
+    &lt;%= lorem_sentence %&gt;
+&lt;/div&gt;
+</pre>
+
+<p>切換至瀏覽器確認頁面內容已經被更換成假文後即可進行下一階段的操作。</p>
+
+<div class="page-footer">
+    Next: <a href="tutorial_4.html">Layout 的基本用法 <i class="lsf-icon arrow"></i></a>
+</div>

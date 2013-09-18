@@ -1,0 +1,73 @@
+<h1>Preference 設定</h1>
+<p>在 Preferences 選項中可調整下列設定：</p>
+
+<h2>Compass</h2>
+
+<p><img src="../../images/preference-compass.png" alt="Compass" /></p>
+
+<ul>
+<li><p>Preferred Syntax: <br/>
+Sass 有兩種語法可供選擇，分別是 SCSS (.scss) 和 indented syntax (.sass) 。 Fire.app 兩種語法皆支援，此處所選擇的是專案建立時產生樣板檔案所使用的語法。</p></li>
+<li><p>Compass Version: <br/>
+Fire.app 預設使用<a href="http://compass-style.org/CHANGELOG/">最新 stable 版本的 Compass </a>。若是想使用其他版本的 Sass/Compass，或使用 RybyGems 來管理 Compass extensions ，則需使用 "Custom" 選項。<br />
+<span class="sp-point">注意：非進階使用者不建議使用。</span></p></li>
+</ul>
+
+
+<h2>Notification</h2>
+
+<p><img src="../../images/preference-notification.png" alt="Notification" /></p>
+
+<p>Fire.app 支援 <a href="http://growl.info/">Growl</a> ，可選擇想顯示的通知訊息類型。也可以選擇是否產出 debug 用的 log 檔。</p>
+
+<h2>Services</h2>
+
+<p><img src="../../images/preference-services.png" alt="Services" /></p>
+
+<p><strong>Enable Web Server:</strong> <br/>
+若開啟此選項， Fire.app 將在專案路徑啟動一個微 server(WEBrick) ，如此一來便可在瀏覽器中開啟 <code>http://localhost:24681</code> 來即時預覽實際上的編輯結果，預設的port是 <code>24681</code> 但可以自行更換成想要的 port 。</p>
+
+<p><strong>Enable LiveReload:</strong> <br/>
+Fire.app 內建了對 LiveReload 的支援，如此便可免去編輯頁面後必須手動重新整理的步驟。欲使用此功能必須安裝瀏覽器外掛，若同時開啟 web server 和 livereload 功能，也可以使用 <a href="https://github.com/livereload/livereload-js">LiveReload-js</a> 來達成目的。(感謝使用 MIT Licens 的 @livereload 。) 我們也推薦使用 <a href="http://livereload.com/">LiveReload 2</a> 。</p>
+
+<ul>
+<li><a href="http://help.livereload.com/kb/general-use/browser-extensions">LiveReload 提供的瀏覽器外掛</a></li>
+<li>舊版本：
+
+<ul>
+<li>Safari: <a href="https://github.com/downloads/mockko/livereload/LiveReload-1.6.2.safariextz">Download LiveReload 1.6.2 extension</a></li>
+<li><a href="https://chrome.google.com/extensions/detail/jnihajbhpnppcggbcgedagnkighmdlei">Chrome</a></li>
+<li><a href="https://addons.mozilla.org/zh-TW/firefox/addon/livereload/">Firefox</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>若不想安裝瀏覽器外掛，可以直接在 HTML 中置入 <code>LiveReload-js</code> 如下：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;script&gt;document.write('&lt;script src="http://'
++ (location.host || 'localhost').split(':')[0]
++ ':35729/livereload.js?snipver=1"&gt;&lt;/'
++ 'script&gt;')&lt;/script&gt;
+</pre>
+
+<p>LiveReload便會自動作用。<br />
+    當使用 ERB 檔案時也可以直接用：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= livereload_js %&gt;
+</pre>
+
+<p>來產生上面的 livereload-js 程式碼。<br />
+    如果只想在開發時插入 LiveReload 程式碼但不想讓它出現在輸出的靜態網頁中，可以使用：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= livereload_js if ENV["RACK_ENV"] != "production" %&gt;
+</pre>
+
+<h2>History</h2>
+
+<p><img src="../../images/preference-history.png" alt="History" /></p>
+
+<p>點擊 "Clear History" 按鈕會清空最近使用的專案列表。</p>

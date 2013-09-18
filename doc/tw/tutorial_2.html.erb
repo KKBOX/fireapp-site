@@ -1,0 +1,69 @@
+<h1>Fire.app 機能應用教學</h1>
+<h2>樣板語言 ERB 簡介</h2>
+
+<p>Fire.app 支援多種樣板語言，讓建立HTML變得更簡單。<br />
+此處介紹的樣板語言是在 HTML 中嵌入 RUBY 語法的 ERB ( Embedded Ruby ) ，因大部分內容仍維持 HTML 格式，對一般開發者來說較易上手。</p>
+
+<p>在 Fire.app 中能夠很簡便的使用樣板語言，只要存檔時使用相對應的副檔名即可。使用 ERB 樣板語言時對應之副檔名為 <code>.html.erb</code> 。</p>
+
+<p>ERB 檔案的特點便是除了能撰寫一般的 HTML 外，也能插入 RUBY 語法，插入的方式如下：</p>
+
+<p>只執行 Ruby code 但不輸出結果時使用：</p>
+<pre class="prettyprint linenums lang-ruby">
+&lt;% Ruby code... %&gt;
+</pre>
+
+<p>執行 Ruby code 且在 HTML 中插入輸出結果時使用 <code>=</code> 符號：</p>
+<pre class="prettyprint linenums lang-ruby">
+&lt;%= Ruby code... %&gt;
+</pre>
+
+<p>要將 Ruby code 轉為註解時可以使用 <code>#</code> 符號：</p>
+<pre class="prettyprint linenums lang-ruby">
+&lt;%# Comment... %&gt;
+</pre>
+
+<h3>常用 ERB 語法</h3>
+<h4>if...else</h4>
+<pre class="prettyprint linenums lang-ruby">
+&lt;% if 某條件 %&gt;  
+  當條件成立時執行的部份
+&lt;% else %&gt;
+  當條件不成立時執行的部份
+&lt;% end %&gt;
+</pre>
+<p>ex:</p>
+<pre class="prettyprint linenums lang-ruby">
+&lt;% if (1+1==2) %&gt;  
+  會顯示這一行
+&lt;% else %&gt;
+  永遠不會顯示
+&lt;% end %&gt;
+</pre>
+<p>因為 <code>1+1==2</code> 永遠成立，上面的程式碼不管執行幾次結果都會是 <code>會顯示這一行</code> 。</p>   
+<h4>做某件事情 n 次</h4>
+<pre class="prettyprint linenums lang-ruby">
+&lt;% n.times do %&gt;  
+  做某件事
+&lt;% end %&gt;
+</pre>
+<p>ex:</p>   
+<pre class="prettyprint linenums lang-ruby">
+&lt;% 3.times do %&gt;  
+  早安您好
+&lt;% end %&gt;
+</pre>
+<p>輸出結果會是 <code>早安您好早安您好早安您好</code> 。</p>   
+<h4>隨機挑一個 0 到 n-1 之間的數字</h4>
+<pre class="prettyprint linenums lang-ruby">
+&lt;%= rand(n) %&gt;
+</pre>
+<p>ex:</p> 
+<pre class="prettyprint linenums lang-ruby">
+&lt;%= rand(3) %&gt;
+</pre>
+<p>輸出結果可能會是 <code>0</code> 、 <code>1</code> 或 <code>2</code> 。</p>
+
+<div class="page-footer">
+    Next: <a href="tutorial_3.html">使用 Template Helper <i class="lsf-icon arrow"></i></a>
+</div>

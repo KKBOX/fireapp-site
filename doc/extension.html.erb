@@ -1,0 +1,41 @@
+<h1>Using Extensions</h1>
+
+<p>We have put some extensions into Fire.app, and there are two ways to add more 3rd party extensions.</p>
+
+<h2>Adding with Fire.app</h2>
+
+<p>Click the Fire.app icon and select "Open Extensions Folder." Fire.app will open the specific folder where you can put extensions. The extensions inside this folder are automatically loaded when Fire.app starts. These extensions can be use in any project being watched by Fire.app. The extensions are also available from the "Create Project" menu.</p>
+
+<p>Besides adding new extensions to Fire.app, you can overwrite any existing extensions with the same method.</p>
+
+<h3>Example: Install Fancy Buttons</h3>
+
+<p>Here we use installing <a href="https://github.com/imathis/fancy-buttons">fancy-buttons</a> as our example.</p>
+
+<ol class="qa">
+<li>Download the <a href="https://github.com/imathis/fancy-buttons">fancy-buttons</a> zip file<br />
+    <img src="../images/extension_01.png" />
+</li>
+<li>Unzip the zip file.<br />
+    <img src="../images/extension_02.png" />
+</li>
+<li>Open the "lib" folder, you will see a file used to register paths. In this case, the file name is "fancy-buttons.rb".<br />
+<span class="sp-point">IMPORTANT: The extension's folder name must be renamed as this file name, in this case, "fancy-buttons."</span><br />
+    <img src="../images/extension_03.png" />
+</li>
+<li>Click the Fire.app icon and select "Open Extensions Folder," you'll see the extensions folder open.<br />
+    <img src="../images/extension_04.png" />
+</li>
+<li>Move the renamed folder to the extensions folder.<br />
+    <img src="../images/extension_05.png" />
+</li>
+<li>Quit Fire.app and start it again. You'll see the extension appear in the "Create Project" menu.<br />
+    <img src="../images/extension_06.png" />
+</li>
+</ol>
+
+<h2>Adding with Ruby gems</h2>
+
+<p class="sp-point">WARNING: This is for advanced users only.</p>
+
+<p>You can choose "Compass Version: Custom" in preferences, and specify your own gem paths. Fire.app will try to load it. Since Fire.app uses JRuby, native gems will not work.</p>

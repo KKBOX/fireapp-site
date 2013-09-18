@@ -1,0 +1,86 @@
+<h1>Fire.app Feature Tutorial</h1>
+<h2>Basic Usage of Layout </h2>
+
+<p>We found many duplicated parts in the example files we have seen previously:</p>
+
+<img src="../images/structure_02.png" />
+
+<p>In the image above, we can see the same header, footer and main menu are shown on every page. Moreover, besides the homepage, all the other pages have the same sidebar. If we use plain HTML to make this prototype, duplicated code would be unavoidable and difficult to maintain. With a template language, we can use layout to solve this problem. It's used to contain the duplicated parts and can be applied per page. To know more about layout, please check <a href="template_layout_partial.html">Templates, Layouts &amp; Partials</a>。</p>
+
+<p>After understanding layouts, let's write some code. In the image above we see only the homepage has no sidebar, so the homepage is an exception and we skip it now. Next, move the common parts of the rest of the pages into a layout.</p>
+
+<p>Because the content we want for making the layout is already part of the Screenshots page, we'll use the content of <code>screenshots.html.erb</code> to make our layout.</p>
+
+<p>First, add a file <code>_layout.html.erb</code> in the project folder. Please note, when we use "Build Project", file names with an initial underline do NOT generate individual files.</p>
+
+<p>Copy the whole content of <code>screenshots.html.erb</code> and paste it into <code>_layout.html.erb</code>. Then replace the innards of <code>&lt;div class="main"&gt;</code> with <code>&lt;%= yield %&gt;</code> for the layout file to use to get page content. Now the `_layout.html.erb` might look like this:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Fire.app Demo&lt;/title&gt;
+    &lt;link rel="stylesheet" href="/stylesheets/screen.css" type="text/css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="header-wrapper"&gt;
+        &lt;div class="header"&gt;
+            &lt;h1 class="logo"&gt;&lt;a href="index.html"&gt;Fire.app&lt;/a&gt;&lt;/h1&gt;
+            &lt;h2&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/h2&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="main-menu"&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="/index.html"&gt;&lt;span class="icons-home"&gt;Home&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="/features/index.html"&gt;&lt;span class="icons-features"&gt;Features&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="/documents.html"&gt;&lt;span class="icons-documents"&gt;Documents&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="/screenshots.html"&gt;&lt;span class="icons-screenshots"&gt;Screenshots&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class="main-block"&gt;
+        &lt;div class="main"&gt;
+            &lt;%= yield %&gt;
+        &lt;/div&gt;
+        &lt;div class="side"&gt;
+            &lt;div class="ad"&gt;
+                Ad Words
+            &lt;/div&gt;
+            &lt;div class="links"&gt;
+                &lt;h2&gt;Information Links&lt;/h2&gt;
+                &lt;ul&gt;
+                    &lt;% 5.times do %&gt;
+                        &lt;li&gt;&lt;a href="#"&gt;&lt;%= lorem_words(4+rand(4)) %&gt;&lt;/a&gt;&lt;/li&gt;
+                    &lt;% end %&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="footer-wrapper"&gt;
+        &lt;div class="footer"&gt;
+            &lt;%= lorem_sentence %&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;%= livereload_js %&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<p>After completing the layout, we still have to deal with the content of <code>screenshots.html.erb</code> to fit our layout. Otherwise, the common parts between these two files will be duplicated in the final result ( you can switch to the browser to see this situation ). That's why we need to delete the common parts in <code>screenshots.html.erb</code>. The content of <code>screenshots.html.erb</code> should be:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% 5.times do %&gt;
+    &lt;h2&gt;&lt;%= lorem_words(4+rand(4)) %&gt;&lt;/h2&gt;
+    &lt;p&gt;&lt;img src="&lt;%= lorem_image("640x360") %&gt;" /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;%= lorem_paragraph %&gt;&lt;/p&gt;
+&lt;% end %&gt;
+</pre>
+
+<p>Let's see the schematic diagram:</p>
+<img src="../images/layout.png" />
+
+<p>Now, you already did the step using layout and you can see the result in your browser. Because the other pages' content is already prepared in the teaching material file, you can click any link in the main menu to see other pages. Also, you can open other page's files in your IDE and you'll see they're all generated from ERB helpers with HTML.</p>
+
+<div class="page-footer">
+    Next: <a href="tutorial_5.html">Using Partial Files and Specifying Layouts <i class="lsf-icon arrow"></i></a>
+</div>

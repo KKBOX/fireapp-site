@@ -1,0 +1,33 @@
+<h1>Fire.app 機能應用教學</h1>
+<h2>基於現有 Layout 製作變更部分內容的延伸 Layout（進階）</h2>
+
+<p>在範例網站中可以看到 Features 列表頁和內容頁的主選單下方都有一個宣傳文字區塊，為了讓 <code>features</code> 資料夾內的頁面都能擁有這個宣傳區塊，我們必須使用提供另一個 layout 給 <code>features</code> 資料夾內的頁面使用。但是如果要將共通 Layout 的內容複製一次的話便又增加了重複的程式碼量，因此我們可以改用指定 render template 搭配 content_for 的方式解決。</p>
+
+<p>首先更改全站共用的 Layout 檔案 <code>/_layout.html.erb</code> ，在 <code>&lt;%= render :partial =&gt; "main_menu" %&gt;</code> 下方加上要插入宣傳文字的 <code>content_for</code> 區塊：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% if content_for? :feature_slogan %&gt;
+    &lt;%= yield :feature_slogan %&gt;
+&lt;% end %&gt;
+</pre>
+
+<p>由於預設狀況下此位置並不需要顯示任何內容，故無需撰寫 else 的部份。</p>
+
+<p>接下來在 <code>features</code> 資料夾中新增一個 <code>_layout.html.erb</code> 檔案。由於資料夾中的檔案會使用離自己最近的 Layout 檔案， <code>features</code> 資料夾內的檔案便會使用新增的 Layout 檔案做為 Layout。</p>
+
+<p>新增的 <code>_layout.html.erb</code> 內容如下：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% content_for :feature_slogan do %&gt;
+    &lt;div class="well"&gt;
+        &lt;h3&gt;&lt;%= lorem_sentences 2 %&gt;&lt;/h3&gt;
+    &lt;/div&gt;
+&lt;% end %&gt;
+&lt;%= render :template =&gt; "/_layout" %&gt;
+</pre>
+
+<p>上面的程式碼建立了一個基於共用 Layout 的 新 Layout，使用 <code>&lt;%= render :template =&gt; "/_layout" %&gt;</code> 表示套用這個 Layout 的頁面仍是以根目錄的 <code>_layout.html.erb</code> 做為實際上的 Layout ，而 <code>content_for :feature_slogan</code> 的部份則是指定套用此 Layout 的頁面都會擁有宣傳文字的區塊。完成後切換至瀏覽器便可看見 Features 列表頁和內容頁都加上了宣傳文字區塊。</p>
+
+<div class="page-footer">
+    Next: <a href="tutorial_8.html">取得目前的頁面路徑及其應用（進階） <i class="lsf-icon arrow"></i></a>
+</div>

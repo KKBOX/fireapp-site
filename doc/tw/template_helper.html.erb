@@ -1,0 +1,311 @@
+<h1>Template Helpers</h1>
+
+<p>Helper 是一些能夠在樣板語言中使用的函式，能更簡單的達成許多建置網頁時不可或缺的功能。 Fire.app 提供許多好用的內建 Helper ，若是不敷使用的話也可以自己根據需求撰寫，以下先介紹部分內建 helper ：</p>
+
+<h2>LiveReload</h2>
+
+<p>使用下面的程式碼可產出 <a href="https://github.com/livereload/livereload-js">livereload-js</a> ：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= livereload_js %&gt;
+</pre>
+
+<p>如果只想在開發時插入 LiveReload 程式碼但不想讓它出現在輸出的靜態網頁中，可以使用：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= livereload_js if ENV["RACK_ENV"] != "production" %&gt;
+</pre>
+
+<h2>Content Helpers</h2>
+
+<p>此類型的 Helpers 為建立網站內容提供許多好用的功能，能省去一些重複作業的麻煩。</p>
+
+<h3><code>capture(&amp;block)</code></h3>
+<p>此 Helper 可以把樣板語言段落以變數的方式儲存供多次利用在同一 Layout 或頁面中，例如下面的範例便是把一段樣板語言儲存在變數 <code>@today</code> 中：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% @today = capture do %&gt;
+  Today is
+  &lt;%= Time.now.to_date %&gt;
+&lt;% end %&gt;
+</pre>
+
+<p>使用時只要在想輸出這個段落的位置寫：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= @today %&gt;
+</pre>
+
+<p>就可以取得該段落的內容。</p>
+
+<h3><code>content_for(symbol, &amp;block)</code></h3>
+<p>此 Helper 可以把樣板語言段落儲存在 symbol 中供後續利用，常應用在套用 Layout 時。例如側欄的區塊只有 About 頁面要顯示老闆的話而其他頁面不用時，可以在 Layout 中側欄的區塊中加入一段：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= yield :special_block %&gt;
+</pre>
+
+<p>然後在 About 頁面檔案中寫入：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% content_for :special_block do %&gt;
+  &lt;h2&gt;Our boss says&lt;/h2&gt;
+  &lt;p&gt;Blah blah blah blah blah…&lt;/p&gt;
+&lt;% end %&gt;
+</pre>
+
+<p>這樣 About 頁面的側欄就會出現老闆的話了，其他頁面也可以比照辦理。</p>
+
+
+<h3><code>content_for?(symbol)</code></h3>
+<p>此 Helper 可以用來判斷目前此 symbol 是否有任何值。例如前面 <code>content_for</code> 的範例寫到可以讓各頁面套用 Layout 的部分也擁有不同內容，如果想讓沒有寫入特別內容的頁面顯示預設的廣告連結，便可將原本寫入的<code>&lt;%= yield :special_block %&gt;</code>改寫成：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% if content_for?(:special_block) %&gt;
+  &lt;%= yield :special_block %&gt;
+&lt;% else %&gt;
+  &lt;a href="#"&gt;Special Discount!!!&lt;/a&gt;
+&lt;% end %&gt;
+</pre>
+
+<h2>Tag Helpers</h2>
+
+<p>此類型的 Helpers 在動態產生 HTML 內容時很有幫助。</p>
+
+<h3><code>link_to(name, href, ...)</code></h3>
+<p>常用的 helper ，可產生帶有屬性的連結。如：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= link_to("twitter", "http://twitter.com", :id =&gt; "twitter") %&gt;
+</pre>
+
+<p>輸出為：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;a id="twitter" href="http://twitter.com"&gt;twitter&lt;/a&gt;
+</pre>
+
+<h1></h1>
+
+<h3><code>mail_to(email_address, …)</code></h3>
+<p>此 Helper 可用於建立帶有 "mailto:" 的連結。如：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= mail_to("example@mail.com", "example mail address") %&gt;
+</pre>
+
+<p>會輸出：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;a href="mailto:example@mail.com"&gt;example mail address&lt;/a&gt;
+</pre>
+
+<h3><code>content_tag(name, content, ...)</code></h3>
+<p>此 Helper 可以產生具有階層的 html ，並可加上所需的屬性。例如：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= content_tag(:p, "OOPS!", :class =&gt; "strong") %&gt;
+</pre>
+
+<p>會輸出成：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;p class="strong"&gt;OOPS!&lt;/p&gt;
+</pre>
+
+<p>套疊使用便可產出具有階層的 HTML ：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= content_tag(:div, content_tag(:p, "OOPS!"), :class =&gt; "strong", :id =&gt; "oops") %&gt;
+</pre>
+
+<p>將會輸出：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;div id="oops" class="strong"&gt;
+  &lt;p&gt;OOPS!&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+
+<h3><code>tag(name, ...)</code></h3>
+<p>此 Helper 可產出單一個 HTML Tag 。如使用 <code>&lt;%= tag("br") %&gt;</code> 可以得到一個 <code>&lt;br /&gt;</code> 。</p>
+
+<h3><code>image_tag(src, ...)</code></h3>
+<p>此 Helper 可產出 Image Tag 。如使用 <code>&lt;%= image_tag("test.jpg") %&gt;</code> 會產出 <code>&lt;img src="test.jpg" /&gt;</code> 。</p>
+
+<h3><code>javascript_tag(...)</code></h3>
+<p>此 Helper 可用於插入 Javascript 段落。如使用 <code>&lt;%= javascript_tag "alert('OOPS')" %&gt;</code> 則產出如下：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;script type="text/javascript"&gt;
+//&lt;![CDATA[
+alert('OOPS')
+//]]&gt;
+&lt;/script&gt;
+</pre>
+
+<h3><code>javascript_include_tag(*sources)</code></h3>
+<p>此 Helper 可產生載入 Javascript 所需的 tag 。如：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= javascript_include_tag "main" %&gt;
+</pre>
+
+<p>產出為：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;script src="/javascripts/main.js" type="text/javascript"&gt;&lt;/script&gt;
+</pre>
+
+<h3><code>stylesheet_link_tag(*sources)</code></h3>
+<p>此 Helper 可產生載入 CSS 所需的 Tag 。如：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= stylesheet_link_tag "main" %&gt;
+</pre>
+
+<p>產出為：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;link href="/stylesheets/main.css" media="screen" rel="stylesheet" type="text/css" /&gt;
+</pre>
+
+<h2>Escape Helpers</h2>
+
+<p>處理頁面中需要 escape 的標籤與格式。</p>
+
+<h3><code>html_escape(string)</code></h3>
+<p>可將包含 HTML 的字串 escape 成一般文字，並可簡寫為 <code>h</code> 。</p>
+
+<h3><code>json_escape(string)</code></h3>
+<p>可將包含 JSON 的字串 escape 成一般文字，並可簡寫為 <code>j</code> 。</p>
+
+<h2>Lorem Ipsum Helpers</h2>
+
+<p>此類 Helper 能方便產生排版所需之各種假資料。</p>
+
+<h3><code>lorem_word</code>, <code>lorem_words</code></h3>
+<p><code>lorem_word</code> 可自動生成「一個」假單字； <code>lorem_words(argument)</code> 則可依據傳入的參數生成指定數量的假單字。</p>
+
+<h3><code>lorem_sentence</code>, <code>lorem_sentences</code></h3>
+<p><code>lorem_sentence</code> 可自動生成一句假句子； <code>lorem_sentences(argument)</code> 則可依據傳入的參數生成指定句數。</p>
+
+<h3><code>lorem_paragraph</code>, <code>lorem_paragraphs</code></h3>
+<p><code>lorem_paragraph</code> 可自動生成一個文字段落；<code>lorem_paragraphs(argument)</code> 則可依據傳入的參數生成指定段落數。</p>
+
+<h3><code>lorem_date</code></h3>
+<p>可以生成假的日期，格式為 <code>ddd mmm dd, yyyy</code> 。亦可使用 <code>lorem_date.to_date</code> 取得 <code>yyyy-mm-dd</code> 的格式。<br />
+亦可傳入參數：</p>
+
+<pre class="prettyprint linenums lang-html">
+lorem_date("%Y/%m/%d", 2011..2013)
+</pre>
+
+<p>會回傳介於 2011 年和 2013 年間的假日期</p>
+
+<h3><code>lorem_name</code></h3>
+<p>會生成假的英文「全名」。</p>
+
+<h3><code>lorem_first_name</code></h3>
+<p>生成假的英文 "first name" 。</p>
+
+<h3><code>lorem_last_name</code></h3>
+<p>生成假的英文"last name"。</p>
+
+<h3><code>lorem_email</code></h3>
+<p>生成假的email。</p>
+
+<h3><code>lorem_image("WIDTHxHEIGHT")</code></h3>
+<p>利用 <a href="http://placehold.it/">http://placehold.it/</a> 的服務產生假圖連結，通常會搭配 <code>image_tag</code> 使用。例如：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;%= image_tag(lorem_image("300x400")) %&gt;
+</pre>
+
+<p>便會生成：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;img src="http://placehold.it/300x400" /&gt;
+</pre>
+
+<p>在頁面中會呈現一個 300x400 的假圖區塊。</p>
+
+<p>也可以直接使用：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;img src="&lt;%= lorem_image("300x400") %&gt;" /&gt;
+</pre>
+
+<p>來達成一樣的效果。</p>
+
+<h3>中文假資料 Helper</h3>
+
+<p>針對需要中文假資料的使用者，Fire.app 也有下列中文相關的 helper 可供使用：</p>
+
+<ul>
+    <li>zh_lorem_word, zh_lorem_words</li>
+    <li>zh_lorem_sentence, zh_lorem_sentences</li>
+    <li>zh_lorem_paragraph, zh_lorem_paragraphs</li>
+    <li>zh_lorem_name</li>
+    <li>zh_lorem_name_pinyin</li>
+    <li>zh_lorem_first_name</li>
+    <li>zh_lorem_first_name_pinyin</li>
+    <li>zh_lorem_last_name</li>
+    <li>zh_lorem_last_name_pinyin</li>
+    <li>zh_lorem_email</li>
+</ul>
+<p>大致上用法與英文版本相同， Helper 名稱最後以 "_pinyin" 結尾者及 <code>zh_lorem_email</code> 都是用拼音取代中文顯示。</p>
+
+<h3>日文假資料 Helper</h3>
+
+<p>除了英文和中文外，也提供日文假資料 Helper 如下：</p>
+
+<ul>
+  <li>jp_lorem_word, jp_lorem_words</li>
+  <li>jp_lorem_sentence, jp_lorem_sentences</li>
+  <li>jp_lorem_paragraph, jp_lorem_paragraphs</li>
+  <li>jp_lorem_name</li>
+  <li>jp_lorem_name_en</li>
+  <li>jp_lorem_first_name</li>
+  <li>jp_lorem_first_name_en</li>
+  <li>jp_lorem_last_name</li>
+  <li>jp_lorem_last_name_en</li>
+  <li>jp_lorem_email</li>
+</ul>
+<p>大致用法亦與英文版相同， Helper 名稱最後以 "_en" 結尾者及 <code>jp_lorem_email</code> 都是用拼音取代日文顯示。</p>
+
+<h2>自訂 Helper </h2>
+
+<p>如果你有自己的特殊需求，也可以自己定義helper來使用。只要在專案目錄下建立一個檔名為 <code>view_helpers.rb</code> 的檔案，內容格式為：</p>
+
+<pre class="prettyprint linenums lang-ruby">
+module ViewHelpers
+  def helper_name(arg1, arg2, ....)
+      return "something"
+  end
+end
+</pre>
+
+<p>即可，例如我想製作一個產生假文 Menu 的 Helper ，就可以在 <code>view_helpers.rb</code> 裡面定義：</p>
+
+<pre class="prettyprint linenums lang-ruby">
+module ViewHelpers
+  def lorem_menu(num)
+    @list = ""
+    (1..num).map do |list|
+      @list += content_tag(:li, link_to(lorem_word, '#'));
+    end
+    return '&lt;ul class="menu"&gt;'+@list+'&lt;/ul&gt;'
+  end
+end
+</pre>
+
+<p>如此一來在樣板中使用 <code>&lt;%= lorem_menu(3) %&gt;</code> 就可以得到以下結果：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;ul class="menu"&gt;
+    &lt;li&gt;&lt;a href="#"&gt;adipisci&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;dolor&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;eum&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</pre>

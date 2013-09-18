@@ -1,0 +1,33 @@
+<h1>Fire.app Feature Tutorial</h1>
+<h2>Making an Extended Layout Based-on an Existing Layout (Advanced)</h2>
+
+<p>In the example file we've seen previously, both the "Features List" page and the "Feature Detail" page have a promotion text block. To make sure every page in the <code>features</code> folder contains this block, we need a new layout for these pages. But, if we copy the content of our common layout, there will be more duplicated code. So, we'll solve this by using the render template method and <code>content_for</code>. </p>
+
+<p>First, modify the common layout <code>/_layout.html.erb</code>, add this <code>content_for</code> block below the <code>&lt;%= render :partial =&gt; "main_menu" %&gt;</code>:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% if content_for? :feature_slogan %&gt;
+    &lt;%= yield :feature_slogan %&gt;
+&lt;% end %&gt;
+</pre>
+
+<p>Because we don't need to display anything by default, there's no need to write the "else" part.</p>
+
+<p>Next, add a new layout file <code>_layout.html.erb</code> in the <code>features</code> folder. Page files use the closest layout file by default, so the page files in the <code>features</code> folder will use the new layout.</p>
+
+<p>The content of <code>/features/_layout.html.erb</code> is:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% content_for :feature_slogan do %&gt;
+    &lt;div class="well"&gt;
+        &lt;h3&gt;&lt;%= lorem_sentences 2 %&gt;&lt;/h3&gt;
+    &lt;/div&gt;
+&lt;% end %&gt;
+&lt;%= render :template =&gt; "/_layout" %&gt;
+</pre>
+
+<p>The code above makes a new layout based on our common layout. It uses <code>&lt;%= render :template =&gt; "/_layout" %&gt;</code> to assign the layout <code>/_layout.html.erb</code> for these pages to use. And the <code>&lt;% content_for :feature_slogan do %&gt;</code> part adds the promotion text block for every page which uses this layout. Switch to your browser and you'll see both the "Features List" page and the "Feature Detail" page now have a promotion text block. </p>
+
+<div class="page-footer">
+    Next: <a href="tutorial_8.html">Getting Current Page Path and Understanding Its Usage (Advanced) <i class="lsf-icon arrow"></i></a>
+</div>

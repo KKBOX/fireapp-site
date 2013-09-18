@@ -1,0 +1,10 @@
+<h1>Fire.app 機能應用教學</h1>
+<h2>Build Project</h2>
+
+<p>上述步驟完成後即可點選 Fire.app 選單中的 Build Project 輸出此專案的靜態頁面，專案資料夾中會出現一個以 <code>build_</code> 開頭加上時間戳記為名稱的資料夾，裡面即會包含此專案生成的所有靜態檔案，和前面看過的範例專案應該會有相同的內容。</p>
+
+<p>由於此專案中的連結都使用絕對連結，因此即使是輸出的靜態檔案也必須在 server 環境下才能正確取得檔案位置，使用時需特別注意。若沒有辦法建立 server 環境時可以直接利用 Fire.app 內建的 Web server ，只要用 Fire.app Watch 輸出的資料夾即可在瀏覽器中看見正確的結果。</p>
+
+<p>若必須將輸出的檔案交給其他人接手，但對方無法架設 Server 環境也沒有 Fire.app 時，由於 Fire.app 使用 <a href="http://www.gnu.org/licenses/gpl.html">GPL 授權</a>，在此授權下複製軟體給他人是合法的，可以直接把 Fire.app 連同輸出的檔案一併交給接手的人即可。</p>   
+
+<p>如果因為特殊需求而需要輸出使用相對連結的靜態頁面，必須自行調整各個頁面間的連結和載入檔案的路徑，由絕對連結更換為相對連結，若 Sass 檔案中有使用到和 <a href="http://compass-style.org/reference/compass/helpers/urls/#image-url">compass image-url()</a> 相關的 helper ，則必須在 Change Options 勾選 Sass 的 Relative Assets ，輸出 CSS 檔案時才會使用相對路徑。</p>   

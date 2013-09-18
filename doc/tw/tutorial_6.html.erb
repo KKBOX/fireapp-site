@@ -1,0 +1,41 @@
+<h1>Fire.app 機能應用教學</h1>
+<h2>在特定頁面變更已套用 Layout 部分的內容（進階）</h2>
+
+<p>目前的頁面中，除了首頁之外都套用了同樣的側欄。但依據先前的範例網站， Documents 頁面側欄的 AD Words 部分應該要更換成顯示提供教育訓練的聯絡方式，此時便需要使用 <code>content_for</code> 這個 Helper。關於 <code>content_for</code> 的詳細資料請參考文件： <a href="template_helper.html">Template Helpers</a>。</p>
+
+<p>若要達到上述需求，我們必須改變單一頁面的側欄內容，但是側欄的部分已經包含在 Layout 中，所以目前除了套用指定 Layout 的首頁以外所有頁面的側欄都是相同的。為了改變單頁的側欄內容我們需要改寫 Layout 中側欄的 <code>&lt;div class="ad"&gt;</code> 部分，將：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;div class="ad"&gt;
+    Ad Words
+&lt;/div&gt;
+</pre>
+
+<p>改成：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;div class="ad"&gt;
+    &lt;% if content_for? :sp_ad %&gt;
+        &lt;%= yield :sp_ad %&gt;
+    &lt;% else %&gt;
+        Ad Words
+    &lt;% end %&gt;
+&lt;/div&gt;
+</pre>
+
+<p>上面的程式碼可以讓 <code>&lt;div class="ad"&gt;</code> 區塊中預設顯示共同的內容 <code>Ad Words</code> ，當套用的頁面中有設定 <code>content_for :sp_ad</code> 的段落時則會顯示設定的內容。</p>
+
+<p>因此我們在 Documents 的頁面 <code>documents.html.erb</code> 的內容最前方加上：</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% content_for :sp_ad do %&gt;
+    If you need education support, please mail to:&lt;br /&gt;
+    &lt;a href="#"&gt;&lt;%= lorem_email %&gt;&lt;/a&gt;
+&lt;% end %&gt;
+</pre>
+
+<p>上述程式碼指定了 Documents 頁面中 <code>content_for :sp_ad</code> 的內容，因此現在只要切換到瀏覽器便能看見該頁面中的側欄和其他頁面不同，顯示了提供教育訓練的聯絡方式。</p>
+
+<div class="page-footer">
+    Next: <a href="tutorial_7.html">基於現有 Layout 製作變更部分內容的延伸 Layout（進階） <i class="lsf-icon arrow"></i></a>
+</div>

@@ -1,0 +1,41 @@
+<h1>Fire.app Feature Tutorial</h1>
+<h2>Changing the Content of Layouts for Particular Pages (Advanced)</h2>
+
+<p>In the current project, all the pages have the same sidebar except the homepage. But, in the example file we've seen previously, the "Document" page's <code>&lt;div class="ad"&gt;</code> block in the sidebar shows education contact information but not "Ad Words". So, we need to use the helper, <code>content_for</code>, and you can check details in <a href="template_helper.html">Template Helpers</a>.</p>
+
+<p>To complete this, we need to change the single page's sidebar. But, because we already put the sidebar in our common layout, we need to change <code>&lt;div class="ad"&gt;</code> in <code>_layout.html.erb</code>. Let's find this part:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;div class="ad"&gt;
+    Ad Words
+&lt;/div&gt;
+</pre>
+
+<p>And modify it to:</p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;div class="ad"&gt;
+    &lt;% if content_for? :sp_ad %&gt;
+        &lt;%= yield :sp_ad %&gt;
+    &lt;% else %&gt;
+        Ad Words
+    &lt;% end %&gt;
+&lt;/div&gt;
+</pre>
+
+<p>The code above sets <code>&lt;div class="ad"&gt;</code> to display <code>Ad Words</code> by default. But when the identifier <code>:sp_ad</code> is already storing a block using <code>content_for :sp_ad</code>, the stored content will be displayed.</p>
+
+<p>So, let's add this segment at the front of the "Document" page <code>documents.html.erb</code>: </p>
+
+<pre class="prettyprint linenums lang-html">
+&lt;% content_for :sp_ad do %&gt;
+    If you need education support, please mail to:&lt;br /&gt;
+    &lt;a href="#"&gt;&lt;%= lorem_email %&gt;&lt;/a&gt;
+&lt;% end %&gt;
+</pre>
+
+<p>In the code above, we set the content of <code>:sp_ad</code> in the "Document" page. So if you switch to your browser, you'll see the "Document" page's sidebar shows the education contact information.</p>
+
+<div class="page-footer">
+    Next: <a href="tutorial_7.html">Making an Extended Layout Based-on an Existing Layout (Advanced) <i class="lsf-icon arrow"></i></a>
+</div>

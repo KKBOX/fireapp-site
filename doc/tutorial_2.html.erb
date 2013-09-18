@@ -1,0 +1,69 @@
+<h1>Fire.app Feature Tutorial</h1>
+<h2>Introducing Template Language: ERB</h2>
+
+<p>Fire.app provides many template languages to simplify HTML development.<br />
+We choose to introduce ERB here because ERB is actually "HTML with embedded Ruby." Those good with HTML will find ERB is easy to get familiar with.</p>
+
+<p>With Fire.app we can easily use the template language by adding a corresponding file extension. For example, ERB uses this file extension <code>.html.erb</code>.</p>
+
+<p>The three common ways to insert RUBY into ERB are listed below:</p>
+
+<p>Only executes Ruby code and does not output results into HTML: </p>
+<pre class="prettyprint linenums lang-ruby">
+&lt;% Ruby code... %&gt;
+</pre>
+
+<p>Use an equal sign <code>=</code> to execute Ruby code and output results into HTML.</p>
+<pre class="prettyprint linenums lang-ruby">
+&lt;%= Ruby code... %&gt;
+</pre>
+
+<p>Use a sharp sign <code>#</code> to write a comment.</p>
+<pre class="prettyprint linenums lang-ruby">
+&lt;%# Comment... %&gt;
+</pre>
+
+<h3>In addition, there are three commonly used functions:</h3>
+<h4>If...else conditional</h4>
+<pre class="prettyprint linenums lang-ruby">
+&lt;% if condition %&gt;  
+  This part will be executed if condition is true
+&lt;% else %&gt;
+  This part will be executed if condition is false
+&lt;% end %&gt;
+</pre>
+<p>For example:</p>
+<pre class="prettyprint linenums lang-ruby">
+&lt;% if (1+1==2) %&gt;  
+  This line will be displayed.
+&lt;% else %&gt;
+  This line will never be displayed.
+&lt;% end %&gt;
+</pre>
+<p>Because the condition <code>1+1==2</code> is always true, the result of the code above will be <code>This line will be displayed.</code> no matter what time it runs.</p>   
+<h4>Do something for n times</h4>
+<pre class="prettyprint linenums lang-ruby">
+&lt;% n.times do %&gt;  
+  do something
+&lt;% end %&gt;
+</pre>
+<p>For example:</p>   
+<pre class="prettyprint linenums lang-ruby">
+&lt;% 3.times do %&gt;  
+  Good morning! 
+&lt;% end %&gt;
+</pre>
+<p>The result of the code above will be <code>Good morning! Good morning! Good morning! </code>.</p>   
+<h4>Generating a number from 0 to n-1 randomly</h4>
+<pre class="prettyprint linenums lang-ruby">
+&lt;%= rand(n) %&gt;
+</pre>
+<p>For example:</p> 
+<pre class="prettyprint linenums lang-ruby">
+&lt;%= rand(3) %&gt;
+</pre>
+<p>The result of the code above could be <code>0</code>, <code>1</code> or <code>2</code>.</p>
+
+<div class="page-footer">
+    Next: <a href="tutorial_3.html">Using Template Helpers <i class="lsf-icon arrow"></i></a>
+</div>

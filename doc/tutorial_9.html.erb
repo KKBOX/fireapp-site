@@ -1,0 +1,11 @@
+<h1>Fire.app Feature Tutorial</h1>
+<h2>Building Projects</h2>
+
+<p>After completing the previous steps, you can use "Build Project" in the Fire.app menu to generate the static files of this project. You will get a folder named <code>build_##############</code> which contains all the static files, and the content should be the same as the example file we've seen previously. </p>
+
+<p>Because we used absolute urls in this project, it needs to be on a web server to work correctly, even the static files. If you can't create a server environment, you can use Fire.app's built-in web server. Just use Fire.app to watch the output folder and you can check the results in your browser. 
+</p>
+
+<p>If you need to pass your end-products to someone else who can't create a server environment and doesn't have Fire.app, you can legally copy your Fire.app for them because Fire.app uses <a href="http://www.gnu.org/licenses/gpl.html">GPL liscence</a>.</p>   
+
+<p>If you really need to generate static pages with relative urls, you have to adjust every url  manually. And, if you use any compass helper which is related to <a href="http://compass-style.org/reference/compass/helpers/urls/#image-url">image-url()</a> in the Sass file, be sure to check "Sass" &gt; "Relative Assets" in the "Change Options" panel, then it will use relative urls in the output CSS files.</p>   
