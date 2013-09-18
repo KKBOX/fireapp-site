@@ -164,11 +164,13 @@ code {
 
 div.logo {
     img {
-        margin: 0 auto;
+        margin: -10px auto 0;
         display: block;
+        height: 180px;
+        width: 180px;
     }
     h1 {
-        margin: 10px 0 36px;
+        margin: 10px 0 18px;
         text-align: center;
         line-height: 1em;
         a {
@@ -181,16 +183,61 @@ div.logo {
         }
         a .small {
             color: #616161;
-            font-size: 0.4em;
+            font-size: 18px;
         }
         a .documents {
+            display: block;
             color: #616161;
             font-size: 24px;
             font-weight: normal;
+            line-height: 26px;
         }
     }
 }
 
+.buy {
+  margin-bottom: 26px;
+  .button {
+    @include border-radius(8px);
+    @include background-image(linear-gradient(#83c314, #689022));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#83c314, endColorstr=#689022);
+    @include box-shadow(rgba(#000, 0.5) 0 2px 2px, rgba(#fff, 0.4) 0 1px 0 inset);
+    text-shadow: rgba(#000 ,0.3) 0 -1px 0;
+    border: 1px solid #547718;
+    display: inline-block;
+    margin: 1px auto 8px;
+    padding: 0 20px;
+    width: 158px;
+    display: block;
+    font-family: 'Anton', sans-serif;
+    font-size: 18px;
+    line-height: 32px;
+    text-align: left;
+    color: #fff;
+    span {
+        display: inline-block;
+        @include float-left;
+        border-right: 1px solid #5b8118;
+        border-right: 1px solid rgba(#fff ,0.3);
+        @include box-shadow(rgba(#000, 0.2) -1px 0 0 inset);
+        margin-right: 20px;
+        padding-right: 20px;
+    }
+    &:hover {
+        @include background-image(linear-gradient(#699221, #4d7409));
+        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#699221, endColorstr=#4d7409);
+        @include box-shadow(rgba(#000, 0.7) 0 2px 0, rgba(#fff, 0.2) 0 1px 0 inset);
+    }
+  }
+  .donated {
+    text-align: center;
+    margin: 0;
+    font-family:'Vollkorn', serif;
+    font-size: 11px;
+    color: #555;
+    line-height: 15px;
+  }
+}
 
 ul.menu {
   list-style: none;
@@ -302,7 +349,7 @@ pre.prettyprint {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   body > .nav {
     position: static;
     width: 92%;
@@ -341,7 +388,7 @@ pre.prettyprint {
     }
   }
   div.logo {
-    margin: 0 auto;
+    margin: 0 auto 10px;
     display: block;
     width: 400px;
     position: relative;
@@ -405,5 +452,3 @@ pre.prettyprint {
     }
   }
 }
-
-
