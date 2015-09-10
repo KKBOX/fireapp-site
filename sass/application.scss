@@ -20,12 +20,14 @@ body {
 }
 
 a {
-    &:link {
-        color:#d15700;
-        text-decoration:none;}
-    &:visited {color:#d15700; text-decoration:none;}
-    &:hover, &:active{color:#6e9c1f;}
+    color:#d15700;
+    text-decoration:none;
 }
+a:visited {
+    color:#d15700;
+    text-decoration:none;
+}
+a:hover, a:active{color:#6e9c1f;}
 
 /* new clearfix */
 .clearfix:after {
@@ -150,47 +152,6 @@ h3 {
         font-weight:600;
         color:#616161;
         text-align:left;
-    }
-}
-
-.buy {
-    margin-bottom:52px;
-    .button {
-        @include border-radius(8px);
-        @include background-image(linear-gradient(#83c314, #689022));
-        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#83c314, endColorstr=#689022);
-        @include box-shadow(rgba(#000, 0.5) 0 2px 2px, rgba(#fff, 0.4) 0 1px 0 inset);
-        text-shadow: rgba(#000 ,0.3) 0 -1px 0;
-        border:1px solid #547718;
-        display:inline-block;
-        margin-left:1px;
-        padding:0 40px;
-        width:217px;
-        font-family: 'Anton', sans-serif;
-        font-size:26px;
-        line-height:49px;
-        text-align:left;
-        color:#fff;
-        span {
-            display:inline-block;
-            @include float-left;
-            border-right:1px solid #5b8118;
-            border-right:1px solid rgba(#fff ,0.3);
-            @include box-shadow(rgba(#000, 0.2) -1px 0 0 inset);
-            margin-right:30px;
-            padding-right:30px;
-        }
-        &:hover {
-            @include background-image(linear-gradient(#699221, #4d7409));
-            filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#699221, endColorstr=#4d7409);
-            @include box-shadow(rgba(#000, 0.7) 0 2px 0, rgba(#fff, 0.2) 0 1px 0 inset);
-        }
-    }
-    .donated {
-        margin:0;
-        font-family:'Vollkorn', serif;
-        font-size:13px;
-        color:#555;
     }
 }
 
